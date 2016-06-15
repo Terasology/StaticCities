@@ -24,6 +24,7 @@ import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Vector3f;
+import org.terasology.utilities.Assets;
 import org.terasology.world.generation.EntityBuffer;
 import org.terasology.world.generation.EntityProvider;
 import org.terasology.world.generation.Region;
@@ -40,12 +41,12 @@ public class QuestEntityProvider implements EntityProvider {
         RoadFacet roadFacet = region.getFacet(RoadFacet.class);
         InfiniteSurfaceHeightFacet heightFacet = region.getFacet(InfiniteSurfaceHeightFacet.class);
 
-        Optional<Prefab> optPrefab = null;
+        Optional<Prefab> optPrefab = Assets.getPrefab("QuestionMark");
         if (!optPrefab.isPresent()) {
             return;
         }
 
-        Prefab prefab = null;
+        Prefab prefab = optPrefab.get();
         if (!prefab.hasComponent(LocationComponent.class)) {
             return;
         }
@@ -61,6 +62,6 @@ public class QuestEntityProvider implements EntityProvider {
                 }
             }
         }
-   }
+    }
 
 }
