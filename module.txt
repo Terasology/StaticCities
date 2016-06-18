@@ -1,7 +1,7 @@
 {
     "id" : "StaticCities",
     "version" : "0.1.0-SNAPSHOT",
-    "author" : "",
+    "author" : "Cpt Crunchy",
     "displayName" : "StaticCities",
     "description" : "Spawns static cities at worldgeneration.",
     "dependencies" : [{
@@ -31,5 +31,5 @@
      ],
      "isServerSideOnly" : false,
      "isGameplay" : "true",
-     "defaultWorldGenerator" : "StaticCities:city"
+     "defaultWorldGenerator" : "StaticCities:staticCities"
 }
