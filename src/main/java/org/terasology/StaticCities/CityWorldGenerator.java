@@ -65,7 +65,7 @@ import org.terasology.world.generation.WorldBuilder;
 import org.terasology.world.generator.RegisterWorldGenerator;
 import org.terasology.world.generator.plugin.WorldGeneratorPluginLibrary;
 
-@RegisterWorldGenerator(id = "city", displayName = "City World")
+@RegisterWorldGenerator(id = "staticCities", displayName = "Static City World")
 public class CityWorldGenerator extends BaseFacetedWorldGenerator {
 
     private final Spawner spawner = new CitySpawner();
