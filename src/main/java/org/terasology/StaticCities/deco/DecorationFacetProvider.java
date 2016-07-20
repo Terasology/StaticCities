@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.deco;
+package org.terasology.staticCities.deco;
 
-import org.terasology.StaticCities.bldg.BuildingFacet;
+import org.terasology.staticCities.bldg.BuildingFacet;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;

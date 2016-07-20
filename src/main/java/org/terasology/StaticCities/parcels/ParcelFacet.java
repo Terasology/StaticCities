@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.parcels;
+package org.terasology.staticCities.parcels;
 
 import com.google.common.collect.LinkedHashMultimap;
 import com.google.common.collect.SetMultimap;
-import org.terasology.StaticCities.sites.Site;
-import org.terasology.world.generation.WorldFacet;
-
 import java.util.Collection;
 import java.util.Collections;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.world.generation.WorldFacet;
 
 /**
  *

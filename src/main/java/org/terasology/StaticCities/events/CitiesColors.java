@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.events;
+package org.terasology.staticCities.events;
 
 import org.terasology.rendering.nui.Color;
 

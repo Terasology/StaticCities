@@ -14,16 +14,18 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.settlements;
+package org.terasology.staticCities.settlements;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Draws the generated graph on a AWT graphics instance

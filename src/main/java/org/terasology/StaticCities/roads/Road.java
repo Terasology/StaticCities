@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roads;
+package org.terasology.staticCities.roads;
 
 import com.google.common.base.Preconditions;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.terasology.math.geom.BaseVector2i;
+import org.terasology.math.geom.ImmutableVector2i;
 
 /**
  * A road contains two end points and a list of points between them.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roads;
+package org.terasology.staticCities.roads;
 
 import org.terasology.math.geom.ImmutableVector2i;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.door;
+package org.terasology.staticCities.door;
 
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;

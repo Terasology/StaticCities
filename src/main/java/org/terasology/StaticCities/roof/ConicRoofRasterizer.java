@@ -14,19 +14,22 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roof;
+package org.terasology.staticCities.roof;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.model.roof.ConicRoof;
-import org.terasology.StaticCities.raster.*;
+import java.math.RoundingMode;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Circle;
 import org.terasology.math.geom.Vector2i;
-
-import java.math.RoundingMode;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.model.roof.ConicRoof;
+import org.terasology.staticCities.raster.CheckedPen;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts a {@link ConicRoof} into blocks

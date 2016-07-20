@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.StaticCities.events;
+package org.terasology.staticCities.events;
 
-import org.terasology.StaticCities.settlements.Settlement;
 import org.terasology.entitySystem.event.Event;
+import org.terasology.staticCities.settlements.Settlement;
 
 public class OnEnterSettlementEvent implements Event {
     private final Settlement settlement;

@@ -14,16 +14,17 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.walls;
+package org.terasology.staticCities.walls;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Renders a {@link TownWall}.

@@ -14,13 +14,17 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.model.roof;
+package org.terasology.staticCities.model.roof;
 
 import com.google.common.base.Preconditions;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
 
-import static org.terasology.commonworld.Orientation.*;
+
+import static org.terasology.commonworld.Orientation.EAST;
+import static org.terasology.commonworld.Orientation.NORTH;
+import static org.terasology.commonworld.Orientation.SOUTH;
+import static org.terasology.commonworld.Orientation.WEST;
 
 /**
  * A saddle(gable) roof

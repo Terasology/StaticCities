@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
-import org.terasology.StaticCities.common.Edges;
-import org.terasology.StaticCities.door.SimpleDoor;
-import org.terasology.StaticCities.model.roof.BattlementRoof;
-import org.terasology.StaticCities.model.roof.Roof;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.common.Edges;
+import org.terasology.staticCities.door.SimpleDoor;
+import org.terasology.staticCities.model.roof.BattlementRoof;
+import org.terasology.staticCities.model.roof.Roof;
 
 /**
  * A simple tower

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities;
+package org.terasology.staticCities;
 
 /**
  * A set of constants used for city building

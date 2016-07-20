@@ -14,22 +14,21 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster;
+package org.terasology.staticCities.raster;
 
 import com.google.common.base.Function;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.StaticCities.BlockType;
-import org.terasology.StaticCities.DefaultBlockType;
 import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector3i;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Set;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.DefaultBlockType;
 
 /**
  * Converts model elements into pixels in an image.
@@ -104,7 +103,7 @@ public class ImageRasterTarget implements RasterTarget {
      * @param x x in world coords
      * @param y y in world coords
      * @param z z in world coords
-     * @param color the actual block color
+     * @param type the actual block type
      */
     protected void renderBlock(int x, int y, int z, BlockType type) {
 

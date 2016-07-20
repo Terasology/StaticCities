@@ -14,22 +14,22 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
-
-import org.terasology.StaticCities.BlockType;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.math.Region3i;
-import org.terasology.math.Side;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector3i;
-import org.terasology.world.chunks.blockdata.TeraArray;
-import org.terasology.world.chunks.blockdata.TeraDenseArray16Bit;
+package org.terasology.staticCities.bldg;
 
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import org.terasology.math.Region3i;
+import org.terasology.math.Side;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector3i;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.world.chunks.blockdata.TeraArray;
+import org.terasology.world.chunks.blockdata.TeraDenseArray16Bit;
+
 
 import static org.terasology.world.chunks.ChunkConstants.SIZE_X;
 import static org.terasology.world.chunks.ChunkConstants.SIZE_Z;

@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster;
+package org.terasology.staticCities.raster;
 
-import org.terasology.StaticCities.BlockType;
-import org.terasology.StaticCities.DefaultBlockType;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.DefaultBlockType;
 
 /**
  * Provides {@link Pen} instances for building-related rasterization.

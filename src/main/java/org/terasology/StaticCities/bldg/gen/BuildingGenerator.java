@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg.gen;
-
-import org.terasology.StaticCities.bldg.Building;
-import org.terasology.StaticCities.parcels.StaticParcel;
-import org.terasology.StaticCities.surface.InfiniteSurfaceHeightFacet;
+package org.terasology.staticCities.bldg.gen;
 
 import java.util.Set;
+import org.terasology.staticCities.bldg.Building;
+import org.terasology.staticCities.parcels.StaticParcel;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 
 /**
  *

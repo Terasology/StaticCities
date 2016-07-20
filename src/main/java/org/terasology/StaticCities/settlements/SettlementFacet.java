@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.settlements;
-
-import org.terasology.math.Region3i;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
+package org.terasology.staticCities.settlements;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import org.terasology.math.Region3i;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  *

@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roads;
+package org.terasology.staticCities.roads;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.StaticCities.blocked.BlockedAreaFacet;
-import org.terasology.StaticCities.sites.Site;
-import org.terasology.StaticCities.sites.SiteFacet;
-import org.terasology.StaticCities.terrain.BuildableTerrainFacet;
 import org.terasology.commonworld.Orientation;
 import org.terasology.commonworld.UnorderedPair;
 import org.terasology.core.world.generator.facets.BiomeFacet;
@@ -35,13 +41,18 @@ import org.terasology.pathfinding.GeneralPathFinder;
 import org.terasology.pathfinding.GeneralPathFinder.DefaultEdge;
 import org.terasology.pathfinding.GeneralPathFinder.Edge;
 import org.terasology.pathfinding.GeneralPathFinder.Path;
+import org.terasology.staticCities.blocked.BlockedAreaFacet;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.staticCities.sites.SiteFacet;
+import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.procedural.PerlinNoise;
-import org.terasology.world.generation.*;
-
-import java.math.RoundingMode;
-import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetBorder;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 
 /**
  * Provides {@link Road} instances through {@link RoadFacet}.
@@ -120,7 +131,7 @@ public class RoadFacetProvider implements FacetProvider {
             }
         }
 
-        candidates.sort((a, b) -> { return Float.compare(a.getLength(), b.getLength()); });
+        candidates.sort((a, b) -> Float.compare(a.getLength(), b.getLength()));
 
         Map<ImmutableVector2i, Collection<Edge<ImmutableVector2i>>> sourceMap = new HashMap<>();
         GeneralPathFinder<ImmutableVector2i> pathFinder = new GeneralPathFinder<>(e -> sourceMap.getOrDefault(e, Collections.emptySet()));

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities;
+package org.terasology.staticCities;
 
 /**
  * Identifies material types so they can be mapped to actual blocks.

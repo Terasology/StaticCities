@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.fences;
+package org.terasology.staticCities.fences;
 
 /**
  *

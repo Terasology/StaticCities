@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.StaticCities.surface;
+package org.terasology.staticCities.surface;
 
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
@@ -78,7 +78,7 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
         }
     }
 
-    private static enum SymmetryType {
+    private enum SymmetryType {
         NONE("None", null),
         X_AXIS("X-Axis", Symmetries.alongX()),
         Z_AXIS("Z-Axis", Symmetries.alongZ()),

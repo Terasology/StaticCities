@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.deco;
-
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
+package org.terasology.staticCities.deco;
 
 import java.util.Collections;
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * Converts {@link SingleBlockDecoration} into blocks

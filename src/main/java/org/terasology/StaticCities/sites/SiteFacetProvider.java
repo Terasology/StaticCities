@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.sites;
+package org.terasology.staticCities.sites;
 
-import org.terasology.StaticCities.terrain.BuildableTerrainFacet;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import org.terasology.entitySystem.Component;
 import org.terasology.math.Region3i;
 import org.terasology.math.TeraMath;
@@ -24,14 +27,15 @@ import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
 import org.terasology.rendering.nui.properties.Range;
+import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.WhiteNoise;
-import org.terasology.world.generation.*;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.ConfigurableFacetProvider;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 
 /**
  *

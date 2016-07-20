@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
-
-import org.terasology.StaticCities.deco.Decoration;
-import org.terasology.StaticCities.door.Door;
-import org.terasology.StaticCities.model.roof.Roof;
-import org.terasology.StaticCities.window.Window;
-import org.terasology.math.geom.Shape;
+package org.terasology.staticCities.bldg;
 
 import java.util.Set;
+import org.terasology.math.geom.Shape;
+import org.terasology.staticCities.deco.Decoration;
+import org.terasology.staticCities.door.Door;
+import org.terasology.staticCities.model.roof.Roof;
+import org.terasology.staticCities.window.Window;
 
 /**
  * Defines a part of a building.

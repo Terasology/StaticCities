@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
 import java.util.Collection;
 

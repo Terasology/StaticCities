@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.lakes;
+package org.terasology.staticCities.lakes;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Draws the generated graph on a AWT graphics instance

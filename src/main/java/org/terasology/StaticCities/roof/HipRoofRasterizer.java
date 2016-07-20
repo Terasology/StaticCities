@@ -14,20 +14,20 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roof;
+package org.terasology.staticCities.roof;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.common.Edges;
-import org.terasology.StaticCities.model.roof.HipRoof;
-import org.terasology.StaticCities.raster.Pen;
-import org.terasology.StaticCities.raster.Pens;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.StaticCities.raster.RasterUtil;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.common.Edges;
+import org.terasology.staticCities.model.roof.HipRoof;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts a {@link HipRoof} into blocks

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.window;
+package org.terasology.staticCities.window;
 
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.BaseVector2i;

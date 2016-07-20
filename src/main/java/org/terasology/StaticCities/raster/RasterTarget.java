@@ -14,15 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster;
+package org.terasology.staticCities.raster;
 
-import org.terasology.StaticCities.BlockType;
+import java.util.Set;
 import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.math.geom.Rect2i;
-
-import java.util.Set;
+import org.terasology.staticCities.BlockType;
 
 /**
  * Converts model elements into blocks
@@ -50,7 +49,7 @@ public interface RasterTarget {
      * @param y y in world coords
      * @param z z in world coords
      * @param type the block type
-     * @param sides the sides (used to find the correct block from the family)
+     * @param side the sides (used to find the correct block from the family)
      */
     void setBlock(int x, int y, int z, BlockType type, Set<Side> side);
 

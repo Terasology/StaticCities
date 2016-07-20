@@ -13,11 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.StaticCities.roads;
+package org.terasology.staticCities.roads;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.surface.InfiniteSurfaceHeightFacet;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 import org.terasology.commonworld.geom.BoundingBox;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.math.Region3i;
@@ -26,19 +28,13 @@ import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
-
-/**
- * @author Immortius
- */
 public class RoadRasterizer implements WorldRasterizer {
 
     private BlockTheme blockTheme;

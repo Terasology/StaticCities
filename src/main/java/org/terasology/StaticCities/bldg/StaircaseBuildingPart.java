@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
-import org.terasology.StaticCities.model.roof.Roof;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.staticCities.model.roof.Roof;
 
 /**
  *

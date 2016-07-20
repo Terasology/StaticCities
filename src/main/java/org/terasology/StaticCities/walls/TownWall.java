@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.walls;
+package org.terasology.staticCities.walls;
 
 import com.google.common.collect.Lists;
-import org.terasology.StaticCities.bldg.Tower;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.terasology.staticCities.bldg.Tower;
 
 /**
  * Defines a town wall consisting of {@link Tower}s
