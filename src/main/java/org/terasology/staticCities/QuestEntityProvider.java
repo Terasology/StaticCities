@@ -16,20 +16,19 @@
 
 package org.terasology.staticCities;
 
-import org.terasology.staticCities.roads.Road;
-import org.terasology.staticCities.roads.RoadFacet;
-import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import java.util.Optional;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Vector3f;
+import org.terasology.staticCities.roads.Road;
+import org.terasology.staticCities.roads.RoadFacet;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.utilities.Assets;
 import org.terasology.world.generation.EntityBuffer;
 import org.terasology.world.generation.EntityProvider;
 import org.terasology.world.generation.Region;
-
-import java.util.Optional;
 
 /**
  * Adds a quest, annotated with a spinning question mark icon.

@@ -17,13 +17,12 @@
 package org.terasology.staticCities.parcels;
 
 import com.google.common.collect.Sets;
-import org.terasology.staticCities.bldg.Building;
+import java.util.Collections;
+import java.util.Set;
 import org.terasology.cities.parcels.Parcel;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
-
-import java.util.Collections;
-import java.util.Set;
+import org.terasology.staticCities.bldg.Building;
 
 /**
  * A parcel where buildings can be placed on.

@@ -15,12 +15,12 @@
  */
 package org.terasology.staticCities.events;
 
-import org.terasology.staticCities.CityWorldGenerator;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.registry.In;
+import org.terasology.staticCities.CityWorldGenerator;
 import org.terasology.world.WorldComponent;
 import org.terasology.world.chunks.event.PurgeWorldEvent;
 import org.terasology.world.generator.WorldGenerator;

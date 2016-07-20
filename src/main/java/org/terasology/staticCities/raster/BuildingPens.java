@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.raster;
 
+import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.commonworld.heightmap.HeightMap;
 
 /**
  * Provides {@link Pen} instances for building-related rasterization.

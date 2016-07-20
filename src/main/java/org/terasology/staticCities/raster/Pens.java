@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities.raster;
 
-import org.terasology.staticCities.BlockType;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockType;
 
 /**
  * A collections of {@Pen} factory methods.

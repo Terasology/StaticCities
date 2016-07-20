@@ -16,12 +16,12 @@
 
 package org.terasology.staticCities.window;
 
+import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.commonworld.heightmap.HeightMap;
 
 /**
  * Converts {@link RectWindow} into blocks (or air actually)

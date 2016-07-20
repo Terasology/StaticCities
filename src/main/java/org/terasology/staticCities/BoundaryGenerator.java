@@ -17,6 +17,8 @@
 package org.terasology.staticCities;
 
 import com.google.common.base.Function;
+import java.util.Collections;
+import java.util.Map;
 import org.terasology.commonworld.Sector;
 import org.terasology.math.geom.Vector2i;
 import org.terasology.registry.CoreRegistry;
@@ -24,9 +26,6 @@ import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generator.ChunkGenerationPass;
-
-import java.util.Collections;
-import java.util.Map;
 
 /**
  * Draws chunk and sector borders

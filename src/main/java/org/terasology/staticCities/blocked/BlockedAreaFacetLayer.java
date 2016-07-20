@@ -16,13 +16,13 @@
 
 package org.terasology.staticCities.blocked;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Draws the blocked area in a given image

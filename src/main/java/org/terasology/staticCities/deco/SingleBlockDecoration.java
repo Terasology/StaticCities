@@ -16,10 +16,10 @@
 
 package org.terasology.staticCities.deco;
 
-import org.terasology.staticCities.BlockType;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.math.geom.ImmutableVector3i;
+import org.terasology.staticCities.BlockType;
 
 /**
  * A single block decoration

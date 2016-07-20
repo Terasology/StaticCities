@@ -55,7 +55,7 @@ public final class Edges {
     }
 
     public static float getDistanceToCorner(Rect2i rc, int x, int y) {
-        return (float) Math.sqrt(getDistanceToCorner(rc, x, y));
+        return (float) Math.sqrt(getDistanceToCornerSq(rc, x, y));
     }
 
     public static int getDistanceToCornerSq(Rect2i rc, int x, int y) {

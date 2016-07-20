@@ -16,6 +16,9 @@
 
 package org.terasology.staticCities.roof;
 
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.commonworld.heightmap.HeightMaps;
+import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.model.roof.SaddleRoof;
@@ -23,9 +26,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.commonworld.heightmap.HeightMaps;
-import org.terasology.math.geom.Rect2i;
+
 
 import static org.terasology.commonworld.Orientation.EAST;
 import static org.terasology.commonworld.Orientation.WEST;

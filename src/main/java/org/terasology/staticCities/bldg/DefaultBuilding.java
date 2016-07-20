@@ -16,11 +16,10 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.terasology.commonworld.Orientation;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import org.terasology.commonworld.Orientation;
 
 /**
  * A building - composed of {@link BuildingPart} instances.

@@ -16,11 +16,13 @@
 
 package org.terasology.staticCities.events;
 
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.staticCities.SettlementComponent;
-import org.terasology.staticCities.settlements.Settlement;
-import org.terasology.staticCities.sites.Site;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.entity.lifecycleEvents.OnActivatedComponent;
 import org.terasology.entitySystem.event.ReceiveEvent;
@@ -36,10 +38,11 @@ import org.terasology.network.Client;
 import org.terasology.network.NetworkSystem;
 import org.terasology.registry.In;
 import org.terasology.rendering.FontColor;
+import org.terasology.staticCities.SettlementComponent;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.sites.Site;
 import org.terasology.world.WorldComponent;
 import org.terasology.world.chunks.event.PurgeWorldEvent;
-
-import java.util.*;
 
 /**
  * Tracks player movements with respect to {@link Settlement} entities.

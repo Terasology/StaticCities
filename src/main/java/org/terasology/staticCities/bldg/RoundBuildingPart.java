@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.math.geom.Circle;
+import org.terasology.staticCities.model.roof.Roof;
 
 /**
  *

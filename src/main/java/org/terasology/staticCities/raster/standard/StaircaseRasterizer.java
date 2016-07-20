@@ -16,12 +16,8 @@
 
 package org.terasology.staticCities.raster.standard;
 
-import org.terasology.staticCities.BlockTheme;
-import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.staticCities.bldg.BuildingPartRasterizer;
-import org.terasology.staticCities.bldg.StaircaseBuildingPart;
-import org.terasology.staticCities.common.Edges;
-import org.terasology.staticCities.raster.RasterTarget;
+import java.util.Collections;
+import java.util.Iterator;
 import org.terasology.commonworld.Orientation;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.Side;
@@ -29,9 +25,12 @@ import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.RectIterable;
 import org.terasology.math.geom.Vector2i;
-
-import java.util.Collections;
-import java.util.Iterator;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.bldg.BuildingPartRasterizer;
+import org.terasology.staticCities.bldg.StaircaseBuildingPart;
+import org.terasology.staticCities.common.Edges;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * Converts a {@link StaircaseBuildingPart} into blocks

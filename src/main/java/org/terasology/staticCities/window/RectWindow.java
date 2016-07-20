@@ -16,10 +16,10 @@
 
 package org.terasology.staticCities.window;
 
-import org.terasology.staticCities.BlockType;
-import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.DefaultBlockType;
 
 /**
  * A rectangular window in a wall

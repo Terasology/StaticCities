@@ -78,7 +78,7 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
         }
     }
 
-    private static enum SymmetryType {
+    private enum SymmetryType {
         NONE("None", null),
         X_AXIS("X-Axis", Symmetries.alongX()),
         Z_AXIS("Z-Axis", Symmetries.alongZ()),

@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities;
 
-import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.entitySystem.Component;
+import org.terasology.staticCities.settlements.Settlement;
 
 /**
  * Indicates a settlement.

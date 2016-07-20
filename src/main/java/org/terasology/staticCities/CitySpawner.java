@@ -16,18 +16,17 @@
 
 package org.terasology.staticCities;
 
-import org.terasology.staticCities.sites.Site;
-import org.terasology.staticCities.sites.SiteFacet;
+import java.util.Collections;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.spawner.AbstractSpawner;
 import org.terasology.math.Region3i;
 import org.terasology.math.geom.Vector2i;
 import org.terasology.math.geom.Vector3f;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.staticCities.sites.SiteFacet;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.World;
-
-import java.util.Collections;
 
 /**
  * Spawns entities at the center of the closest settlement.
@@ -35,7 +34,7 @@ import java.util.Collections;
  */
 public class CitySpawner extends AbstractSpawner {
 
-    private final int searchRadius = 16;
+    private static final int SEARCH_RADIUS = 16;
 
     @Override
     public Vector3f getSpawnPosition(World world, EntityRef entity) {
@@ -54,7 +53,7 @@ public class CitySpawner extends AbstractSpawner {
         } else {
             searchPos = pos2d;
         }
-        Vector3f realPos = findSpawnPosition(world, searchPos, searchRadius);
+        Vector3f realPos = findSpawnPosition(world, searchPos, SEARCH_RADIUS);
         return realPos;
     }
 

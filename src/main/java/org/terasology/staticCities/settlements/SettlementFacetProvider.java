@@ -16,14 +16,19 @@
 
 package org.terasology.staticCities.settlements;
 
+import org.terasology.namegenerator.town.DebugTownTheme;
+import org.terasology.namegenerator.town.TownNameProvider;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
-import org.terasology.namegenerator.town.DebugTownTheme;
-import org.terasology.namegenerator.town.TownNameProvider;
 import org.terasology.utilities.procedural.WhiteNoise;
-import org.terasology.world.generation.*;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 
 /**
  *

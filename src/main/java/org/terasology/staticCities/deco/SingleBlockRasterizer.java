@@ -16,11 +16,10 @@
 
 package org.terasology.staticCities.deco;
 
+import java.util.Collections;
+import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.raster.RasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
-
-import java.util.Collections;
 
 /**
  * Converts {@link SingleBlockDecoration} into blocks

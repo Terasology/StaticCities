@@ -16,6 +16,11 @@
 
 package org.terasology.staticCities.bldg.gen;
 
+import org.terasology.commonworld.Orientation;
+import org.terasology.math.TeraMath;
+import org.terasology.math.geom.ImmutableVector2i;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.bldg.DefaultBuilding;
 import org.terasology.staticCities.bldg.RectBuildingPart;
@@ -26,11 +31,6 @@ import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.SimpleWindow;
-import org.terasology.commonworld.Orientation;
-import org.terasology.math.TeraMath;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 
 /**
  *

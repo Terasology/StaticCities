@@ -17,12 +17,8 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
-import org.terasology.staticCities.roads.Road;
-import org.terasology.staticCities.roads.RoadFacet;
-import org.terasology.staticCities.roads.RoadSegment;
-import org.terasology.staticCities.settlements.Settlement;
-import org.terasology.staticCities.settlements.SettlementFacet;
-import org.terasology.staticCities.sites.Site;
+import java.util.List;
+import java.util.Set;
 import org.terasology.core.world.generator.facetProviders.DefaultTreeProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.TreeFacet;
@@ -30,12 +26,19 @@ import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.LineSegment;
 import org.terasology.math.geom.Vector3i;
-import org.terasology.world.generation.*;
+import org.terasology.staticCities.roads.Road;
+import org.terasology.staticCities.roads.RoadFacet;
+import org.terasology.staticCities.roads.RoadSegment;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.settlements.SettlementFacet;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetBorder;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.facets.SeaLevelFacet;
 import org.terasology.world.generation.facets.SurfaceHeightFacet;
-
-import java.util.List;
-import java.util.Set;
 
 @Produces(TreeFacet.class)
 @Requires({

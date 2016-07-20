@@ -17,7 +17,11 @@
 package org.terasology.staticCities.terrain;
 
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.world.generation.*;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.facets.SeaLevelFacet;
 
 /**

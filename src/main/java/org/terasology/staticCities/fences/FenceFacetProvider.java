@@ -19,16 +19,20 @@ package org.terasology.staticCities.fences;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import java.util.Optional;
+import org.terasology.commonworld.Orientation;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.parcels.ParcelFacet;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.parcels.Zone;
-import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
-import org.terasology.world.generation.*;
-
-import java.util.Optional;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 
 /**
  * Produces an empty {@link FenceFacet}.

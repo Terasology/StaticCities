@@ -16,12 +16,12 @@
 
 package org.terasology.staticCities.door;
 
+import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
 
 /**
  * Converts {@link SimpleDoor} into blocks (or air actually)

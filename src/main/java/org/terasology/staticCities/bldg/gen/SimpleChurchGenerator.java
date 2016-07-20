@@ -16,6 +16,14 @@
 
 package org.terasology.staticCities.bldg.gen;
 
+import java.math.RoundingMode;
+import org.terasology.commonworld.Orientation;
+import org.terasology.math.Side;
+import org.terasology.math.TeraMath;
+import org.terasology.math.geom.LineSegment;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
+import org.terasology.math.geom.Vector3i;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.bldg.BuildingPart;
@@ -33,17 +41,8 @@ import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.RectWindow;
 import org.terasology.staticCities.window.SimpleWindow;
-import org.terasology.commonworld.Orientation;
-import org.terasology.math.Side;
-import org.terasology.math.TeraMath;
-import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
-import org.terasology.math.geom.Vector3i;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
-
-import java.math.RoundingMode;
 
 /**
  * Creates building models of a simple church.

@@ -16,15 +16,14 @@
 
 package org.terasology.staticCities.deco;
 
-import org.terasology.staticCities.BlockTheme;
-import org.terasology.staticCities.BlockType;
-import org.terasology.staticCities.raster.RasterTarget;
+import java.util.EnumSet;
+import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.Side;
 import org.terasology.math.geom.ImmutableVector3i;
-
-import java.util.EnumSet;
-import java.util.Set;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * Converts {@link ColumnDecoration} into blocks

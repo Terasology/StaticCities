@@ -16,6 +16,10 @@
 
 package org.terasology.staticCities.roof;
 
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.commonworld.heightmap.HeightMaps;
+import org.terasology.math.TeraMath;
+import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.common.Edges;
@@ -24,10 +28,6 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.commonworld.heightmap.HeightMaps;
-import org.terasology.math.TeraMath;
-import org.terasology.math.geom.Rect2i;
 
 /**
  * Converts a {@link HipRoof} into blocks

@@ -16,13 +16,13 @@
 
 package org.terasology.staticCities.bldg;
 
+import org.terasology.commonworld.Orientation;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.door.SimpleDoor;
 import org.terasology.staticCities.model.roof.BattlementRoof;
 import org.terasology.staticCities.model.roof.Roof;
-import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 
 /**
  * A simple tower

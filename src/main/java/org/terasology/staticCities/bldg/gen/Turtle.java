@@ -16,12 +16,12 @@
 
 package org.terasology.staticCities.bldg.gen;
 
-import org.terasology.staticCities.common.Edges;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.common.Edges;
 
 /**
  * A turtle has a position and direction. It can be used to define 2D shapes in a relative

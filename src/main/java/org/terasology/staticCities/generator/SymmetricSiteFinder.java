@@ -17,18 +17,17 @@
 package org.terasology.staticCities.generator;
 
 import com.google.common.base.Function;
+import java.util.HashSet;
+import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.staticCities.sites.Site;
 import org.terasology.commonworld.Sector;
 import org.terasology.commonworld.Sectors;
 import org.terasology.commonworld.symmetry.Symmetry;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Vector2i;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.terasology.staticCities.sites.Site;
 
 /**
  * Creates a symmetric set of settlements based on a symmetric height map

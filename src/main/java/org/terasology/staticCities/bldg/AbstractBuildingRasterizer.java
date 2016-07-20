@@ -16,11 +16,11 @@
 
 package org.terasology.staticCities.bldg;
 
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.raster.ChunkRasterTarget;
 import org.terasology.staticCities.raster.RasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.math.TeraMath;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;

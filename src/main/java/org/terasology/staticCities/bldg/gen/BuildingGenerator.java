@@ -16,11 +16,10 @@
 
 package org.terasology.staticCities.bldg.gen;
 
+import java.util.Set;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-
-import java.util.Set;
 
 /**
  *

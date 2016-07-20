@@ -17,23 +17,22 @@
 package org.terasology.staticCities.door;
 
 import com.google.common.collect.ImmutableMap;
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.raster.ImageRasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.math.TeraMath;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.facets.SurfaceHeightFacet;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Draws doors in a given image

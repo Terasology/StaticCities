@@ -17,6 +17,10 @@
 package org.terasology.staticCities.lakes;
 
 import com.google.common.base.Objects;
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.util.Collection;
 import org.terasology.commonworld.contour.Contour;
 import org.terasology.commonworld.contour.ContourTracer;
 import org.terasology.commonworld.heightmap.HeightMap;
@@ -24,12 +28,13 @@ import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.namegenerator.waters.DebugWaterTheme;
 import org.terasology.namegenerator.waters.WaterNameProvider;
-import org.terasology.world.generation.*;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.facets.SeaLevelFacet;
 import org.terasology.world.generation.facets.SurfaceHeightFacet;
-
-import java.awt.*;
-import java.util.Collection;
 
 /**
  *

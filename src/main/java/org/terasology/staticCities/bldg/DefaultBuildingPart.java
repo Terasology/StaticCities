@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.math.geom.Shape;
+import org.terasology.staticCities.model.roof.Roof;
 
 /**
  * The default implementation of {@link BuildingPart}.

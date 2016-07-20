@@ -17,19 +17,22 @@
 package org.terasology.staticCities.walls;
 
 import com.google.common.math.DoubleMath;
-import org.terasology.staticCities.BlockTheme;
-import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.staticCities.raster.*;
-import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import java.math.RoundingMode;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.LineSegment;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.raster.ChunkRasterTarget;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
-
-import java.math.RoundingMode;
 
 /**
  * Converts a {@link TownWall} into blocks

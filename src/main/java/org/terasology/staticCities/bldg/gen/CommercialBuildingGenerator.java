@@ -16,6 +16,14 @@
 
 package org.terasology.staticCities.bldg.gen;
 
+import org.terasology.commonworld.Orientation;
+import org.terasology.math.Side;
+import org.terasology.math.TeraMath;
+import org.terasology.math.geom.BaseVector2i;
+import org.terasology.math.geom.BaseVector3i;
+import org.terasology.math.geom.ImmutableVector3i;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.bldg.DefaultBuilding;
@@ -25,10 +33,6 @@ import org.terasology.staticCities.deco.SingleBlockDecoration;
 import org.terasology.staticCities.model.roof.HipRoof;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.commonworld.Orientation;
-import org.terasology.math.Side;
-import org.terasology.math.TeraMath;
-import org.terasology.math.geom.*;
 import org.terasology.utilities.procedural.WhiteNoise;
 
 /**

@@ -16,13 +16,12 @@
 
 package org.terasology.staticCities.raster;
 
-import org.terasology.staticCities.BlockType;
+import java.util.Set;
 import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.math.geom.Rect2i;
-
-import java.util.Set;
+import org.terasology.staticCities.BlockType;
 
 /**
  * Converts model elements into blocks

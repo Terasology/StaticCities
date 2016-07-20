@@ -16,9 +16,6 @@
 
 package org.terasology.staticCities;
 
-import org.terasology.staticCities.settlements.Settlement;
-import org.terasology.staticCities.settlements.SettlementFacet;
-import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.nameTags.NameTagComponent;
@@ -27,6 +24,9 @@ import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Vector3f;
 import org.terasology.network.NetworkComponent;
 import org.terasology.rendering.nui.Color;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.settlements.SettlementFacet;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.generation.EntityBuffer;
 import org.terasology.world.generation.EntityProvider;
 import org.terasology.world.generation.Region;
