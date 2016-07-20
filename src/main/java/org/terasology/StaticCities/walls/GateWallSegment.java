@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.walls;
+package org.terasology.staticCities.walls;
 
 import org.terasology.math.geom.BaseVector2i;
 

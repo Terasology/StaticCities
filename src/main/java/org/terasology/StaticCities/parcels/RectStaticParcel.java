@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.parcels;
+package org.terasology.staticCities.parcels;
 
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.window;
+package org.terasology.staticCities.window;
 
 /**
  * A window

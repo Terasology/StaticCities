@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.model.roof;
+package org.terasology.staticCities.model.roof;
 
 import com.google.common.base.Preconditions;
 import org.terasology.commonworld.Orientation;

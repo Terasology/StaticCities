@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.deco;
+package org.terasology.staticCities.deco;
 
 /**
  * A decoration

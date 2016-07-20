@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.model.roof;
+package org.terasology.staticCities.model.roof;
 
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;

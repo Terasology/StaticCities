@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.door;
+package org.terasology.staticCities.door;
 
 /**
  * A door

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.terrain;
+package org.terasology.staticCities.terrain;
 
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Rect2i;

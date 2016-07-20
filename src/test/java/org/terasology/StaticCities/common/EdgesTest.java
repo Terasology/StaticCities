@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.common;
+package org.terasology.staticCities.common;
 
 import org.junit.Assert;
 import org.junit.Test;
