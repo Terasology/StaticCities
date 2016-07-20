@@ -14,43 +14,51 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.walls;
+package org.terasology.staticCities.walls;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.StaticCities.bldg.*;
-import org.terasology.StaticCities.blocked.BlockedAreaFacet;
-import org.terasology.StaticCities.common.Edges;
-import org.terasology.StaticCities.deco.Decoration;
-import org.terasology.StaticCities.deco.DecorationFacet;
-import org.terasology.StaticCities.door.Door;
-import org.terasology.StaticCities.door.DoorFacet;
-import org.terasology.StaticCities.door.WingDoor;
-import org.terasology.StaticCities.roof.RoofFacet;
-import org.terasology.StaticCities.settlements.Settlement;
-import org.terasology.StaticCities.settlements.SettlementFacet;
-import org.terasology.StaticCities.sites.Site;
-import org.terasology.StaticCities.sites.SiteFacet;
-import org.terasology.StaticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.StaticCities.terrain.BuildableTerrainFacet;
-import org.terasology.StaticCities.window.SimpleWindow;
-import org.terasology.StaticCities.window.Window;
-import org.terasology.StaticCities.window.WindowFacet;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.bldg.BuildingFacet;
+import org.terasology.staticCities.bldg.BuildingPart;
+import org.terasology.staticCities.bldg.RectBuildingPart;
+import org.terasology.staticCities.bldg.SimpleTower;
+import org.terasology.staticCities.bldg.Tower;
+import org.terasology.staticCities.blocked.BlockedAreaFacet;
+import org.terasology.staticCities.common.Edges;
+import org.terasology.staticCities.deco.Decoration;
+import org.terasology.staticCities.deco.DecorationFacet;
+import org.terasology.staticCities.door.Door;
+import org.terasology.staticCities.door.DoorFacet;
+import org.terasology.staticCities.door.WingDoor;
+import org.terasology.staticCities.roof.RoofFacet;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.settlements.SettlementFacet;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.staticCities.sites.SiteFacet;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import org.terasology.staticCities.terrain.BuildableTerrainFacet;
+import org.terasology.staticCities.window.SimpleWindow;
+import org.terasology.staticCities.window.Window;
+import org.terasology.staticCities.window.WindowFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
-import org.terasology.world.generation.*;
-
-import java.util.List;
-import java.util.concurrent.ExecutionException;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
+import org.terasology.world.generation.Updates;
 
 /**
  * Generates a {@link TownWall} around a given settlement

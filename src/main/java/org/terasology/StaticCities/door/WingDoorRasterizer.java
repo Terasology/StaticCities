@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.door;
+package org.terasology.staticCities.door;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.raster.Pen;
-import org.terasology.StaticCities.raster.Pens;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.StaticCities.raster.RasterUtil;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts {@link WingDoor} into blocks

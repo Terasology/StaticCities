@@ -14,15 +14,19 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster.standard;
+package org.terasology.staticCities.raster.standard;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.bldg.BuildingPartRasterizer;
-import org.terasology.StaticCities.bldg.RectBuildingPart;
-import org.terasology.StaticCities.raster.*;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.bldg.BuildingPartRasterizer;
+import org.terasology.staticCities.bldg.RectBuildingPart;
+import org.terasology.staticCities.raster.BuildingPens;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts a {@link RectBuildingPart} into blocks

@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.common;
+package org.terasology.staticCities.common;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.terasology.StaticCities.bldg.gen.Turtle;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.bldg.gen.Turtle;
 
 /**
  * Tests the {@link Turtle} class.

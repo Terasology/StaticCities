@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster;
+package org.terasology.staticCities.raster;
 
-import org.terasology.StaticCities.BlockType;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockType;
 
 /**
  * A collections of {@Pen} factory methods.

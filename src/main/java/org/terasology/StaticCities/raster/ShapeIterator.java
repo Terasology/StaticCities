@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster;
+package org.terasology.staticCities.raster;
 
-import java.awt.*;
+import java.awt.Shape;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
 import java.awt.geom.Point2D;

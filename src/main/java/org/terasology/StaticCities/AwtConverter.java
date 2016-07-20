@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities;
+package org.terasology.staticCities;
 
+import java.awt.Rectangle;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import org.terasology.math.geom.Circle;
 import org.terasology.math.geom.Rect2f;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Shape;
-
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
 
 /**
  *

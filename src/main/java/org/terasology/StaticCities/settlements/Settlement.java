@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.settlements;
-
-import org.terasology.StaticCities.roads.Road;
-import org.terasology.StaticCities.sites.Site;
+package org.terasology.staticCities.settlements;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import org.terasology.staticCities.roads.Road;
+import org.terasology.staticCities.sites.Site;
 
 /**
  * Provides information on a settlement.

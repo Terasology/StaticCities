@@ -14,20 +14,23 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.raster.standard;
+package org.terasology.staticCities.raster.standard;
 
 import com.google.common.math.DoubleMath;
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.bldg.BuildingPartRasterizer;
-import org.terasology.StaticCities.bldg.HollowBuildingPart;
-import org.terasology.StaticCities.common.Edges;
-import org.terasology.StaticCities.raster.*;
+import java.math.RoundingMode;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.math.geom.Rect2i;
-
-import java.math.RoundingMode;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.bldg.BuildingPartRasterizer;
+import org.terasology.staticCities.bldg.HollowBuildingPart;
+import org.terasology.staticCities.common.Edges;
+import org.terasology.staticCities.raster.BuildingPens;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts a {@link HollowBuildingPart} into blocks

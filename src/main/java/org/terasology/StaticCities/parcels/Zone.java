@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.parcels;
+package org.terasology.staticCities.parcels;
 
 /**
  * As part of a urban zoning scheme.

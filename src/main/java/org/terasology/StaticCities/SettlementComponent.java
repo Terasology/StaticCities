@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities;
+package org.terasology.staticCities;
 
-import org.terasology.StaticCities.settlements.Settlement;
 import org.terasology.entitySystem.Component;
+import org.terasology.staticCities.settlements.Settlement;
 
 /**
  * Indicates a settlement.

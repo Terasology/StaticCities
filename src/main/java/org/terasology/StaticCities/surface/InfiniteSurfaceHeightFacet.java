@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.surface;
+package org.terasology.staticCities.surface;
 
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.world.generation.WorldFacet;

@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.terasology.StaticCities.events;
+package org.terasology.staticCities.events;
 
-import org.terasology.StaticCities.CityWorldGenerator;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
 import org.terasology.registry.In;
+import org.terasology.staticCities.CityWorldGenerator;
 import org.terasology.world.WorldComponent;
 import org.terasology.world.chunks.event.PurgeWorldEvent;
 import org.terasology.world.generator.WorldGenerator;

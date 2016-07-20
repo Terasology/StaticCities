@@ -14,16 +14,15 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.roof;
-
-import org.terasology.StaticCities.model.roof.Roof;
-import org.terasology.math.Region3i;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
+package org.terasology.staticCities.roof;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import org.terasology.math.Region3i;
+import org.terasology.staticCities.model.roof.Roof;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  * A registry for roofs.

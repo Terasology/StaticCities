@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.window;
+package org.terasology.staticCities.window;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.raster.Pen;
-import org.terasology.StaticCities.raster.Pens;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.StaticCities.raster.RasterUtil;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.raster.Pen;
+import org.terasology.staticCities.raster.Pens;
+import org.terasology.staticCities.raster.RasterTarget;
+import org.terasology.staticCities.raster.RasterUtil;
 
 /**
  * Converts {@link RectWindow} into blocks (or air actually)

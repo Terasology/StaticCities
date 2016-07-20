@@ -14,18 +14,16 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.parcels;
+package org.terasology.staticCities.parcels;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.StaticCities.blocked.BlockedAreaFacet;
-import org.terasology.StaticCities.roads.RoadFacet;
-import org.terasology.StaticCities.settlements.Settlement;
-import org.terasology.StaticCities.settlements.SettlementFacet;
-import org.terasology.StaticCities.sites.Site;
-import org.terasology.StaticCities.terrain.BuildableTerrainFacet;
 import org.terasology.commonworld.Orientation;
 import org.terasology.entitySystem.Component;
 import org.terasology.math.TeraMath;
@@ -34,14 +32,19 @@ import org.terasology.math.geom.Circle;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2f;
 import org.terasology.rendering.nui.properties.Range;
+import org.terasology.staticCities.blocked.BlockedAreaFacet;
+import org.terasology.staticCities.roads.RoadFacet;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.settlements.SettlementFacet;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
-import org.terasology.world.generation.*;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
+import org.terasology.world.generation.ConfigurableFacetProvider;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
 
 @Produces(ParcelFacet.class)
 @Requires({
@@ -177,8 +180,8 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
 
         for (RectStaticParcel lot : lots) {
             Rect2i bounds = lot.getShape();
-            float centerX = (bounds.maxX() + bounds.minX()) / 2;
-            float centerY = (bounds.maxY() + bounds.minY()) / 2;
+            float centerX = (bounds.maxX() + bounds.minX()) / (float) 2;
+            float centerY = (bounds.maxY() + bounds.minY()) / (float) 2;
             float dx = Math.abs(pos.x() - centerX) - bounds.width() * 0.5f;
             float dz = Math.abs(pos.y() - centerY) - bounds.height() * 0.5f;
 

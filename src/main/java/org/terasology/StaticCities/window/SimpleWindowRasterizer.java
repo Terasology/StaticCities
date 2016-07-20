@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.window;
+package org.terasology.staticCities.window;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.raster.RasterTarget;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * Converts {@link SimpleWindow} into blocks (or air actually)

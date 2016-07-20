@@ -14,17 +14,16 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.deco;
-
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.BlockType;
-import org.terasology.StaticCities.raster.RasterTarget;
-import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.math.Side;
-import org.terasology.math.geom.ImmutableVector3i;
+package org.terasology.staticCities.deco;
 
 import java.util.EnumSet;
 import java.util.Set;
+import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.math.Side;
+import org.terasology.math.geom.ImmutableVector3i;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.BlockType;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * Converts {@link ColumnDecoration} into blocks

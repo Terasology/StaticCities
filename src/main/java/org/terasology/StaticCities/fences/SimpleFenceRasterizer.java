@@ -14,23 +14,22 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.fences;
+package org.terasology.staticCities.fences;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.DefaultBlockType;
-import org.terasology.StaticCities.surface.InfiniteSurfaceHeightFacet;
+import java.util.EnumSet;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.block.Block;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
-
-import java.util.EnumSet;
 
 /**
  *

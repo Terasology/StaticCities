@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
-import org.terasology.StaticCities.model.roof.ConicRoof;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;
+import org.terasology.staticCities.model.roof.ConicRoof;
 
 /**
  * A round house with a conic roof

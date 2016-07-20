@@ -14,29 +14,34 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terasology.StaticCities.bldg.gen.BuildingGenerator;
-import org.terasology.StaticCities.bldg.gen.DefaultBuildingGenerator;
-import org.terasology.StaticCities.deco.Decoration;
-import org.terasology.StaticCities.deco.DecorationFacet;
-import org.terasology.StaticCities.door.Door;
-import org.terasology.StaticCities.door.DoorFacet;
-import org.terasology.StaticCities.parcels.ParcelFacet;
-import org.terasology.StaticCities.parcels.StaticParcel;
-import org.terasology.StaticCities.roof.RoofFacet;
-import org.terasology.StaticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.StaticCities.window.Window;
-import org.terasology.StaticCities.window.WindowFacet;
-import org.terasology.world.generation.*;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
-
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.terasology.staticCities.bldg.gen.BuildingGenerator;
+import org.terasology.staticCities.bldg.gen.DefaultBuildingGenerator;
+import org.terasology.staticCities.deco.Decoration;
+import org.terasology.staticCities.deco.DecorationFacet;
+import org.terasology.staticCities.door.Door;
+import org.terasology.staticCities.door.DoorFacet;
+import org.terasology.staticCities.parcels.ParcelFacet;
+import org.terasology.staticCities.parcels.StaticParcel;
+import org.terasology.staticCities.roof.RoofFacet;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import org.terasology.staticCities.window.Window;
+import org.terasology.staticCities.window.WindowFacet;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetProvider;
+import org.terasology.world.generation.GeneratingRegion;
+import org.terasology.world.generation.Produces;
+import org.terasology.world.generation.Requires;
+import org.terasology.world.generation.Updates;
+import org.terasology.world.generation.facets.SurfaceHeightFacet;
 
 /**
  * Produces a {@link BuildingFacet}.

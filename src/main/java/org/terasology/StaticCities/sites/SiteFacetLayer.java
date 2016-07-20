@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.sites;
+package org.terasology.staticCities.sites;
 
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Vector2i;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * Draws the generated settlement sites in a AWT images.

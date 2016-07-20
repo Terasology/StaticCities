@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.bldg;
+package org.terasology.staticCities.bldg;
 
-import org.terasology.StaticCities.BlockTheme;
-import org.terasology.StaticCities.raster.RasterTarget;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.staticCities.BlockTheme;
+import org.terasology.staticCities.raster.RasterTarget;
 
 /**
  * @param <T> the target class

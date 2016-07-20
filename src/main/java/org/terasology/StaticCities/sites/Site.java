@@ -14,11 +14,10 @@
  * limitations under the License.
  */
 
-package org.terasology.StaticCities.sites;
-
-import org.terasology.math.geom.ImmutableVector2i;
+package org.terasology.staticCities.sites;
 
 import java.util.Objects;
+import org.terasology.math.geom.ImmutableVector2i;
 
 /**
  * Provides information on a settlement site.
@@ -59,7 +58,7 @@ public class Site {
 
     @Override
     public boolean equals(Object obj) {
-        if (Site.class == obj.getClass()) {
+        if (obj != null && this.getClass() == obj.getClass()) {
             Site other = (Site) obj;
             return Objects.equals(coords, other.coords)
                 && Objects.equals(radius, other.radius);
