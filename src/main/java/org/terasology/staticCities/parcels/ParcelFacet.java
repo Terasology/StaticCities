@@ -1,0 +1,45 @@
+/*
+ * Copyright 2015 MovingBlocks
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.terasology.staticCities.parcels;
+
+import com.google.common.collect.LinkedHashMultimap;
+import com.google.common.collect.SetMultimap;
+import org.terasology.staticCities.sites.Site;
+import org.terasology.world.generation.WorldFacet;
+
+import java.util.Collection;
+import java.util.Collections;
+
+/**
+ *
+ */
+public class ParcelFacet implements WorldFacet {
+
+    private SetMultimap<Site, StaticParcel> parcels = LinkedHashMultimap.create();
+
+    public void addParcel(Site settlement, StaticParcel staticParcel) {
+        parcels.put(settlement, staticParcel);
+    }
+
+    public Collection<StaticParcel> getParcels() {
+        return Collections.unmodifiableCollection(parcels.values());
+    }
+
+    public Collection<StaticParcel> getParcels(Site settlement) {
+        return Collections.unmodifiableCollection(parcels.get(settlement));
+    }
+}
