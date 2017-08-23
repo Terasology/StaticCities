@@ -18,7 +18,7 @@
         },
         {
             "id" : "Pathfinding",
-            "minVersion" : "0.2.0"
+            "minVersion" : "0.3.0-SNAPSHOT"
         },
         {
             "id" : "StructuralResources",
