@@ -45,7 +45,7 @@ import org.terasology.staticCities.blocked.BlockedAreaFacet;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
-import org.terasology.utilities.procedural.PerlinNoise;
+import org.terasology.utilities.procedural.SimplexNoise;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetBorder;
@@ -68,8 +68,8 @@ public class RoadFacetProvider implements FacetProvider {
 
     private final Cache<UnorderedPair<Site>, Optional<Road>> roadCache = CacheBuilder.newBuilder().build();
 
-    private PerlinNoise noiseX;
-    private PerlinNoise noiseY;
+    private SimplexNoise noiseX;
+    private SimplexNoise noiseY;
 
     /**
      * The amplitude of the noise
@@ -89,8 +89,8 @@ public class RoadFacetProvider implements FacetProvider {
 
     @Override
     public void setSeed(long seed) {
-        this.noiseX = new PerlinNoise(seed ^ 533231280);
-        this.noiseY = new PerlinNoise(seed ^ 198218712);
+        this.noiseX = new SimplexNoise(seed ^ 533231280);
+        this.noiseY = new SimplexNoise(seed ^ 198218712);
     }
 
     @Override
