@@ -35,8 +35,8 @@ public class BoundaryGenerator implements ChunkGenerationPass {
     private Function<Vector2i, Integer> heightMap;
 
     private final BlockManager blockManager = CoreRegistry.get(BlockManager.class);
-    private final Block chunkBorder = blockManager.getBlock("Cities:black");
-    private final Block sectorBorder = blockManager.getBlock("Cities:pink");
+    private final Block chunkBorder = blockManager.getBlock("StructuralResources:BlackMarble");
+    private final Block sectorBorder = blockManager.getBlock("StructuralResources:PinkMarble");
 
     /**
      * @param heightMap the height map to use
