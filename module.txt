@@ -13,6 +13,7 @@
         {"id" : "Cities", "minVersion" : "1.0.0"}
      ],
      "isServerSideOnly" : false,
-     "isGameplay" : "true",
-     "defaultWorldGenerator" : "StaticCities:staticCities"
+     "isGameplay" : true,
+     "defaultWorldGenerator" : "StaticCities:staticCities",
+     "isWorld": true
 }
