@@ -1,19 +1,18 @@
 {
-    "id" : "StaticCities",
-    "version" : "0.3.0",
-    "author" : "msteiger",
-    "displayName" : "StaticCities",
-    "description" : "Spawns static cities at worldgeneration.",
-    "dependencies" : [
-        {"id" : "CoreBlocks", "minVersion" : "1.0.0"},
-        {"id" : "CommonWorld", "minVersion" : "0.2.2"},
-        {"id" : "NameGenerator", "minVersion" : "0.4.0"},
-        {"id" : "Pathfinding", "minVersion" : "0.3.0"},
-        {"id" : "StructuralResources", "minVersion" : "2.0.0"},
-        {"id" : "Cities", "minVersion" : "1.0.0"}
-     ],
-     "isServerSideOnly" : false,
-     "isGameplay" : true,
-     "defaultWorldGenerator" : "StaticCities:staticCities",
-     "isWorld": true
+    "id": "StaticCities",
+    "version": "1.0.0",
+    "author": "msteiger",
+    "displayName": "StaticCities",
+    "description": "Spawns static cities at worldgeneration.",
+    "dependencies": [
+        { "id": "Cities", "minVersion": "1.0.0" },
+        { "id": "CommonWorld", "minVersion": "0.2.2" },
+        { "id": "CoreAssets", "minVersion": "2.0.1" },
+        { "id": "NameGenerator", "minVersion": "0.4.0" },
+        { "id": "Pathfinding", "minVersion": "0.3.0" },
+        { "id": "StructuralResources", "minVersion": "2.0.0" }
+    ],
+    "isServerSideOnly": false,
+    "defaultWorldGenerator": "StaticCities:staticCities",
+    "isWorld": true
 }
