@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
-import org.terasology.rendering.nui.properties.Checkbox;
+import org.terasology.nui.properties.Checkbox;
 import org.terasology.staticCities.AwtConverter;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;

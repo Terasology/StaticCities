@@ -37,7 +37,7 @@ import org.terasology.math.geom.Vector3f;
 import org.terasology.network.Client;
 import org.terasology.network.NetworkSystem;
 import org.terasology.registry.In;
-import org.terasology.rendering.FontColor;
+import org.terasology.nui.FontColor;
 import org.terasology.staticCities.SettlementComponent;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.sites.Site;

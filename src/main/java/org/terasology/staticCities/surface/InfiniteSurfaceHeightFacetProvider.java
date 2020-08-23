@@ -21,7 +21,7 @@ import org.terasology.commonworld.heightmap.NoiseHeightMap;
 import org.terasology.commonworld.symmetry.Symmetries;
 import org.terasology.commonworld.symmetry.Symmetry;
 import org.terasology.entitySystem.Component;
-import org.terasology.rendering.nui.properties.OneOf.Enum;
+import org.terasology.nui.properties.OneOf.Enum;
 import org.terasology.world.generation.ConfigurableFacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;

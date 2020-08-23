@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.events;
 
-import org.terasology.rendering.nui.Color;
+import org.terasology.nui.Color;
 
 /**
  * TODO Type description
