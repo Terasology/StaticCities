@@ -26,7 +26,7 @@ import java.util.Map;
 import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
-import org.terasology.rendering.nui.properties.Checkbox;
+import org.terasology.nui.properties.Checkbox;
 import org.terasology.staticCities.AwtConverter;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
@@ -52,15 +52,15 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
     private final BufferedImage bufferImage = new BufferedImage(4, 4, BufferedImage.TYPE_INT_ARGB);
 
     private final Map<BlockType, Color> blockColors = ImmutableMap.<BlockType, Color>builder()
-            .put(DefaultBlockType.AIR, new Color(0, 0, 0, 0))
-            .put(DefaultBlockType.ROAD_SURFACE, new Color(160, 40, 40))
-            .put(DefaultBlockType.LOT_EMPTY, new Color(224, 224, 64))
-            .put(DefaultBlockType.BUILDING_WALL, new Color(158, 158, 158))
-            .put(DefaultBlockType.BUILDING_FLOOR, new Color(100, 100, 100))
-            .put(DefaultBlockType.BUILDING_FOUNDATION, new Color(90, 60, 60))
-            .put(DefaultBlockType.TOWER_WALL, new Color(200, 100, 200))
-            .put(DefaultBlockType.TOWER_STAIRS, new Color(160, 128, 128))
-            .build();
+        .put(DefaultBlockType.AIR, new Color(0, 0, 0, 0))
+        .put(DefaultBlockType.ROAD_SURFACE, new Color(160, 40, 40))
+        .put(DefaultBlockType.LOT_EMPTY, new Color(224, 224, 64))
+        .put(DefaultBlockType.BUILDING_WALL, new Color(158, 158, 158))
+        .put(DefaultBlockType.BUILDING_FLOOR, new Color(100, 100, 100))
+        .put(DefaultBlockType.BUILDING_FOUNDATION, new Color(90, 60, 60))
+        .put(DefaultBlockType.TOWER_WALL, new Color(200, 100, 200))
+        .put(DefaultBlockType.TOWER_STAIRS, new Color(160, 128, 128))
+        .build();
 
     private Set<BuildingPartRasterizer<?>> rasterizers = new HashSet<>();
 
@@ -78,6 +78,7 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
 
     /**
      * This can be called only through reflection since Config is private
+     *
      * @param config the layer configuration info
      */
     public BuildingFacetLayer(Config config) {
@@ -162,7 +163,9 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
      * Persistent data
      */
     private static class Config implements FacetLayerConfig {
-        @Checkbox private boolean showFloorPlan;
-        @Checkbox private boolean showBase = true;
+        @Checkbox
+        private boolean showFloorPlan;
+        @Checkbox
+        private boolean showBase = true;
     }
 }

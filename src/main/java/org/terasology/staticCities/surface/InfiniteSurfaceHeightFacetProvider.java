@@ -21,7 +21,7 @@ import org.terasology.commonworld.heightmap.NoiseHeightMap;
 import org.terasology.commonworld.symmetry.Symmetries;
 import org.terasology.commonworld.symmetry.Symmetry;
 import org.terasology.entitySystem.Component;
-import org.terasology.rendering.nui.properties.OneOf.Enum;
+import org.terasology.nui.properties.OneOf;
 import org.terasology.world.generation.ConfigurableFacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
@@ -104,7 +104,7 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
     }
 
     private static class InfiniteSurfaceConfiguration implements Component {
-        @Enum(label = "Symmetric World", description = "Check to create an axis-symmetric world")
+        @OneOf.Enum(label = "Symmetric World", description = "Check to create an axis-symmetric world")
         private SymmetryType symmetry = SymmetryType.NONE;
     }
 }

@@ -23,7 +23,7 @@ import org.terasology.math.TeraMath;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Vector3f;
 import org.terasology.network.NetworkComponent;
-import org.terasology.rendering.nui.Color;
+import org.terasology.nui.Color;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.settlements.SettlementFacet;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;

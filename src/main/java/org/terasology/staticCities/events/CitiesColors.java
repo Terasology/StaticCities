@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.events;
 
-import org.terasology.rendering.nui.Color;
+import org.terasology.nui.Color;
 
 /**
  * TODO Type description
@@ -27,7 +27,7 @@ public final class CitiesColors {
      * Color for player names (TODO: replace with real player color)
      */
     public static final Color PLAYER = new Color(224, 64, 64);
-    
+
     /**
      * Color for area names
      */
@@ -36,5 +36,5 @@ public final class CitiesColors {
     private CitiesColors() {
         // private
     }
-    
+
 }

@@ -31,7 +31,7 @@ import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2f;
-import org.terasology.rendering.nui.properties.Range;
+import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.settlements.Settlement;
