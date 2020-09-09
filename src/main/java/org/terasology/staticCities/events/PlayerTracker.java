@@ -1,48 +1,36 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.events;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.terasology.engine.entitySystem.entity.EntityRef;
+import org.terasology.engine.entitySystem.entity.lifecycleEvents.OnActivatedComponent;
+import org.terasology.engine.entitySystem.event.ReceiveEvent;
+import org.terasology.engine.entitySystem.systems.BaseComponentSystem;
+import org.terasology.engine.entitySystem.systems.RegisterSystem;
+import org.terasology.engine.logic.characters.events.OnEnterBlockEvent;
+import org.terasology.engine.logic.console.Console;
+import org.terasology.engine.logic.location.LocationComponent;
+import org.terasology.engine.network.Client;
+import org.terasology.engine.network.NetworkSystem;
+import org.terasology.engine.registry.In;
+import org.terasology.engine.world.WorldComponent;
+import org.terasology.engine.world.chunks.event.PurgeWorldEvent;
+import org.terasology.math.geom.Circle;
+import org.terasology.math.geom.Vector2f;
+import org.terasology.math.geom.Vector3f;
+import org.terasology.nui.FontColor;
+import org.terasology.staticCities.SettlementComponent;
+import org.terasology.staticCities.settlements.Settlement;
+import org.terasology.staticCities.sites.Site;
 
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.entitySystem.entity.lifecycleEvents.OnActivatedComponent;
-import org.terasology.entitySystem.event.ReceiveEvent;
-import org.terasology.entitySystem.systems.BaseComponentSystem;
-import org.terasology.entitySystem.systems.RegisterSystem;
-import org.terasology.logic.characters.events.OnEnterBlockEvent;
-import org.terasology.logic.console.Console;
-import org.terasology.logic.location.LocationComponent;
-import org.terasology.math.geom.Circle;
-import org.terasology.math.geom.Vector2f;
-import org.terasology.math.geom.Vector3f;
-import org.terasology.network.Client;
-import org.terasology.network.NetworkSystem;
-import org.terasology.registry.In;
-import org.terasology.nui.FontColor;
-import org.terasology.staticCities.SettlementComponent;
-import org.terasology.staticCities.settlements.Settlement;
-import org.terasology.staticCities.sites.Site;
-import org.terasology.world.WorldComponent;
-import org.terasology.world.chunks.event.PurgeWorldEvent;
 
 /**
  * Tracks player movements with respect to {@link Settlement} entities.
@@ -51,15 +39,12 @@ import org.terasology.world.chunks.event.PurgeWorldEvent;
 public class PlayerTracker extends BaseComponentSystem {
 
     private static final Logger logger = LoggerFactory.getLogger(PlayerTracker.class);
-
-    @In
-    private NetworkSystem networkSystem;
-
-    @In
-    private Console console;
-
     private final Set<Settlement> knownSettlements = new LinkedHashSet<>();
     private final Map<String, Settlement> prevLoc = new HashMap<>();
+    @In
+    private NetworkSystem networkSystem;
+    @In
+    private Console console;
 
     @ReceiveEvent(components = {SettlementComponent.class})
     public void onActivated(OnActivatedComponent event, EntityRef entity, SettlementComponent comp) {
@@ -68,6 +53,7 @@ public class PlayerTracker extends BaseComponentSystem {
 
     /**
      * Called whenever a block is entered
+     *
      * @param event the event
      * @param entity the character entity reference "player:engine"
      */
@@ -93,7 +79,8 @@ public class PlayerTracker extends BaseComponentSystem {
             Circle circle = new Circle(site.getPos().x(), site.getPos().y(), site.getRadius());
             if (circle.contains(worldPos)) {
                 if (newArea != null) {
-                    logger.warn("{} appears to be in {} and {} at the same time!", name, newArea.getName(), area.getName());
+                    logger.warn("{} appears to be in {} and {} at the same time!", name, newArea.getName(),
+                            area.getName());
                 }
 
                 newArea = area;
@@ -113,8 +100,8 @@ public class PlayerTracker extends BaseComponentSystem {
 
     /**
      * Called whenever a named area is entered
+     *
      * @param event the event
-
      * @param entity the character entity reference "player:engine"
      */
     @ReceiveEvent
@@ -132,6 +119,7 @@ public class PlayerTracker extends BaseComponentSystem {
 
     /**
      * Called whenever a named area is entered
+     *
      * @param event the event
      * @param entity the character entity reference "player:engine"
      */

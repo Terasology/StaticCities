@@ -1,31 +1,21 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.parcels;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.LinkedHashSet;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
+import org.terasology.engine.world.generation.ConfigurableFacetProvider;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
+import org.terasology.engine.world.generation.Requires;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;
@@ -38,32 +28,74 @@ import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.settlements.SettlementFacet;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
-import org.terasology.world.generation.ConfigurableFacetProvider;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
-import org.terasology.world.generation.Requires;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 @Produces(ParcelFacet.class)
 @Requires({
-    @Facet(BlockedAreaFacet.class),
-    @Facet(RoadFacet.class),                  // not really required, but roads update the blocked area facet
-    @Facet(BuildableTerrainFacet.class),
-    @Facet(SettlementFacet.class)
+        @Facet(BlockedAreaFacet.class),
+        @Facet(RoadFacet.class),                  // not really required, but roads update the blocked area facet
+        @Facet(BuildableTerrainFacet.class),
+        @Facet(SettlementFacet.class)
 })
 public class ParcelFacetProvider implements ConfigurableFacetProvider {
 
     private static final Logger logger = LoggerFactory.getLogger(ParcelFacetProvider.class);
 
     private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock(false);
-
+    private final Cache<Site, Set<RectStaticParcel>> cache = CacheBuilder.newBuilder().build();
     private long seed;
-
     private ParcelConfiguration config = new ParcelConfiguration();
 
-    private Cache<Site, Set<RectStaticParcel>> cache = CacheBuilder.newBuilder().build();
+    private static Vector2f getMaxSpace(Vector2f pos, Set<RectStaticParcel> lots) {
+        float maxX = Float.POSITIVE_INFINITY;
+        float maxZ = Float.POSITIVE_INFINITY;
+
+        //      xxxxxxxxxxxxxxxxxxx
+        //      x                 x             (p)
+        //      x        o------- x--------------|
+        //      x                 x
+        //      xxxxxxxxxxxxxxxxxxx       dx
+        //                         <------------->
+
+        for (RectStaticParcel lot : lots) {
+            Rect2i bounds = lot.getShape();
+            float centerX = (bounds.maxX() + bounds.minX()) / 2f;
+            float centerY = (bounds.maxY() + bounds.minY()) / 2f;
+            float dx = Math.abs(pos.x() - centerX) - bounds.width() * 0.5f;
+            float dz = Math.abs(pos.y() - centerY) - bounds.height() * 0.5f;
+
+            // the point is inside -> abort
+            if (dx <= 0 && dz <= 0) {
+                return new Vector2f(0, 0);
+            }
+
+            // the point is diagonally outside -> restrict one of the two only
+            if (dx > 0 && dz > 0) {
+                // make the larger of the two smaller --> larger shape area
+                if (dx > dz) {
+                    maxX = Math.min(maxX, dx);
+                } else {
+                    maxZ = Math.min(maxZ, dz);
+                }
+            }
+
+            // the z-axis is overlapping -> restrict x
+            if (dx > 0 && dz <= 0) {
+                maxX = Math.min(maxX, dx);
+            }
+
+            // the x-axis is overlapping -> restrict z
+            if (dx <= 0 && dz > 0) {
+                maxZ = Math.min(maxZ, dz);
+            }
+        }
+
+        return new Vector2f(2 * maxX, 2 * maxZ);
+    }
 
     @Override
     public void setSeed(long seed) {
@@ -84,7 +116,8 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
             for (Settlement settlement : settlementFacet.getSettlements()) {
                 Site site = settlement.getSite();
                 if (Circle.intersects(site.getPos(), site.getRadius(), worldRect)) {
-                    Set<RectStaticParcel> parcels = cache.get(site, () -> generateParcels(settlement, blockedAreaFacet, terrainFacet));
+                    Set<RectStaticParcel> parcels = cache.get(site, () -> generateParcels(settlement,
+                            blockedAreaFacet, terrainFacet));
                     for (RectStaticParcel parcel : parcels) {
                         if (parcel.getShape().overlaps(worldRect)) {
                             facet.addParcel(site, parcel);
@@ -101,7 +134,8 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         region.setRegionFacet(ParcelFacet.class, facet);
     }
 
-    private Set<RectStaticParcel> generateParcels(Settlement settlement, BlockedAreaFacet blockedAreaFacet, BuildableTerrainFacet terrainFacet) {
+    private Set<RectStaticParcel> generateParcels(Settlement settlement, BlockedAreaFacet blockedAreaFacet,
+                                                  BuildableTerrainFacet terrainFacet) {
         Random rng = new FastRandom(seed ^ settlement.getSite().getPos().hashCode());
 
         Set<RectStaticParcel> result = new LinkedHashSet<>();
@@ -113,8 +147,10 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         return result;
     }
 
-    private Set<RectStaticParcel> generateParcels(Settlement settlement, Random rng, float minSize, float maxSize, int count, Zone zoneType,
-                                                  BlockedAreaFacet blockedAreaFacet, BuildableTerrainFacet terrainFacet) {
+    private Set<RectStaticParcel> generateParcels(Settlement settlement, Random rng, float minSize, float maxSize,
+                                                  int count, Zone zoneType,
+                                                  BlockedAreaFacet blockedAreaFacet,
+                                                  BuildableTerrainFacet terrainFacet) {
 
         BaseVector2i center = settlement.getSite().getPos();
 
@@ -167,53 +203,6 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         return lots;
     }
 
-    private static Vector2f getMaxSpace(Vector2f pos, Set<RectStaticParcel> lots) {
-        float maxX = Float.POSITIVE_INFINITY;
-        float maxZ = Float.POSITIVE_INFINITY;
-
-        //      xxxxxxxxxxxxxxxxxxx
-        //      x                 x             (p)
-        //      x        o------- x--------------|
-        //      x                 x
-        //      xxxxxxxxxxxxxxxxxxx       dx
-        //                         <------------->
-
-        for (RectStaticParcel lot : lots) {
-            Rect2i bounds = lot.getShape();
-            float centerX = (bounds.maxX() + bounds.minX()) / 2f;
-            float centerY = (bounds.maxY() + bounds.minY()) / 2f;
-            float dx = Math.abs(pos.x() - centerX) - bounds.width() * 0.5f;
-            float dz = Math.abs(pos.y() - centerY) - bounds.height() * 0.5f;
-
-            // the point is inside -> abort
-            if (dx <= 0 && dz <= 0) {
-                return new Vector2f(0, 0);
-            }
-
-            // the point is diagonally outside -> restrict one of the two only
-            if (dx > 0 && dz > 0) {
-                // make the larger of the two smaller --> larger shape area
-                if (dx > dz) {
-                    maxX = Math.min(maxX, dx);
-                } else {
-                    maxZ = Math.min(maxZ, dz);
-                }
-            }
-
-            // the z-axis is overlapping -> restrict x
-            if (dx > 0 && dz <= 0) {
-                maxX = Math.min(maxX, dx);
-            }
-
-            // the x-axis is overlapping -> restrict z
-            if (dx <= 0 && dz > 0) {
-                maxZ = Math.min(maxZ, dz);
-            }
-        }
-
-        return new Vector2f(2 * maxX, 2 * maxZ);
-    }
-
     @Override
     public String getConfigurationName() {
         return "Settlement Parcels";
@@ -238,15 +227,16 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
     private static class ParcelConfiguration implements Component {
 
         @Range(min = 5f, max = 50f, increment = 1f, precision = 0, description = "The min. parcel length")
-        private float minSize = 10;
+        private final float minSize = 10;
 
         @Range(min = 5f, max = 50f, increment = 1f, precision = 0, description = "The max. parcel length")
-        private float maxSize = 18;
+        private final float maxSize = 18;
 
-        @Range(min = 1, max = 5, increment = 1, precision = 0, description = "The max. number of placement attempts per parcel")
-        private int maxTries = 1;
+        @Range(min = 1, max = 5, increment = 1, precision = 0, description = "The max. number of placement attempts " +
+                "per parcel")
+        private final int maxTries = 1;
 
         @Range(min = 5, max = 250, increment = 1, precision = 0, description = "The max. number of parcels")
-        private int maxLots = 100;
+        private final int maxLots = 100;
     }
 }

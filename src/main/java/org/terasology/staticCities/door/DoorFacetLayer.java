@@ -1,38 +1,26 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.door;
 
 import com.google.common.collect.ImmutableMap;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.raster.ImageRasterTarget;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Draws doors in a given image
@@ -48,7 +36,7 @@ public class DoorFacetLayer extends AbstractFacetLayer {
             .put(DefaultBlockType.SIMPLE_DOOR, new Color(210, 110, 210))
             .build();
 
-    private Set<DoorRasterizer<?>> rasterizers = new HashSet<>();
+    private final Set<DoorRasterizer<?>> rasterizers = new HashSet<>();
 
     public DoorFacetLayer() {
         setVisible(true);

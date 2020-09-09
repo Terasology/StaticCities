@@ -1,26 +1,12 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.bldg.gen;
 
 import com.google.common.math.IntMath;
-import java.math.RoundingMode;
-import java.util.Collections;
-import java.util.Set;
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.utilities.random.FastRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.Rect2i;
@@ -31,18 +17,20 @@ import org.terasology.staticCities.door.SimpleDoor;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.SimpleWindow;
-import org.terasology.utilities.random.FastRandom;
-import org.terasology.utilities.random.Random;
+
+import java.math.RoundingMode;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  *
  */
 public class DefaultBuildingGenerator implements BuildingGenerator {
 
-    private long seed;
+    private final long seed;
     private final RectHouseGenerator gen = new RectHouseGenerator();
 
-    public DefaultBuildingGenerator(long seed)  {
+    public DefaultBuildingGenerator(long seed) {
         this.seed = seed;
     }
 
@@ -51,28 +39,28 @@ public class DefaultBuildingGenerator implements BuildingGenerator {
         Random rng = new FastRandom(staticParcel.getShape().hashCode() ^ seed);
         Building b;
         switch (staticParcel.getZone()) {
-        case RESIDENTIAL:
-            if (rng.nextFloat() < 0.2f) {
-                b = generateRoundHouse(staticParcel, heightFacet);
-            } else {
-                b = gen.apply(staticParcel, heightFacet);
-            }
-            break;
+            case RESIDENTIAL:
+                if (rng.nextFloat() < 0.2f) {
+                    b = generateRoundHouse(staticParcel, heightFacet);
+                } else {
+                    b = gen.apply(staticParcel, heightFacet);
+                }
+                break;
 
-        case GOVERNMENTAL:
-            b = new TownHallGenerator().generate(staticParcel, heightFacet);
-            break;
+            case GOVERNMENTAL:
+                b = new TownHallGenerator().generate(staticParcel, heightFacet);
+                break;
 
-        case COMMERCIAL:
-            b = new CommercialBuildingGenerator(seed).generate(staticParcel, heightFacet);
-            break;
+            case COMMERCIAL:
+                b = new CommercialBuildingGenerator(seed).generate(staticParcel, heightFacet);
+                break;
 
-        case CLERICAL:
-            b = new SimpleChurchGenerator(seed).apply(staticParcel, heightFacet);
-            break;
+            case CLERICAL:
+                b = new SimpleChurchGenerator(seed).apply(staticParcel, heightFacet);
+                break;
 
-        default:
-            return Collections.emptySet();
+            default:
+                return Collections.emptySet();
         }
 
         return Collections.singleton(b);
@@ -99,7 +87,8 @@ public class DefaultBuildingGenerator implements BuildingGenerator {
         int baseHeight = TeraMath.floorToInt(heightFacet.getWorld(probePos)) + 1;
         int sideHeight = 4;
 
-        SimpleRoundHouse house = new SimpleRoundHouse(orient, new ImmutableVector2i(centerX, centerY), towerRad, baseHeight, sideHeight);
+        SimpleRoundHouse house = new SimpleRoundHouse(orient, new ImmutableVector2i(centerX, centerY), towerRad,
+                baseHeight, sideHeight);
 
         SimpleDoor entrance = new SimpleDoor(orient, doorPos, baseHeight, baseHeight + entranceHeight);
         house.getRoom().addDoor(entrance);

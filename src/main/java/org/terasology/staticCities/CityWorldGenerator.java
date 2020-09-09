@@ -1,33 +1,25 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities;
 
-import org.terasology.core.world.generator.facetProviders.PerlinHumidityProvider;
-import org.terasology.core.world.generator.facetProviders.SeaLevelProvider;
-import org.terasology.core.world.generator.facetProviders.SurfaceToDensityProvider;
-import org.terasology.core.world.generator.rasterizers.FloraRasterizer;
-import org.terasology.core.world.generator.rasterizers.SolidRasterizer;
-import org.terasology.core.world.generator.rasterizers.TreeRasterizer;
-import org.terasology.engine.SimpleUri;
-import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.logic.spawner.Spawner;
+import org.terasology.coreworlds.generator.facetProviders.PerlinHumidityProvider;
+import org.terasology.coreworlds.generator.facetProviders.SeaLevelProvider;
+import org.terasology.coreworlds.generator.facetProviders.SurfaceToDensityProvider;
+import org.terasology.coreworlds.generator.rasterizers.FloraRasterizer;
+import org.terasology.coreworlds.generator.rasterizers.SolidRasterizer;
+import org.terasology.coreworlds.generator.rasterizers.TreeRasterizer;
+import org.terasology.engine.core.SimpleUri;
+import org.terasology.engine.entitySystem.entity.EntityRef;
+import org.terasology.engine.logic.spawner.Spawner;
+import org.terasology.engine.registry.CoreRegistry;
+import org.terasology.engine.registry.In;
+import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.generation.BaseFacetedWorldGenerator;
+import org.terasology.engine.world.generation.WorldBuilder;
+import org.terasology.engine.world.generator.RegisterWorldGenerator;
+import org.terasology.engine.world.generator.plugin.WorldGeneratorPluginLibrary;
 import org.terasology.math.geom.Vector3f;
-import org.terasology.registry.CoreRegistry;
-import org.terasology.registry.In;
 import org.terasology.staticCities.bldg.BuildingFacetProvider;
 import org.terasology.staticCities.blocked.BlockedAreaFacetProvider;
 import org.terasology.staticCities.deco.ColumnRasterizer;
@@ -48,7 +40,13 @@ import org.terasology.staticCities.raster.standard.RoundPartRasterizer;
 import org.terasology.staticCities.raster.standard.StaircaseRasterizer;
 import org.terasology.staticCities.roads.RoadFacetProvider;
 import org.terasology.staticCities.roads.RoadRasterizer;
-import org.terasology.staticCities.roof.*;
+import org.terasology.staticCities.roof.ConicRoofRasterizer;
+import org.terasology.staticCities.roof.DomeRoofRasterizer;
+import org.terasology.staticCities.roof.FlatRoofRasterizer;
+import org.terasology.staticCities.roof.HipRoofRasterizer;
+import org.terasology.staticCities.roof.PentRoofRasterizer;
+import org.terasology.staticCities.roof.RoofFacetProvider;
+import org.terasology.staticCities.roof.SaddleRoofRasterizer;
 import org.terasology.staticCities.settlements.SettlementFacetProvider;
 import org.terasology.staticCities.sites.SiteFacetProvider;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacetProvider;
@@ -59,11 +57,6 @@ import org.terasology.staticCities.walls.TownWallRasterizer;
 import org.terasology.staticCities.window.RectWindowRasterizer;
 import org.terasology.staticCities.window.SimpleWindowRasterizer;
 import org.terasology.staticCities.window.WindowFacetProvider;
-import org.terasology.world.block.BlockManager;
-import org.terasology.world.generation.BaseFacetedWorldGenerator;
-import org.terasology.world.generation.WorldBuilder;
-import org.terasology.world.generator.RegisterWorldGenerator;
-import org.terasology.world.generator.plugin.WorldGeneratorPluginLibrary;
 
 @RegisterWorldGenerator(id = "staticCities", displayName = "Static City World")
 public class CityWorldGenerator extends BaseFacetedWorldGenerator {
@@ -92,35 +85,35 @@ public class CityWorldGenerator extends BaseFacetedWorldGenerator {
         int seaLevel = 2;
 
         theme = BlockTheme.builder(blockManager)
-            .register(DefaultBlockType.ROAD_FILL, "CoreAssets:Dirt")
-            .register(DefaultBlockType.ROAD_SURFACE, "CoreAssets:Gravel")
-            .register(DefaultBlockType.LOT_EMPTY, "CoreAssets:Dirt")
-            .register(DefaultBlockType.BUILDING_WALL, "StructuralResources:StoneBlocks")
-            .register(DefaultBlockType.BUILDING_FLOOR, "StructuralResources:StoneBlocksDark")
-            .register(DefaultBlockType.BUILDING_FOUNDATION, "CoreAssets:Gravel")
-            .register(DefaultBlockType.TOWER_STAIRS, "CoreAssets:CobbleStone")
-            .register(DefaultBlockType.ROOF_FLAT, "StructuralResources:RoofTilesLarge")
-            .register(DefaultBlockType.ROOF_HIP, "StructuralResources:PlanksEvenDark")
-            .register(DefaultBlockType.ROOF_SADDLE, "StructuralResources:PlanksEvenDark")
-            .register(DefaultBlockType.ROOF_DOME, "CoreAssets:Plank")
-            .register(DefaultBlockType.ROOF_GABLE, "CoreAssets:Plank")
-            .register(DefaultBlockType.SIMPLE_DOOR, BlockManager.AIR_ID)
-            .register(DefaultBlockType.WING_DOOR, BlockManager.AIR_ID)
-            .register(DefaultBlockType.WINDOW_GLASS, BlockManager.AIR_ID)
-            .register(DefaultBlockType.TOWER_WALL, "StructuralResources:StoneBlocks")
+                .register(DefaultBlockType.ROAD_FILL, "CoreAssets:Dirt")
+                .register(DefaultBlockType.ROAD_SURFACE, "CoreAssets:Gravel")
+                .register(DefaultBlockType.LOT_EMPTY, "CoreAssets:Dirt")
+                .register(DefaultBlockType.BUILDING_WALL, "StructuralResources:StoneBlocks")
+                .register(DefaultBlockType.BUILDING_FLOOR, "StructuralResources:StoneBlocksDark")
+                .register(DefaultBlockType.BUILDING_FOUNDATION, "CoreAssets:Gravel")
+                .register(DefaultBlockType.TOWER_STAIRS, "CoreAssets:CobbleStone")
+                .register(DefaultBlockType.ROOF_FLAT, "StructuralResources:RoofTilesLarge")
+                .register(DefaultBlockType.ROOF_HIP, "StructuralResources:PlanksEvenDark")
+                .register(DefaultBlockType.ROOF_SADDLE, "StructuralResources:PlanksEvenDark")
+                .register(DefaultBlockType.ROOF_DOME, "CoreAssets:Plank")
+                .register(DefaultBlockType.ROOF_GABLE, "CoreAssets:Plank")
+                .register(DefaultBlockType.SIMPLE_DOOR, BlockManager.AIR_ID)
+                .register(DefaultBlockType.WING_DOOR, BlockManager.AIR_ID)
+                .register(DefaultBlockType.WINDOW_GLASS, BlockManager.AIR_ID)
+                .register(DefaultBlockType.TOWER_WALL, "StructuralResources:StoneBlocks")
 
-             // -- requires Fences module
-            .registerFamily(DefaultBlockType.FENCE, "Fences:Fence")
-            .registerFamily(DefaultBlockType.FENCE_GATE, BlockManager.AIR_ID)  // there is no fence gate :-(
-            .registerFamily(DefaultBlockType.TOWER_STAIRS, "CoreAssets:CobbleStone:engine:stair")
-            .registerFamily(DefaultBlockType.BARREL, "StructuralResources:Barrel")
-            .registerFamily(DefaultBlockType.LADDER, "CoreAssets:Ladder")
-            .registerFamily(DefaultBlockType.PILLAR_BASE, "CoreAssets:CobbleStone:StructuralResources:pillarBase")
-            .registerFamily(DefaultBlockType.PILLAR_MIDDLE, "CoreAssets:CobbleStone:StructuralResources:pillar")
-            .registerFamily(DefaultBlockType.PILLAR_TOP, "CoreAssets:CobbleStone:StructuralResources:pillarTop")
-            .registerFamily(DefaultBlockType.TORCH, "CoreAssets:Torch")
+                // -- requires Fences module
+                .registerFamily(DefaultBlockType.FENCE, "Fences:Fence")
+                .registerFamily(DefaultBlockType.FENCE_GATE, BlockManager.AIR_ID)  // there is no fence gate :-(
+                .registerFamily(DefaultBlockType.TOWER_STAIRS, "CoreAssets:CobbleStone:engine:stair")
+                .registerFamily(DefaultBlockType.BARREL, "StructuralResources:Barrel")
+                .registerFamily(DefaultBlockType.LADDER, "CoreAssets:Ladder")
+                .registerFamily(DefaultBlockType.PILLAR_BASE, "CoreAssets:CobbleStone:StructuralResources:pillarBase")
+                .registerFamily(DefaultBlockType.PILLAR_MIDDLE, "CoreAssets:CobbleStone:StructuralResources:pillar")
+                .registerFamily(DefaultBlockType.PILLAR_TOP, "CoreAssets:CobbleStone:StructuralResources:pillarTop")
+                .registerFamily(DefaultBlockType.TORCH, "CoreAssets:Torch")
 
-            .build();
+                .build();
 
         PerlinHumidityProvider.Configuration humidityConfig = new PerlinHumidityProvider.Configuration();
         humidityConfig.octaves = 4;

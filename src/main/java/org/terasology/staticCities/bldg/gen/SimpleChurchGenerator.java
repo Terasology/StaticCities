@@ -1,24 +1,12 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.bldg.gen;
 
-import java.math.RoundingMode;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
+import org.terasology.engine.utilities.random.MersenneRandom;
+import org.terasology.engine.utilities.random.Random;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.LineSegment;
 import org.terasology.math.geom.Rect2i;
@@ -41,8 +29,8 @@ import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.RectWindow;
 import org.terasology.staticCities.window.SimpleWindow;
-import org.terasology.utilities.random.MersenneRandom;
-import org.terasology.utilities.random.Random;
+
+import java.math.RoundingMode;
 
 /**
  * Creates building models of a simple church.
@@ -108,14 +96,16 @@ public class SimpleChurchGenerator {
         Rect2i entranceRect = turtle.rectCentered(0, entranceWidth, 1);
 
         Rect2i naveRect = turtle.rectCentered(0, naveWidth, naveLen);
-        Rect2i towerRect = turtle.rectCentered(naveLen - 1, towerSize, towerSize); // the -1 makes tower and nave overlap
+        Rect2i towerRect = turtle.rectCentered(naveLen - 1, towerSize, towerSize); // the -1 makes tower and nave 
+        // overlap
         int baseHeight = getMaxHeight(entranceRect, hm) + 1; // 0 == terrain
 
         DefaultBuilding church = new DefaultBuilding(turtle.getOrientation());
         church.addPart(createNave(new Turtle(turtle), naveRect, entranceRect, baseHeight));
         church.addPart(createTower(new Turtle(turtle), towerRect, baseHeight));
 
-        Rect2i aisleLeftRc = turtle.rect(-naveWidth / 2 - sideWidth + 1, sideOff, sideWidth, sideLen);  // make them overlap
+        Rect2i aisleLeftRc = turtle.rect(-naveWidth / 2 - sideWidth + 1, sideOff, sideWidth, sideLen);  // make them 
+        // overlap
         Rect2i aisleRightRc = turtle.rect(naveWidth / 2, sideOff, sideWidth, sideLen); // make them overlap
 
         church.addPart(createAisle(new Turtle(turtle).rotate(-90), aisleLeftRc, baseHeight));

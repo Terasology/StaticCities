@@ -1,30 +1,16 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.bldg;
 
 import com.google.common.collect.ImmutableMap;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Shape;
-import java.awt.image.BufferedImage;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.FacetLayerConfig;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 import org.terasology.math.TeraMath;
 import org.terasology.nui.properties.Checkbox;
 import org.terasology.staticCities.AwtConverter;
@@ -36,12 +22,14 @@ import org.terasology.staticCities.raster.standard.HollowBuildingPartRasterizer;
 import org.terasology.staticCities.raster.standard.RectPartRasterizer;
 import org.terasology.staticCities.raster.standard.RoundPartRasterizer;
 import org.terasology.staticCities.raster.standard.StaircaseRasterizer;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.FacetLayerConfig;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Draws buildings area in a given image
@@ -62,7 +50,7 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
             .put(DefaultBlockType.TOWER_STAIRS, new Color(160, 128, 128))
             .build();
 
-    private Set<BuildingPartRasterizer<?>> rasterizers = new HashSet<>();
+    private final Set<BuildingPartRasterizer<?>> rasterizers = new HashSet<>();
 
     private Config config = new Config();
 
@@ -78,6 +66,7 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
 
     /**
      * This can be called only through reflection since Config is private
+     *
      * @param config the layer configuration info
      */
     public BuildingFacetLayer(Config config) {
@@ -162,7 +151,9 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
      * Persistent data
      */
     private static class Config implements FacetLayerConfig {
-        @Checkbox private boolean showFloorPlan;
-        @Checkbox private boolean showBase = true;
+        @Checkbox
+        private final boolean showBase = true;
+        @Checkbox
+        private boolean showFloorPlan;
     }
 }

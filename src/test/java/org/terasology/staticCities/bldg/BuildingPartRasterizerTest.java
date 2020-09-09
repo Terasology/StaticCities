@@ -1,22 +1,8 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.bldg;
 
-import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 import org.terasology.commonworld.heightmap.HeightMap;
@@ -28,17 +14,19 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
 
+import java.util.Arrays;
 
 import static org.terasology.staticCities.DefaultBlockType.AIR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FLOOR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FOUNDATION;
 import static org.terasology.staticCities.DefaultBlockType.FENCE;
+
 /**
  * Tests the {@link BuildingPartRasterizer} class.
  */
 public class BuildingPartRasterizerTest {
 
-    private Rect2i rc = Rect2i.createFromMinAndSize(0, 0, 1, 1);
+    private final Rect2i rc = Rect2i.createFromMinAndSize(0, 0, 1, 1);
 
     @Test
     public void testPrepareFloorFullyInside() {

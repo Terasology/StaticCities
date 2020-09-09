@@ -1,18 +1,5 @@
-/*
- * Copyright 2014 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 package org.terasology.staticCities.surface;
 
 import org.terasology.commonworld.heightmap.HeightMap;
@@ -20,17 +7,17 @@ import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.commonworld.heightmap.NoiseHeightMap;
 import org.terasology.commonworld.symmetry.Symmetries;
 import org.terasology.commonworld.symmetry.Symmetry;
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.world.generation.ConfigurableFacetProvider;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
 import org.terasology.nui.properties.OneOf.Enum;
-import org.terasology.world.generation.ConfigurableFacetProvider;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
 
 @Produces(InfiniteSurfaceHeightFacet.class)
 public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProvider {
 
+    private final NoiseHeightMap noiseMap;
     private HeightMap heightMap;
-    private NoiseHeightMap noiseMap;
     private InfiniteSurfaceConfiguration configuration = new InfiniteSurfaceConfiguration();
 
     public InfiniteSurfaceHeightFacetProvider() {
@@ -105,6 +92,6 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
 
     private static class InfiniteSurfaceConfiguration implements Component {
         @Enum(label = "Symmetric World", description = "Check to create an axis-symmetric world")
-        private SymmetryType symmetry = SymmetryType.NONE;
+        private final SymmetryType symmetry = SymmetryType.NONE;
     }
 }

@@ -1,41 +1,29 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.sites;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import org.terasology.entitySystem.Component;
-import org.terasology.math.Region3i;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.math.Region3i;
+import org.terasology.engine.utilities.procedural.Noise;
+import org.terasology.engine.utilities.procedural.WhiteNoise;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.ConfigurableFacetProvider;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
+import org.terasology.engine.world.generation.Requires;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
 import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
-import org.terasology.utilities.procedural.Noise;
-import org.terasology.utilities.procedural.WhiteNoise;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.ConfigurableFacetProvider;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
-import org.terasology.world.generation.Requires;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  *
@@ -124,7 +112,7 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         sites.sort((s1, s2) -> Float.compare(
                 priorityNoiseGen.noise(s1.getPos().getX(), s1.getPos().getY()),
                 priorityNoiseGen.noise(s2.getPos().getX(), s2.getPos().getY())
-                ));
+        ));
 
         ListIterator<Site> it = sites.listIterator();
         while (it.hasNext()) {
@@ -149,13 +137,15 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
 
     private static class SiteConfiguration implements Component {
 
-        @Range(label = "Minimal town size", description = "Minimal town size in blocks", min = 1, max = 150, increment = 10, precision = 1)
-        private int minRadius = 50;
+        @Range(label = "Minimal town size", description = "Minimal town size in blocks", min = 1, max = 150,
+                increment = 10, precision = 1)
+        private final int minRadius = 50;
 
-        @Range(label = "Maximum town size", description = "Maximum town size in blocks", min = 10, max = 350, increment = 10, precision = 1)
-        private int maxRadius = 256;
+        @Range(label = "Maximum town size", description = "Maximum town size in blocks", min = 10, max = 350,
+                increment = 10, precision = 1)
+        private final int maxRadius = 256;
 
         @Range(label = "Minimum distance between towns", min = 10, max = 1000, increment = 10, precision = 1)
-        private int minDistance = 128;
+        private final int minDistance = 128;
     }
 }

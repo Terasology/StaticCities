@@ -1,27 +1,20 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2020 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.bldg;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.FacetProvider;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
+import org.terasology.engine.world.generation.Requires;
+import org.terasology.engine.world.generation.Updates;
+import org.terasology.engine.world.generation.facets.SurfaceHeightFacet;
 import org.terasology.staticCities.bldg.gen.BuildingGenerator;
 import org.terasology.staticCities.bldg.gen.DefaultBuildingGenerator;
 import org.terasology.staticCities.deco.Decoration;
@@ -34,27 +27,22 @@ import org.terasology.staticCities.roof.RoofFacet;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.Window;
 import org.terasology.staticCities.window.WindowFacet;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.FacetProvider;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
-import org.terasology.world.generation.Requires;
-import org.terasology.world.generation.Updates;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Produces a {@link BuildingFacet}.
  */
 @Produces(BuildingFacet.class)
 @Updates({
-    @Facet(WindowFacet.class),
-    @Facet(DoorFacet.class),
-    @Facet(DecorationFacet.class),
-    @Facet(RoofFacet.class)})
+        @Facet(WindowFacet.class),
+        @Facet(DoorFacet.class),
+        @Facet(DecorationFacet.class),
+        @Facet(RoofFacet.class)})
 @Requires({
-    @Facet(ParcelFacet.class),
-    @Facet(SurfaceHeightFacet.class)
+        @Facet(ParcelFacet.class),
+        @Facet(SurfaceHeightFacet.class)
 })
 public class BuildingFacetProvider implements FacetProvider {
 
