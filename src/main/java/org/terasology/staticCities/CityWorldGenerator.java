@@ -130,7 +130,7 @@ public class CityWorldGenerator extends BaseFacetedWorldGenerator {
                 .setSeaLevel(seaLevel)
                 .addProvider(new SeaLevelProvider(seaLevel))
                 .addProvider(new InfiniteSurfaceHeightFacetProvider())
-                .addProvider(new SurfaceHeightFacetProvider())
+                .addProvider(new ElevationFacetProvider())
                 .addProvider(new SurfaceToDensityProvider())
                 .addProvider(new BuildableTerrainFacetProvider())
                 .addProvider(new BlockedAreaFacetProvider())
