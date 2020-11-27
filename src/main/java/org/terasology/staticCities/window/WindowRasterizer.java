@@ -24,7 +24,7 @@ import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.ElevationFacet;
 
 /**
  * @param <T> the target class
@@ -50,7 +50,7 @@ public abstract class WindowRasterizer<T extends Window> implements WorldRasteri
 
     @Override
     public void generateChunk(CoreChunk chunk, Region chunkRegion) {
-        SurfaceHeightFacet heightFacet = chunkRegion.getFacet(SurfaceHeightFacet.class);
+        ElevationFacet heightFacet = chunkRegion.getFacet(ElevationFacet.class);
         HeightMap hm = new HeightMap() {
 
             @Override

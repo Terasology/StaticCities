@@ -17,8 +17,6 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
-import java.util.List;
-import java.util.Set;
 import org.terasology.core.world.generator.facetProviders.DefaultFloraProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.FloraFacet;
@@ -30,16 +28,20 @@ import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.roads.RoadSegment;
 import org.terasology.world.generation.Facet;
+import org.terasology.world.generation.FacetBorder;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.facets.SeaLevelFacet;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.SurfacesFacet;
+
+import java.util.List;
+import java.util.Set;
 
 @Produces(FloraFacet.class)
 @Requires({
         @Facet(SeaLevelFacet.class),
-        @Facet(SurfaceHeightFacet.class),
+        @Facet(value = SurfacesFacet.class, border = @FacetBorder(bottom = 1)),
         @Facet(BiomeFacet.class),
         @Facet(BlockedAreaFacet.class),
         @Facet(RoadFacet.class)

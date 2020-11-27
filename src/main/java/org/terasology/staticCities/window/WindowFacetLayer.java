@@ -29,7 +29,7 @@ import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.raster.ImageRasterTarget;
 import org.terasology.world.generation.Region;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
@@ -67,12 +67,12 @@ public class WindowFacetLayer extends AbstractFacetLayer {
     }
 
     private void render(ImageRasterTarget brush, Region chunkRegion) {
-        SurfaceHeightFacet heightFacet = chunkRegion.getFacet(SurfaceHeightFacet.class);
+        ElevationFacet elevationFacet = chunkRegion.getFacet(ElevationFacet.class);
         HeightMap hm = new HeightMap() {
 
             @Override
             public int apply(int x, int z) {
-                return TeraMath.floorToInt(heightFacet.getWorld(x, z));
+                return TeraMath.floorToInt(elevationFacet.getWorld(x, z));
             }
         };
 

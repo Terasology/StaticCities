@@ -17,10 +17,6 @@
 package org.terasology.staticCities.lakes;
 
 import com.google.common.base.Objects;
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.Rectangle;
-import java.util.Collection;
 import org.terasology.commonworld.contour.Contour;
 import org.terasology.commonworld.contour.ContourTracer;
 import org.terasology.commonworld.heightmap.HeightMap;
@@ -33,15 +29,20 @@ import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
+import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.generation.facets.SeaLevelFacet;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+
+import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.Rectangle;
+import java.util.Collection;
 
 /**
  *
  */
 @Produces(LakeFacet.class)
 @Requires({
-    @Facet(SurfaceHeightFacet.class),
+    @Facet(ElevationFacet.class),
     @Facet(SeaLevelFacet.class)
 })
 public class LakeFacetProvider implements FacetProvider {
@@ -57,7 +58,7 @@ public class LakeFacetProvider implements FacetProvider {
 
     @Override
     public void process(GeneratingRegion region) {
-        SurfaceHeightFacet surfaceHeightFacet = region.getRegionFacet(SurfaceHeightFacet.class);
+        ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         SeaLevelFacet seaLevelFacet = region.getRegionFacet(SeaLevelFacet.class);
         LakeFacet lakeFacet = new LakeFacet(region.getRegion(), region.getBorderForFacet(LakeFacet.class));
         Rect2i worldRect = lakeFacet.getWorldRegion();
@@ -73,7 +74,7 @@ public class LakeFacetProvider implements FacetProvider {
 
             @Override
             public int apply(int x, int z) {
-                return TeraMath.floorToInt(surfaceHeightFacet.getWorld(x, z));
+                return TeraMath.floorToInt(elevationFacet.getWorld(x, z));
             }
         };
 
