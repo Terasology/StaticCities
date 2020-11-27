@@ -52,7 +52,7 @@ import org.terasology.staticCities.roof.*;
 import org.terasology.staticCities.settlements.SettlementFacetProvider;
 import org.terasology.staticCities.sites.SiteFacetProvider;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacetProvider;
-import org.terasology.staticCities.surface.SurfaceHeightFacetProvider;
+import org.terasology.staticCities.surface.ElevationFacetProvider;
 import org.terasology.staticCities.terrain.BuildableTerrainFacetProvider;
 import org.terasology.staticCities.walls.TownWallFacetProvider;
 import org.terasology.staticCities.walls.TownWallRasterizer;

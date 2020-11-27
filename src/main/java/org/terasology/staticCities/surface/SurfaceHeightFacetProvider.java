@@ -22,19 +22,19 @@ import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.ElevationFacet;
 
 /**
  * Uses the infinite surface to store the "core" region of the facet in a 2D array.
  */
-@Produces(SurfaceHeightFacet.class)
+@Produces(ElevationFacet.class)
 @Requires(@Facet(InfiniteSurfaceHeightFacet.class))
-public class SurfaceHeightFacetProvider implements FacetProvider {
+public class ElevationFacetProvider implements FacetProvider {
 
     @Override
     public void process(GeneratingRegion region) {
-        Border3D border = region.getBorderForFacet(SurfaceHeightFacet.class);
-        SurfaceHeightFacet facet = new SurfaceHeightFacet(region.getRegion(), border);
+        Border3D border = region.getBorderForFacet(ElevationFacet.class);
+        ElevationFacet facet = new ElevationFacet(region.getRegion(), border);
         InfiniteSurfaceHeightFacet infiniteFacet = region.getRegionFacet(InfiniteSurfaceHeightFacet.class);
 
         for (BaseVector2i pos : facet.getWorldRegion().contents()) {
@@ -43,6 +43,6 @@ public class SurfaceHeightFacetProvider implements FacetProvider {
             facet.setWorld(pos, infiniteFacet.getWorld(x, y));
         }
 
-        region.setRegionFacet(SurfaceHeightFacet.class, facet);
+        region.setRegionFacet(ElevationFacet.class, facet);
     }
 }

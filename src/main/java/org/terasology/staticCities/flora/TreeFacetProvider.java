@@ -17,8 +17,6 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
-import java.util.List;
-import java.util.Set;
 import org.terasology.core.world.generator.facetProviders.DefaultTreeProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.TreeFacet;
@@ -38,12 +36,15 @@ import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.facets.SeaLevelFacet;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+import org.terasology.world.generation.facets.SurfacesFacet;
+
+import java.util.List;
+import java.util.Set;
 
 @Produces(TreeFacet.class)
 @Requires({
     @Facet(value = SeaLevelFacet.class, border = @FacetBorder(sides = 13)),
-    @Facet(value = SurfaceHeightFacet.class, border = @FacetBorder(sides = 13 + 1)),
+    @Facet(value = SurfacesFacet.class, border = @FacetBorder(sides = 13 + 1, bottom = 1)),
     @Facet(value = BiomeFacet.class, border = @FacetBorder(sides = 13)),
     @Facet(SettlementFacet.class),
     @Facet(RoadFacet.class)

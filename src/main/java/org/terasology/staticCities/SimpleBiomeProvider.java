@@ -24,8 +24,8 @@ import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
+import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.generation.facets.SeaLevelFacet;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
 import org.terasology.world.generation.facets.SurfaceHumidityFacet;
 
 /**
@@ -34,7 +34,7 @@ import org.terasology.world.generation.facets.SurfaceHumidityFacet;
 @Produces(BiomeFacet.class)
 @Requires({
     @Facet(SeaLevelFacet.class),
-    @Facet(SurfaceHeightFacet.class),
+    @Facet(ElevationFacet.class),
     @Facet(SurfaceHumidityFacet.class)
     })
 public class SimpleBiomeProvider implements FacetProvider {
@@ -46,7 +46,7 @@ public class SimpleBiomeProvider implements FacetProvider {
     @Override
     public void process(GeneratingRegion region) {
         SeaLevelFacet seaLevelFacet = region.getRegionFacet(SeaLevelFacet.class);
-        SurfaceHeightFacet heightFacet = region.getRegionFacet(SurfaceHeightFacet.class);
+        ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         SurfaceHumidityFacet humidityFacet = region.getRegionFacet(SurfaceHumidityFacet.class);
 
         Border3D border = region.getBorderForFacet(BiomeFacet.class);
@@ -55,7 +55,7 @@ public class SimpleBiomeProvider implements FacetProvider {
         int seaLevel = seaLevelFacet.getSeaLevel();
 
         for (BaseVector2i pos : biomeFacet.getRelativeRegion().contents()) {
-            float height = heightFacet.get(pos);
+            float height = elevationFacet.get(pos);
 
             CoreBiome biome;
             if (height <= seaLevel) {

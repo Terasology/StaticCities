@@ -18,8 +18,6 @@ package org.terasology.staticCities.bldg;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.staticCities.bldg.gen.BuildingGenerator;
@@ -41,7 +39,9 @@ import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.Updates;
-import org.terasology.world.generation.facets.SurfaceHeightFacet;
+
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Produces a {@link BuildingFacet}.
@@ -54,7 +54,7 @@ import org.terasology.world.generation.facets.SurfaceHeightFacet;
     @Facet(RoofFacet.class)})
 @Requires({
     @Facet(ParcelFacet.class),
-    @Facet(SurfaceHeightFacet.class)
+    @Facet(InfiniteSurfaceHeightFacet.class)
 })
 public class BuildingFacetProvider implements FacetProvider {
 
