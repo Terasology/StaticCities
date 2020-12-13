@@ -60,8 +60,8 @@ public class WindowFacetLayer extends AbstractFacetLayer {
     @Override
     public void render(BufferedImage img, Region region) {
 
-        int wx = region.getRegion().minX();
-        int wz = region.getRegion().minZ();
+        int wx = region.getRegion().getMinX();
+        int wz = region.getRegion().getMinZ();
         ImageRasterTarget brush = new ImageRasterTarget(wx, wz, img, blockColors::get);
         render(brush, region);
     }

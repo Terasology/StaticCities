@@ -17,6 +17,7 @@
 package org.terasology.staticCities;
 
 import java.util.Collections;
+import java.util.Comparator;
 
 import org.joml.Math;
 import org.joml.RoundingMode;
@@ -29,6 +30,8 @@ import org.terasology.math.JomlUtil;
 import org.terasology.math.Region3i;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
+import org.terasology.world.block.BlockRegion;
+import org.terasology.world.block.BlockRegions;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.World;
 
@@ -45,13 +48,13 @@ public class CitySpawner extends AbstractSpawner {
         LocationComponent location = entity.getComponent(LocationComponent.class);
         Vector3f pos = location.getWorldPosition(new Vector3f());
         Vector2i pos2d = new Vector2i(Math.roundUsing(pos.x, RoundingMode.FLOOR), Math.roundUsing(pos.z, RoundingMode.FLOOR));
-        Region3i region = Region3i.createFromCenterExtents(JomlUtil.from(pos), JomlUtil.from(new Vector3f(32, 1, 32)));
+        BlockRegion region = BlockRegions.createFromCenterAndExtents(pos, new Vector3f(32, 1, 32));
         Region data = world.getWorldData(region);
         SiteFacet settlementFacet = data.getFacet(SiteFacet.class);
         Vector2i searchPos;
         if (!settlementFacet.getSettlements().isEmpty()) {
             Site closest = Collections.min(settlementFacet.getSettlements(),
-                    (a, b) -> a.getPos().distanceSquared(JomlUtil.from(pos2d)) - b.getPos().distanceSquared(JomlUtil.from(pos2d)));
+                    Comparator.comparingInt(a -> a.getPos().distanceSquared(JomlUtil.from(pos2d))));
 
             searchPos = new Vector2i(JomlUtil.from(closest.getPos()));
         } else {

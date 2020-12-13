@@ -16,13 +16,14 @@
 
 package org.terasology.staticCities.roof;
 
+import org.terasology.staticCities.model.roof.Roof;
+import org.terasology.world.block.BlockRegion;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import org.terasology.math.Region3i;
-import org.terasology.staticCities.model.roof.Roof;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  * A registry for roofs.
@@ -31,7 +32,7 @@ public class RoofFacet extends BaseFacet2D {
 
     private final Collection<Roof> roofs = new ArrayList<>();
 
-    public RoofFacet(Region3i targetRegion, Border3D border) {
+    public RoofFacet(BlockRegion targetRegion, Border3D border) {
         super(targetRegion, border);
     }
 

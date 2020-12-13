@@ -17,13 +17,13 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
+import org.joml.Vector3i;
 import org.terasology.core.world.generator.facetProviders.DefaultTreeProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.TreeFacet;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Vector3i;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.roads.RoadSegment;
@@ -65,8 +65,8 @@ public class TreeFacetProvider extends DefaultTreeProvider {
     }
 
     private static boolean outsideRoads(Vector3i v, Set<Road> roads) {
-        int vx = v.getX();
-        int vz = v.getZ();
+        int vx = v.x();
+        int vz = v.z();
         float minDist = 5f;   // block distance to road border
         for (Road road : roads) {
             for (RoadSegment seg : road.getSegments()) {
@@ -86,7 +86,7 @@ public class TreeFacetProvider extends DefaultTreeProvider {
             Site site = settlement.getSite();
             ImmutableVector2i center = site.getPos();
             float r = site.getRadius();
-            if (distanceSquared(center, v.getX(), v.getZ()) < r * r) {
+            if (distanceSquared(center, v.x(), v.z()) < r * r) {
                 return false;
             }
         }

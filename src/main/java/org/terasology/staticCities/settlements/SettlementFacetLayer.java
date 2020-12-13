@@ -40,8 +40,8 @@ public class SettlementFacetLayer extends AbstractFacetLayer {
         SettlementFacet settlementFacet = region.getFacet(SettlementFacet.class);
 
         Graphics2D g = img.createGraphics();
-        int dx = region.getRegion().minX();
-        int dy = region.getRegion().minZ();
+        int dx = region.getRegion().getMinX();
+        int dy = region.getRegion().getMinZ();
         g.translate(-dx, -dy);
 
         g.setFont(font);
