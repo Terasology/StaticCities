@@ -16,15 +16,16 @@
 
 package org.terasology.staticCities.parcels;
 
+import org.terasology.math.geom.Rect2i;
+import org.terasology.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.world.viewer.layers.Renders;
+import org.terasology.world.viewer.layers.ZOrder;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
 
 /**
  * Draws the generated graph on a AWT graphics instance
@@ -46,8 +47,8 @@ public class ParcelFacetLayer extends AbstractFacetLayer {
 
         Graphics2D g = img.createGraphics();
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int dx = region.getRegion().getMinX();
-        int dy = region.getRegion().getMinZ();
+        int dx = region.getRegion().minX();
+        int dy = region.getRegion().minZ();
         g.translate(-dx, -dy);
 
         for (StaticParcel staticParcel : facet.getParcels()) {

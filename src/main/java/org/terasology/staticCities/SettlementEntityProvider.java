@@ -46,7 +46,7 @@ public class SettlementEntityProvider implements EntityProvider {
             int x = pos2d.getX();
             int z = pos2d.getY();
             int y = TeraMath.floorToInt(heightFacet.getWorld(pos2d));
-            if (region.getRegion().containsPoint(x, y, z)) {
+            if (region.getRegion().contains(x, y, z)) {
 
                 EntityStore entityStore = new EntityStore();
 

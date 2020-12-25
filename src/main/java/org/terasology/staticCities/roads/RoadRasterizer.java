@@ -15,14 +15,8 @@
  */
 package org.terasology.staticCities.roads;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 import org.terasology.commonworld.geom.BoundingBox;
 import org.terasology.commonworld.geom.Ramp;
-import org.terasology.math.Region3i;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
@@ -35,6 +29,12 @@ import org.terasology.world.block.BlockRegion;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class RoadRasterizer implements WorldRasterizer {
 
@@ -57,7 +57,7 @@ public class RoadRasterizer implements WorldRasterizer {
         InfiniteSurfaceHeightFacet heightFacet = chunkRegion.getFacet(InfiniteSurfaceHeightFacet.class);
 
         BlockRegion reg = chunkRegion.getRegion();
-        Rect2i rc = Rect2i.createFromMinAndMax(reg.getMinX(), reg.getMinZ(), reg.getMaxX(), reg.getMaxZ());
+        Rect2i rc = Rect2i.createFromMinAndMax(reg.minX(), reg.minZ(), reg.maxX(), reg.maxZ());
 
         // first compute the collection of road segments that could be relevant
         // TODO: use Line/Rectangle for each segment instead (include road width!)
@@ -120,19 +120,19 @@ public class RoadRasterizer implements WorldRasterizer {
                         int cz = z - chunk.getChunkWorldOffsetZ();
 
                         // fill up with air until default surface height is reached
-                        for (int i = Math.max(reg.getMinY(), y + 1); i <= Math.min(reg.getMaxY(), heightP); i++) {
+                        for (int i = Math.max(reg.minY(), y + 1); i <= Math.min(reg.maxY(), heightP); i++) {
                             int cy = i - chunk.getChunkWorldOffsetY();
                             chunk.setBlock(cx, cy, cz, blockTheme.apply(DefaultBlockType.AIR));
                         }
 
                         // fill up with dirt (top soil layer inclusive) until road height is reached
-                        for (int i = Math.max(reg.getMinY(), heightP); i <= Math.min(reg.getMaxY(), y - 1); i++) {
+                        for (int i = Math.max(reg.minY(), heightP); i <= Math.min(reg.maxY(), y - 1); i++) {
                             int cy = i - chunk.getChunkWorldOffsetY();
                             chunk.setBlock(cx, cy, cz, blockTheme.apply(DefaultBlockType.ROAD_FILL));
                         }
 
                         // put actual road layer
-                        if (y >= reg.getMinY() && y <= reg.getMaxY()) {
+                        if (y >= reg.minY() && y <= reg.maxY()) {
                             int cy = y - chunk.getChunkWorldOffsetY();
                             chunk.setBlock(cx, cy, cz, blockTheme.apply(DefaultBlockType.ROAD_SURFACE));
                         }

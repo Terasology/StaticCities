@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities;
 
-import java.util.Optional;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.logic.location.LocationComponent;
@@ -29,6 +28,8 @@ import org.terasology.utilities.Assets;
 import org.terasology.world.generation.EntityBuffer;
 import org.terasology.world.generation.EntityProvider;
 import org.terasology.world.generation.Region;
+
+import java.util.Optional;
 
 /**
  * Adds a quest, annotated with a spinning question mark icon.
@@ -53,7 +54,7 @@ public class QuestEntityProvider implements EntityProvider {
         for (Road road : roadFacet.getRoads()) {
             for (BaseVector2i pt : road.getPoints()) {
                 float y = heightFacet.getWorld(pt) + 5;
-                if (region.getRegion().containsPoint(pt.getX(), (int) y, pt.getY())) {
+                if (region.getRegion().contains(pt.getX(), (int) y, pt.getY())) {
                     Vector3f position = new Vector3f(pt.getX(), y, pt.getY());
                     EntityStore builder = new EntityStore(prefab);
                     builder.addComponent(new LocationComponent(position));

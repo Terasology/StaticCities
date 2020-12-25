@@ -67,14 +67,14 @@ public interface RasterTarget {
      * @return the maximum drawing height
      */
     default int getMaxHeight() {
-        return getAffectedRegion().getMaxY();
+        return getAffectedRegion().maxY();
     }
 
     /**
      * @return the maximum drawing height
      */
     default int getMinHeight() {
-        return getAffectedRegion().getMinY();
+        return getAffectedRegion().minY();
     }
 
     /**

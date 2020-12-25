@@ -65,8 +65,8 @@ public class DecorationFacetLayer extends AbstractFacetLayer {
     @Override
     public void render(BufferedImage img, Region region) {
 
-        int wx = region.getRegion().getMinX();
-        int wz = region.getRegion().getMinZ();
+        int wx = region.getRegion().minX();
+        int wz = region.getRegion().minZ();
         ImageRasterTarget brush = new ImageRasterTarget(wx, wz, img, blockColors::get);
         render(brush, region);
     }
