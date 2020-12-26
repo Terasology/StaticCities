@@ -1,6 +1,6 @@
 {
     "id": "StaticCities",
-    "version": "1.0.0",
+    "version": "1.0.0-SNAPSHOT",
     "author": "msteiger",
     "displayName": "StaticCities",
     "description": "Spawns static cities at worldgeneration.",

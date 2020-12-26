@@ -17,12 +17,12 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
+import org.joml.Vector3i;
 import org.terasology.core.world.generator.facetProviders.DefaultFloraProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.FloraFacet;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Vector3i;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
@@ -53,7 +53,7 @@ public class FloraFacetProvider extends DefaultFloraProvider {
         List<Predicate<Vector3i>> filters = super.getFilters(region);
 
         BlockedAreaFacet blockedAreaFacet = region.getRegionFacet(BlockedAreaFacet.class);
-        filters.add(v -> !blockedAreaFacet.isBlocked(v.getX(), v.getZ()));
+        filters.add(v -> !blockedAreaFacet.isBlocked(v.x(), v.z()));
 
         RoadFacet roadFacet = region.getRegionFacet(RoadFacet.class);
         filters.add(v -> outsideRoads(v, roadFacet.getRoads()));
@@ -62,8 +62,8 @@ public class FloraFacetProvider extends DefaultFloraProvider {
     }
 
     private static boolean outsideRoads(Vector3i v, Set<Road> roads) {
-        int vx = v.getX();
-        int vz = v.getZ();
+        int vx = v.x();
+        int vz = v.z();
         float minDist = 0f;   // block distance to road border
         for (Road road : roads) {
             for (RoadSegment seg : road.getSegments()) {

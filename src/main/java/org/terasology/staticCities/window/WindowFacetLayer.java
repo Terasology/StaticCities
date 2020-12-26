@@ -17,11 +17,6 @@
 package org.terasology.staticCities.window;
 
 import com.google.common.collect.ImmutableMap;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
@@ -33,6 +28,12 @@ import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Draws windows in a given image

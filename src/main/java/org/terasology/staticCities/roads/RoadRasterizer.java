@@ -15,14 +15,8 @@
  */
 package org.terasology.staticCities.roads;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.Function;
 import org.terasology.commonworld.geom.BoundingBox;
 import org.terasology.commonworld.geom.Ramp;
-import org.terasology.math.Region3i;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
@@ -31,9 +25,16 @@ import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import org.terasology.world.block.BlockRegion;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
 
 public class RoadRasterizer implements WorldRasterizer {
 
@@ -55,7 +56,7 @@ public class RoadRasterizer implements WorldRasterizer {
         RoadFacet roadFacet = chunkRegion.getFacet(RoadFacet.class);
         InfiniteSurfaceHeightFacet heightFacet = chunkRegion.getFacet(InfiniteSurfaceHeightFacet.class);
 
-        Region3i reg = chunkRegion.getRegion();
+        BlockRegion reg = chunkRegion.getRegion();
         Rect2i rc = Rect2i.createFromMinAndMax(reg.minX(), reg.minZ(), reg.maxX(), reg.maxZ());
 
         // first compute the collection of road segments that could be relevant

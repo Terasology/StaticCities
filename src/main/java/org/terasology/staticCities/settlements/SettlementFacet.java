@@ -16,12 +16,13 @@
 
 package org.terasology.staticCities.settlements;
 
+import org.terasology.world.block.BlockRegion;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.terasology.math.Region3i;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  *
@@ -30,7 +31,7 @@ public class SettlementFacet extends BaseFacet2D {
 
     private Set<Settlement> settlements = new HashSet<>();
 
-    public SettlementFacet(Region3i targetRegion, Border3D border) {
+    public SettlementFacet(BlockRegion targetRegion, Border3D border) {
         super(targetRegion, border);
     }
 

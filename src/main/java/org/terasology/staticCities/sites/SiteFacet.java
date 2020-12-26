@@ -16,14 +16,15 @@
 
 package org.terasology.staticCities.sites;
 
+import org.terasology.math.geom.Rect2i;
+import org.terasology.math.geom.Vector2i;
+import org.terasology.world.block.BlockRegion;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
-import org.terasology.math.Region3i;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  *
@@ -33,7 +34,7 @@ public class SiteFacet extends BaseFacet2D {
     private Set<Site> settlements = new HashSet<>();
     private int uncertainBorder;
 
-    public SiteFacet(Region3i targetRegion, Border3D border, int uncertainBorder) {
+    public SiteFacet(BlockRegion targetRegion, Border3D border, int uncertainBorder) {
         super(targetRegion, border);
         this.uncertainBorder = uncertainBorder;
     }

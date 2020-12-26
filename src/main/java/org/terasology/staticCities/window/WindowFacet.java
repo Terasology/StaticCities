@@ -16,12 +16,13 @@
 
 package org.terasology.staticCities.window;
 
+import org.terasology.world.block.BlockRegion;
+import org.terasology.world.generation.Border3D;
+import org.terasology.world.generation.facets.base.BaseFacet2D;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import org.terasology.math.Region3i;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 /**
  * A registry for windows.
@@ -30,7 +31,7 @@ public class WindowFacet extends BaseFacet2D {
 
     private final Collection<Window> windows = new ArrayList<>();
 
-    public WindowFacet(Region3i targetRegion, Border3D border) {
+    public WindowFacet(BlockRegion targetRegion, Border3D border) {
         super(targetRegion, border);
     }
 

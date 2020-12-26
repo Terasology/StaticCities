@@ -16,10 +16,12 @@
 
 package org.terasology.staticCities.deco;
 
-import java.util.Collections;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.math.JomlUtil;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.raster.RasterTarget;
+
+import java.util.Collections;
 
 /**
  * Converts {@link SingleBlockDecoration} into blocks
@@ -35,7 +37,7 @@ public class SingleBlockRasterizer extends DecorationRasterizer<SingleBlockDecor
 
     @Override
     public void raster(RasterTarget target, SingleBlockDecoration deco, HeightMap hm) {
-        if (target.getAffectedRegion().encompasses(deco.getPos())) {
+        if (target.getAffectedRegion().contains(JomlUtil.from(deco.getPos()))) {
             target.setBlock(deco.getPos(), deco.getType(), Collections.singleton(deco.getSide()));
         }
     }

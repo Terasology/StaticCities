@@ -16,12 +16,13 @@
 
 package org.terasology.staticCities.raster;
 
-import java.util.Set;
-import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockType;
+import org.terasology.world.block.BlockRegion;
+
+import java.util.Set;
 
 /**
  * Converts model elements into blocks
@@ -84,5 +85,5 @@ public interface RasterTarget {
     /**
      * @return the region that is drawn by this raster target
      */
-    Region3i getAffectedRegion();
+    BlockRegion getAffectedRegion();
 }

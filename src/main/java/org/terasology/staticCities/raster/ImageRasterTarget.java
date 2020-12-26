@@ -17,18 +17,18 @@
 package org.terasology.staticCities.raster;
 
 import com.google.common.base.Function;
-import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector3i;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.world.block.BlockRegion;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.Set;
 
 /**
  * Converts model elements into pixels in an image.
@@ -47,7 +47,7 @@ public class ImageRasterTarget implements RasterTarget {
     private final int wz;
     private final int wx;
 
-    private Region3i region;
+    private BlockRegion region;
 
     /**
      * @param wx the world block x of the top-left corner
@@ -68,9 +68,7 @@ public class ImageRasterTarget implements RasterTarget {
         this.typeMap = new BlockType[width][height];
 
         this.area = Rect2i.createFromMinAndSize(wx, wz, width, height);
-        this.region = Region3i.createFromMinAndSize(
-                new Vector3i(wx, Short.MIN_VALUE, wz),
-                new Vector3i(width, Short.MAX_VALUE - Short.MIN_VALUE, height));
+        this.region = new BlockRegion(wx, Short.MIN_VALUE, wz).setSize(width, Short.MAX_VALUE - Short.MIN_VALUE, height);
     }
 
     @Override
@@ -79,7 +77,7 @@ public class ImageRasterTarget implements RasterTarget {
     }
 
     @Override
-    public Region3i getAffectedRegion() {
+    public BlockRegion getAffectedRegion() {
         return region;
     }
 

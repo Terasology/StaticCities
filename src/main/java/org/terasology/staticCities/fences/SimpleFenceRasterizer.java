@@ -16,9 +16,7 @@
 
 package org.terasology.staticCities.fences;
 
-import java.util.EnumSet;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.Region3i;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
@@ -27,9 +25,12 @@ import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.block.Block;
+import org.terasology.world.block.BlockRegion;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
+
+import java.util.EnumSet;
 
 /**
  *
@@ -61,7 +62,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
 
     private void raster(CoreChunk chunk, SimpleFence fence, InfiniteSurfaceHeightFacet heightFacet) {
         Rect2i fenceRc = fence.getRect();
-        Region3i brushRc = chunk.getRegion();
+        BlockRegion brushRc = chunk.getRegion();
 
         int fleft = fenceRc.minX();
         int ftop = fenceRc.minY();
@@ -125,12 +126,12 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
     }
 
     private void post(CoreChunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z, Orientation o) {
-        Region3i region = chunk.getRegion();
+        BlockRegion region = chunk.getRegion();
         int y = TeraMath.floorToInt(hm.getWorld(x, z)) + 1;
         Orientation a = o.getRotated(180 - 45);
         Orientation b = o.getRotated(180 + 45);
         Block cornerPost = theme.apply(DefaultBlockType.FENCE, EnumSet.of(getSide(a), getSide(b)));
-        if (region.encompasses(x, y, z)) {
+        if (region.contains(x, y, z)) {
             chunk.setBlock(x - region.minX(), y - region.minY(), z - region.minZ(), cornerPost);
         }
 
