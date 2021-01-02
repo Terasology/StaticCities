@@ -23,6 +23,7 @@ import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProvider;
@@ -57,7 +58,7 @@ public class BlockedAreaFacetProvider implements FacetProvider {
 
         for (Site site : siteFacet.getSettlements()) {
             Rect2i siteRect = getBoundingRect(site);
-            if (facet.getWorldRegion().overlaps(siteRect)) {
+            if (facet.getWorldArea().intersectsBlockArea(new BlockArea(siteRect.minX(), siteRect.minY(), siteRect.maxX(), siteRect.maxY()))) {
                 BlockedArea area = cache.getUnchecked(site);
                 facet.add(area);
             }

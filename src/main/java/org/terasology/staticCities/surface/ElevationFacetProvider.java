@@ -15,6 +15,7 @@
  */
 package org.terasology.staticCities.surface;
 
+import org.joml.Vector2ic;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.Facet;
@@ -37,9 +38,9 @@ public class ElevationFacetProvider implements FacetProvider {
         ElevationFacet facet = new ElevationFacet(region.getRegion(), border);
         InfiniteSurfaceHeightFacet infiniteFacet = region.getRegionFacet(InfiniteSurfaceHeightFacet.class);
 
-        for (BaseVector2i pos : facet.getWorldRegion().contents()) {
-            int x = pos.getX();
-            int y = pos.getY();
+        for (Vector2ic pos : facet.getWorldArea()) {
+            int x = pos.x();
+            int y = pos.y();
             facet.setWorld(pos, infiniteFacet.getWorld(x, y));
         }
 

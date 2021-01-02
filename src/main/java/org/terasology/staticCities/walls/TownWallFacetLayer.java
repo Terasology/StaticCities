@@ -41,7 +41,7 @@ public class TownWallFacetLayer extends AbstractFacetLayer {
         TownWallFacet facet = region.getFacet(TownWallFacet.class);
 
         Graphics2D g = img.createGraphics();
-        g.translate(-facet.getWorldRegion().minX(),  -facet.getWorldRegion().minY());
+        g.translate(-facet.getWorldArea().minX(),  -facet.getWorldArea().minY());
         for (TownWall wall : facet.getTownWalls()) {
             render(g, wall);
         }

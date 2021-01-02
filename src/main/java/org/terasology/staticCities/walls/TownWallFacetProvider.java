@@ -53,6 +53,7 @@ import org.terasology.staticCities.window.Window;
 import org.terasology.staticCities.window.WindowFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
@@ -101,7 +102,8 @@ public class TownWallFacetProvider implements FacetProvider {
         for (Settlement settlement : settlementFacet.getSettlements()) {
             if (settlement.hasTownwall()) {
                 Site site = settlement.getSite();
-                if (Circle.intersects(site.getPos(), site.getRadius(), wallFacet.getWorldRegion())) {
+                BlockAreac area = wallFacet.getWorldArea();
+                if (Circle.intersects(site.getPos(), site.getRadius(), Rect2i.createFromMinAndMax(area.minX(), area.minY(), area.maxX(), area.maxY()))) {
                     try {
                         TownWall tw = cache.get(site, () -> generate(site, heightFacet, buildableAreaFacet, blockedAreaFacet));
                         wallFacet.addTownWall(tw);

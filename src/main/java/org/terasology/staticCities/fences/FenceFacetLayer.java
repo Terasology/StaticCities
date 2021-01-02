@@ -42,7 +42,7 @@ public class FenceFacetLayer extends AbstractFacetLayer {
         FenceFacet facet = region.getFacet(FenceFacet.class);
 
         Graphics2D g = img.createGraphics();
-        g.translate(-facet.getWorldRegion().minX(),  -facet.getWorldRegion().minY());
+        g.translate(-facet.getWorldArea().minX(),  -facet.getWorldArea().minY());
         for (SimpleFence fence : facet.getFences()) {
             Rect2i areaRc = fence.getRect();
 

@@ -24,6 +24,7 @@ import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.namegenerator.waters.DebugWaterTheme;
 import org.terasology.namegenerator.waters.WaterNameProvider;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
@@ -61,7 +62,7 @@ public class LakeFacetProvider implements FacetProvider {
         ElevationFacet elevationFacet = region.getRegionFacet(ElevationFacet.class);
         SeaLevelFacet seaLevelFacet = region.getRegionFacet(SeaLevelFacet.class);
         LakeFacet lakeFacet = new LakeFacet(region.getRegion(), region.getBorderForFacet(LakeFacet.class));
-        Rect2i worldRect = lakeFacet.getWorldRegion();
+        BlockAreac worldRect = lakeFacet.getWorldArea();
 
         int ngseed = Objects.hashCode(seed, region.getRegion(), SEED_SALT);
         WaterNameProvider ng = new WaterNameProvider(ngseed, new DebugWaterTheme());
@@ -82,7 +83,7 @@ public class LakeFacetProvider implements FacetProvider {
 //        Vector2i coords = sector.getCoords();
 
 //        Rectangle sectorRect = new Rectangle(coords.x * size, coords.y * size, size, size);
-        Rectangle sectorRect = new Rectangle(worldRect.minX(), worldRect.minY(), worldRect.width(), worldRect.height());
+        Rectangle sectorRect = new Rectangle(worldRect.minX(), worldRect.minY(), worldRect.getSizeX(), worldRect.getSizeY());
         ContourTracer ct = new ContourTracer(orgHm, sectorRect, seaLevelFacet.getSeaLevel());
 
         for (Contour c : ct.getOuterContours()) {

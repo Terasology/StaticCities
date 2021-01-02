@@ -40,6 +40,7 @@ import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.ConfigurableFacetProvider;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.GeneratingRegion;
@@ -77,16 +78,16 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         BuildableTerrainFacet terrainFacet = region.getRegionFacet(BuildableTerrainFacet.class);
         BlockedAreaFacet blockedAreaFacet = region.getRegionFacet(BlockedAreaFacet.class);
 
-        Rect2i worldRect = blockedAreaFacet.getWorldRegion();
-
+        BlockAreac worldRect = blockedAreaFacet.getWorldArea();
+        Rect2i targetRect = Rect2i.createFromMinAndMax(worldRect.minX(), worldRect.minY(), worldRect.maxX(), worldRect.maxY());
         try {
             lock.readLock().lock();
             for (Settlement settlement : settlementFacet.getSettlements()) {
                 Site site = settlement.getSite();
-                if (Circle.intersects(site.getPos(), site.getRadius(), worldRect)) {
+                if (Circle.intersects(site.getPos(), site.getRadius(), targetRect)) {
                     Set<RectStaticParcel> parcels = cache.get(site, () -> generateParcels(settlement, blockedAreaFacet, terrainFacet));
                     for (RectStaticParcel parcel : parcels) {
-                        if (parcel.getShape().overlaps(worldRect)) {
+                        if (parcel.getShape().overlaps(targetRect)) {
                             facet.addParcel(site, parcel);
                         }
                     }

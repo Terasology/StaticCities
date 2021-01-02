@@ -30,6 +30,7 @@ import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.WhiteNoise;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.ConfigurableFacetProvider;
@@ -71,7 +72,8 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         BlockRegion coreReg = region.getRegion();
         int uncertainBorder = 2 * config.maxRadius + config.minDistance;
         SiteFacet settlementFacet = new SiteFacet(coreReg, border, uncertainBorder);
-        Rect2i worldRect = settlementFacet.getWorldRegion();
+        BlockAreac area = settlementFacet.getWorldArea();
+        Rect2i worldRect = Rect2i.createFromMinAndMax(area.minX(), area.minY(), area.maxX(), area.maxY());
         Rect2i worldRectScaled = Rect2i.createFromMinAndMax(worldRect.min().div(scale), worldRect.max().div(scale));
 
         List<Site> sites = new ArrayList<>();

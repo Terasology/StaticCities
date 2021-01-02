@@ -43,8 +43,8 @@ public class BlockedAreaFacetLayer extends AbstractFacetLayer {
         g.setColor(Color.GRAY);
         for (BlockedArea area : facet.getAreas()) {
             Rect2i areaRc = area.getWorldRegion();
-            int dx = areaRc.minX() - facet.getWorldRegion().minX();
-            int dy = areaRc.minY() - facet.getWorldRegion().minY();
+            int dx = areaRc.minX() - facet.getWorldArea().minX();
+            int dy = areaRc.minY() - facet.getWorldArea().minY();
 
             g.drawRect(dx, dy, areaRc.width(), areaRc.height());
             g.drawImage(area.getImage(), dx, dy, null);
