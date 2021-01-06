@@ -15,6 +15,7 @@
  */
 package org.terasology.staticCities;
 
+import org.joml.Vector2ic;
 import org.terasology.core.world.CoreBiome;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.math.geom.BaseVector2i;
@@ -54,7 +55,7 @@ public class SimpleBiomeProvider implements FacetProvider {
 
         int seaLevel = seaLevelFacet.getSeaLevel();
 
-        for (BaseVector2i pos : biomeFacet.getRelativeRegion().contents()) {
+        for (Vector2ic pos : biomeFacet.getRelativeArea()) {
             float height = elevationFacet.get(pos);
 
             CoreBiome biome;
