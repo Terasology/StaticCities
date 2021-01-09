@@ -16,6 +16,7 @@
 
 package org.terasology.staticCities;
 
+import org.joml.Vector3fc;
 import org.terasology.core.world.generator.facetProviders.PerlinHumidityProvider;
 import org.terasology.core.world.generator.facetProviders.SeaLevelProvider;
 import org.terasology.core.world.generator.facetProviders.SurfaceToDensityProvider;
@@ -25,8 +26,6 @@ import org.terasology.core.world.generator.rasterizers.TreeRasterizer;
 import org.terasology.engine.SimpleUri;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.spawner.Spawner;
-import org.terasology.math.JomlUtil;
-import org.terasology.math.geom.Vector3f;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.registry.In;
 import org.terasology.staticCities.bldg.BuildingFacetProvider;
@@ -49,11 +48,17 @@ import org.terasology.staticCities.raster.standard.RoundPartRasterizer;
 import org.terasology.staticCities.raster.standard.StaircaseRasterizer;
 import org.terasology.staticCities.roads.RoadFacetProvider;
 import org.terasology.staticCities.roads.RoadRasterizer;
-import org.terasology.staticCities.roof.*;
+import org.terasology.staticCities.roof.ConicRoofRasterizer;
+import org.terasology.staticCities.roof.DomeRoofRasterizer;
+import org.terasology.staticCities.roof.FlatRoofRasterizer;
+import org.terasology.staticCities.roof.HipRoofRasterizer;
+import org.terasology.staticCities.roof.PentRoofRasterizer;
+import org.terasology.staticCities.roof.RoofFacetProvider;
+import org.terasology.staticCities.roof.SaddleRoofRasterizer;
 import org.terasology.staticCities.settlements.SettlementFacetProvider;
 import org.terasology.staticCities.sites.SiteFacetProvider;
-import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacetProvider;
 import org.terasology.staticCities.surface.ElevationFacetProvider;
+import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacetProvider;
 import org.terasology.staticCities.terrain.BuildableTerrainFacetProvider;
 import org.terasology.staticCities.walls.TownWallFacetProvider;
 import org.terasology.staticCities.walls.TownWallRasterizer;
@@ -84,8 +89,8 @@ public class CityWorldGenerator extends BaseFacetedWorldGenerator {
     }
 
     @Override
-    public Vector3f getSpawnPosition(EntityRef entity) {
-        return JomlUtil.from(spawner.getSpawnPosition(getWorld(), entity));
+    public Vector3fc getSpawnPosition(EntityRef entity) {
+        return spawner.getSpawnPosition(getWorld(), entity);
     }
 
     @Override
