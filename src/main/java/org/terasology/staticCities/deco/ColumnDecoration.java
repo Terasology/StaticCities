@@ -17,11 +17,12 @@
 package org.terasology.staticCities.deco;
 
 import com.google.common.base.Preconditions;
-import java.util.List;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.math.geom.ImmutableVector3i;
 import org.terasology.staticCities.BlockType;
+
+import java.util.List;
 
 /**
  * A decoration made up by a column of blocks (e.g. ladders, pillars, etc.)

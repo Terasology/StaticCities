@@ -17,7 +17,6 @@
 package org.terasology.staticCities.roof;
 
 import com.google.common.math.DoubleMath;
-import java.math.RoundingMode;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.math.TeraMath;
@@ -30,6 +29,8 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+
+import java.math.RoundingMode;
 
 /**
  * Converts a {@link PentRoof} into blocks

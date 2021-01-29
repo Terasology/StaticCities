@@ -16,8 +16,9 @@
 
 package org.terasology.staticCities.sites;
 
-import java.util.Objects;
 import org.terasology.math.geom.ImmutableVector2i;
+
+import java.util.Objects;
 
 /**
  * Provides information on a settlement site.

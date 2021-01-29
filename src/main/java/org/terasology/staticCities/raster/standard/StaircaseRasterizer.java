@@ -16,8 +16,6 @@
 
 package org.terasology.staticCities.raster.standard;
 
-import java.util.Collections;
-import java.util.Iterator;
 import org.terasology.commonworld.Orientation;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.Side;
@@ -31,6 +29,9 @@ import org.terasology.staticCities.bldg.BuildingPartRasterizer;
 import org.terasology.staticCities.bldg.StaircaseBuildingPart;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.raster.RasterTarget;
+
+import java.util.Collections;
+import java.util.Iterator;
 
 /**
  * Converts a {@link StaircaseBuildingPart} into blocks

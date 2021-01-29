@@ -17,12 +17,13 @@
 package org.terasology.staticCities.deco;
 
 import com.google.common.collect.ImmutableList;
-import java.util.Collections;
-import java.util.List;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Pillar extends ColumnDecoration {
 

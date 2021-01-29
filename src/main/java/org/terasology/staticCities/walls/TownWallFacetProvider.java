@@ -19,8 +19,6 @@ package org.terasology.staticCities.walls;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
@@ -60,6 +58,9 @@ import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
 import org.terasology.world.generation.Updates;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Generates a {@link TownWall} around a given settlement

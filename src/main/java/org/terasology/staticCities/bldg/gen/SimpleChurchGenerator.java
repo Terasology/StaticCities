@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities.bldg.gen;
 
-import java.math.RoundingMode;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
@@ -43,6 +42,8 @@ import org.terasology.staticCities.window.RectWindow;
 import org.terasology.staticCities.window.SimpleWindow;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
+
+import java.math.RoundingMode;
 
 /**
  * Creates building models of a simple church.

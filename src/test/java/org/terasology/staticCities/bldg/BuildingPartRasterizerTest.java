@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities.bldg;
 
-import java.util.Arrays;
 import org.junit.Assert;
 import org.junit.Test;
 import org.terasology.commonworld.heightmap.HeightMap;
@@ -28,6 +27,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
 
+import java.util.Arrays;
 
 import static org.terasology.staticCities.DefaultBlockType.AIR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FLOOR;

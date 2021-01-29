@@ -21,7 +21,6 @@ import org.terasology.commonworld.contour.Contour;
 import org.terasology.commonworld.contour.ContourTracer;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.namegenerator.waters.DebugWaterTheme;
 import org.terasology.namegenerator.waters.WaterNameProvider;
 import org.terasology.world.block.BlockAreac;

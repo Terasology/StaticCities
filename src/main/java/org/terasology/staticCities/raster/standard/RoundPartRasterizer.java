@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities.raster.standard;
 
-import java.math.RoundingMode;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Circle;
@@ -31,6 +30,8 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+
+import java.math.RoundingMode;
 
 /**
  * Converts a {@link RoundBuildingPart} into blocks
