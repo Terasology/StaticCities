@@ -16,10 +16,11 @@
 
 package org.terasology.staticCities.settlements;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.sites.Site;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * Provides information on a settlement.

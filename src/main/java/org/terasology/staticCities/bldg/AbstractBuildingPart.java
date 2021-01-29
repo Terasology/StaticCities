@@ -17,14 +17,15 @@
 package org.terasology.staticCities.bldg;
 
 import com.google.common.collect.Sets;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import org.terasology.math.geom.Shape;
 import org.terasology.staticCities.deco.Decoration;
 import org.terasology.staticCities.door.Door;
 import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.staticCities.window.Window;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *

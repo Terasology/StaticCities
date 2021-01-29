@@ -16,14 +16,15 @@
 
 package org.terasology.staticCities.lakes;
 
+import org.terasology.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.world.viewer.layers.Renders;
+import org.terasology.world.viewer.layers.ZOrder;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
 
 /**
  * Draws the generated graph on a AWT graphics instance

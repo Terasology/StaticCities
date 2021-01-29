@@ -17,7 +17,6 @@
 package org.terasology.staticCities.walls;
 
 import com.google.common.math.DoubleMath;
-import java.math.RoundingMode;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
@@ -33,6 +32,8 @@ import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
+
+import java.math.RoundingMode;
 
 /**
  * Converts a {@link TownWall} into blocks

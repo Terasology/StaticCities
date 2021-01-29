@@ -19,7 +19,6 @@ package org.terasology.staticCities.fences;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import java.util.Optional;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.math.geom.Vector2i;
@@ -33,6 +32,8 @@ import org.terasology.world.generation.FacetProvider;
 import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
+
+import java.util.Optional;
 
 /**
  * Produces an empty {@link FenceFacet}.

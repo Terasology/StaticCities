@@ -18,9 +18,10 @@ package org.terasology.staticCities.lakes;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Sets;
+import org.terasology.commonworld.contour.Contour;
+
 import java.util.Collections;
 import java.util.Set;
-import org.terasology.commonworld.contour.Contour;
 
 /**
  * Defines a lake

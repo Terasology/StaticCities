@@ -17,9 +17,6 @@
 package org.terasology.staticCities.bldg.gen;
 
 import com.google.common.math.IntMath;
-import java.math.RoundingMode;
-import java.util.Collections;
-import java.util.Set;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.TeraMath;
 import org.terasology.math.geom.ImmutableVector2i;
@@ -33,6 +30,10 @@ import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.SimpleWindow;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
+
+import java.math.RoundingMode;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  *

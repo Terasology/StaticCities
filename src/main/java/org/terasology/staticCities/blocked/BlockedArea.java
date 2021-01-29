@@ -16,6 +16,10 @@
 
 package org.terasology.staticCities.blocked;
 
+import org.terasology.math.geom.BaseVector2i;
+import org.terasology.math.geom.Rect2i;
+import org.terasology.world.viewer.color.ColorModels;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -24,9 +28,6 @@ import java.awt.image.DataBufferInt;
 import java.awt.image.DirectColorModel;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.world.viewer.color.ColorModels;
 
 /**
  * An image-based registry for blocked areas.
