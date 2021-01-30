@@ -26,6 +26,7 @@ import org.terasology.staticCities.raster.BuildingPens;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockArea;
 
 import java.util.Arrays;
 
@@ -38,7 +39,7 @@ import static org.terasology.staticCities.DefaultBlockType.FENCE;
  */
 public class BuildingPartRasterizerTest {
 
-    private Rect2i rc = Rect2i.createFromMinAndSize(0, 0, 1, 1);
+    private BlockArea rc = new BlockArea(0, 0, 1, 1);
 
     @Test
     public void testPrepareFloorFullyInside() {
