@@ -19,7 +19,7 @@ package org.terasology.staticCities.raster;
 import org.joml.Vector2f;
 import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
-import org.terasology.staticCities.common.Line2f;
+import org.terasology.commonworld.geom.Line2f;
 import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockAreac;
 
