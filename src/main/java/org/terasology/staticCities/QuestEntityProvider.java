@@ -55,9 +55,8 @@ public class QuestEntityProvider implements EntityProvider {
             for (BaseVector2i pt : road.getPoints()) {
                 float y = heightFacet.getWorld(pt) + 5;
                 if (region.getRegion().contains(pt.getX(), (int) y, pt.getY())) {
-                    Vector3f position = new Vector3f(pt.getX(), y, pt.getY());
                     EntityStore builder = new EntityStore(prefab);
-                    builder.addComponent(new LocationComponent(position));
+                    builder.addComponent(new LocationComponent(new org.joml.Vector3f(pt.getX(), y, pt.getY())));
                     buffer.enqueue(builder);
                 }
             }
