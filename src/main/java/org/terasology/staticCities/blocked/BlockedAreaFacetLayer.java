@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.blocked;
 
-import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
@@ -43,11 +43,11 @@ public class BlockedAreaFacetLayer extends AbstractFacetLayer {
         Graphics2D g = img.createGraphics();
         g.setColor(Color.GRAY);
         for (BlockedArea area : facet.getAreas()) {
-            Rect2i areaRc = area.getWorldRegion();
+            BlockAreac areaRc = area.getWorldRegion();
             int dx = areaRc.minX() - facet.getWorldArea().minX();
             int dy = areaRc.minY() - facet.getWorldArea().minY();
 
-            g.drawRect(dx, dy, areaRc.width(), areaRc.height());
+            g.drawRect(dx, dy, areaRc.getSizeX(), areaRc.getSizeY());
             g.drawImage(area.getImage(), dx, dy, null);
         }
         g.dispose();

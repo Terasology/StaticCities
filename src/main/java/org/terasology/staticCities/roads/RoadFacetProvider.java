@@ -18,15 +18,16 @@ package org.terasology.staticCities.roads;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import org.joml.RoundingMode;
+import org.joml.Vector2f;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
 import org.terasology.commonworld.UnorderedPair;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.pathfinding.GeneralPathFinder;
 import org.terasology.pathfinding.GeneralPathFinder.DefaultEdge;
 import org.terasology.pathfinding.GeneralPathFinder.Edge;
@@ -44,7 +45,6 @@ import org.terasology.world.generation.GeneratingRegion;
 import org.terasology.world.generation.Produces;
 import org.terasology.world.generation.Requires;
 
-import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -110,13 +110,13 @@ public class RoadFacetProvider implements FacetProvider {
         List<Site> siteList = new ArrayList<>(siteFacet.getSettlements());
         for (int i = 0; i < siteList.size(); i++) {
             Site siteA = siteList.get(i);
-            ImmutableVector2i posA = siteA.getPos();
+            Vector2ic posA = siteA.getPos();
             for (int j = i + 1; j < siteList.size(); j++) {
                 Site siteB = siteList.get(j);
-                ImmutableVector2i posB = siteB.getPos();
+                Vector2ic posB = siteB.getPos();
 
-                int distX = Math.abs(posB.getX() - posA.getX());
-                int distY = Math.abs(posB.getY() - posA.getY());
+                int distX = Math.abs(posB.x() - posA.x());
+                int distY = Math.abs(posB.y() - posA.y());
 
                 if (distX < thres && distY < thres) {
                     try {
@@ -134,20 +134,20 @@ public class RoadFacetProvider implements FacetProvider {
 
         candidates.sort((a, b) -> Float.compare(a.getLength(), b.getLength()));
 
-        Map<ImmutableVector2i, Collection<Edge<ImmutableVector2i>>> sourceMap = new HashMap<>();
-        GeneralPathFinder<ImmutableVector2i> pathFinder = new GeneralPathFinder<>(e -> sourceMap.getOrDefault(e, Collections.emptySet()));
+        Map<Vector2i, Collection<Edge<Vector2i>>> sourceMap = new HashMap<>();
+        GeneralPathFinder<Vector2i> pathFinder = new GeneralPathFinder<>(e -> sourceMap.getOrDefault(e, Collections.emptySet()));
 
         for (Road road : candidates) {
 
             // TODO: compute if road is even relevant for this world region first
 
-            Optional<Path<ImmutableVector2i>> optPath = pathFinder.computePath(road.getEnd0(), road.getEnd1());
+            Optional<Path<Vector2i>> optPath = pathFinder.computePath(new Vector2i(road.getEnd0()), new Vector2i(road.getEnd1()));
 
             // existing connections must be at least 25% longer than the direct connection to be added
             if (!optPath.isPresent() || optPath.get().getLength() > 1.25 * road.getLength()) {
-                Edge<ImmutableVector2i> e = new DefaultEdge<ImmutableVector2i>(road.getEnd0(), road.getEnd1(), road.getLength());
-                sourceMap.computeIfAbsent(road.getEnd0(), a -> new ArrayList<>()).add(e);
-                sourceMap.computeIfAbsent(road.getEnd1(), a -> new ArrayList<>()).add(e);
+                Edge<Vector2i> e = new DefaultEdge<Vector2i>(new Vector2i(road.getEnd0()), new Vector2i(road.getEnd1()), road.getLength());
+                sourceMap.computeIfAbsent(new Vector2i(road.getEnd0()), a -> new ArrayList<>()).add(e);
+                sourceMap.computeIfAbsent(new Vector2i(road.getEnd1()), a -> new ArrayList<>()).add(e);
                 roadFacet.addRoad(road);
 
                 for (RoadSegment seg : road.getSegments()) {
@@ -158,7 +158,7 @@ public class RoadFacetProvider implements FacetProvider {
         region.setRegionFacet(RoadFacet.class, roadFacet);
     }
 
-    private Optional<Road> tryBuild(BaseVector2i posA, BaseVector2i posB, float width, BuildableTerrainFacet terrainFacet) {
+    private Optional<Road> tryBuild(Vector2ic posA, Vector2ic posB, float width, BuildableTerrainFacet terrainFacet) {
 
         Optional<Road> opt;
         opt = tryDirect(posA, posB, width, terrainFacet);
@@ -175,7 +175,7 @@ public class RoadFacetProvider implements FacetProvider {
         return opt;
     }
 
-    private Optional<Road> tryDirect(BaseVector2i posA, BaseVector2i posB, float width, BuildableTerrainFacet terrainFacet) {
+    private Optional<Road> tryDirect(Vector2ic posA, Vector2ic posB, float width, BuildableTerrainFacet terrainFacet) {
         double length = posA.distance(posB);
         int segCount = TeraMath.ceilToInt(length / segLength);  // ceil avoids division by zero for short distances
 
@@ -183,7 +183,8 @@ public class RoadFacetProvider implements FacetProvider {
 
         segPoints.add(new Vector2i(posA));
         for (int i = 1; i < segCount; i++) {
-            Vector2i pos = BaseVector2i.lerp(posA, posB, (float) i / segCount, RoundingMode.HALF_UP);
+            Vector2i pos = new Vector2i(new Vector2f(posA).lerp(new Vector2f(posB),  (float) i / segCount), RoundingMode.HALF_UP);
+//            Vector2i pos = BaseVector2i.lerp(posA, posB, (float) i / segCount, RoundingMode.HALF_UP);
 
             // first and last point receive only half the noise distortion to smoothen the end points
             float applyFactor = (i == 1 || i == segCount - 1) ? 0.5f : 1f;
@@ -201,7 +202,7 @@ public class RoadFacetProvider implements FacetProvider {
         return Optional.of(new Road(segPoints, width));
     }
 
-    private Optional<Road> tryPathfinder(BaseVector2i posA, BaseVector2i posB, float width, BuildableTerrainFacet terrainFacet) {
+    private Optional<Road> tryPathfinder(Vector2ic posA, Vector2ic posB, float width, BuildableTerrainFacet terrainFacet) {
 
         Function<Vector2i, Collection<Edge<Vector2i>>> edgeFunc = new Function<Vector2i, Collection<Edge<Vector2i>>>() {
 
@@ -212,7 +213,7 @@ public class RoadFacetProvider implements FacetProvider {
                 }
                 Collection<Edge<Vector2i>> neighs = new ArrayList<>();
                 for (Orientation or : Orientation.values()) {
-                    Vector2i pos = new Vector2i(or.getDir()).mul(segLength).add(v);
+                    Vector2i pos = new Vector2i(or.direction()).mul(segLength).add(v);
                     Vector2i noisePos = new Vector2i(pos);
                     noisePos.x += noiseX.noise(pos.x * smooth, 0, pos.y * smooth) * noiseAmp;
                     noisePos.y += noiseY.noise(pos.x * smooth, 0, pos.y * smooth) * noiseAmp;

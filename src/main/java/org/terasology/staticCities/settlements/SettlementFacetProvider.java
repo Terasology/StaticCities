@@ -54,7 +54,7 @@ public class SettlementFacetProvider implements FacetProvider {
         SettlementFacet settlementFacet = new SettlementFacet(region.getRegion(), border);
 
         for (Site site : siteFacet.getSettlements()) {
-            long nameSeed = nameNoiseGen.intNoise(site.getPos().getX(), site.getPos().getY());
+            long nameSeed = nameNoiseGen.intNoise(site.getPos().x(), site.getPos().y());
 
             // TODO: adapt NameProvider to provide a name for a given seed/pos
             TownNameProvider ng = new TownNameProvider(nameSeed, new DebugTownTheme());

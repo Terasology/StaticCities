@@ -16,6 +16,7 @@
 
 package org.terasology.staticCities.settlements;
 
+import org.joml.Vector2ic;
 import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
@@ -53,8 +54,8 @@ public class SettlementFacetLayer extends AbstractFacetLayer {
         for (Settlement settlement : settlementFacet.getSettlements()) {
             String text = settlement.getName();
             int width = fm.stringWidth(text);
-            ImmutableVector2i center = settlement.getSite().getPos();
-            g.drawString(text, center.getX() - width / 2, center.getY() - 5);
+            Vector2ic center = settlement.getSite().getPos();
+            g.drawString(text, center.x() - width / 2, center.y() - 5);
         }
 
         g.dispose();

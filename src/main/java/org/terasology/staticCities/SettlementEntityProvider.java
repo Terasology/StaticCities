@@ -16,6 +16,7 @@
 
 package org.terasology.staticCities;
 
+import org.joml.Vector2ic;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.nameTags.NameTagComponent;
@@ -42,9 +43,9 @@ public class SettlementEntityProvider implements EntityProvider {
         InfiniteSurfaceHeightFacet heightFacet = region.getFacet(InfiniteSurfaceHeightFacet.class);
 
         for (Settlement settlement : settlementFacet.getSettlements()) {
-            ImmutableVector2i pos2d = settlement.getSite().getPos();
-            int x = pos2d.getX();
-            int z = pos2d.getY();
+            Vector2ic pos2d = settlement.getSite().getPos();
+            int x = pos2d.x();
+            int z = pos2d.y();
             int y = TeraMath.floorToInt(heightFacet.getWorld(pos2d));
             if (region.getRegion().contains(x, y, z)) {
 

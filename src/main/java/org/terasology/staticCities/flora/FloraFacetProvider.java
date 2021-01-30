@@ -17,11 +17,11 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
+import org.joml.Vector2ic;
 import org.joml.Vector3i;
 import org.terasology.core.world.generator.facetProviders.DefaultFloraProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.FloraFacet;
-import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
 import org.terasology.staticCities.roads.Road;
@@ -67,10 +67,10 @@ public class FloraFacetProvider extends DefaultFloraProvider {
         float minDist = 0f;   // block distance to road border
         for (Road road : roads) {
             for (RoadSegment seg : road.getSegments()) {
-                BaseVector2i a = seg.getStart();
-                BaseVector2i b = seg.getEnd();
+                Vector2ic a = seg.getStart();
+                Vector2ic b = seg.getEnd();
                 float rad = seg.getWidth() * 0.5f + minDist;
-                if (LineSegment.distanceToPoint(a.getX(), a.getY(), b.getX(), b.getY(), vx, vz) < rad) {
+                if (LineSegment.distanceToPoint(a.x(), a.y(), b.x(), b.y(), vx, vz) < rad) {
                     return false;
                 }
             }

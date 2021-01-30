@@ -16,15 +16,16 @@
 
 package org.terasology.staticCities.sites;
 
+import org.joml.RoundingMode;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.terasology.entitySystem.Component;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.procedural.Noise;
 import org.terasology.utilities.procedural.WhiteNoise;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.generation.Border3D;
@@ -73,20 +74,24 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         int uncertainBorder = 2 * config.maxRadius + config.minDistance;
         SiteFacet settlementFacet = new SiteFacet(coreReg, border, uncertainBorder);
         BlockAreac area = settlementFacet.getWorldArea();
-        Rect2i worldRect = Rect2i.createFromMinAndMax(area.minX(), area.minY(), area.maxX(), area.maxY());
-        Rect2i worldRectScaled = Rect2i.createFromMinAndMax(worldRect.min().div(scale), worldRect.max().div(scale));
+        BlockArea worldRect = new BlockArea(area.minX(), area.minY(), area.maxX(), area.maxY());
+        BlockArea worldRectScaled = new BlockArea(
+            worldRect.minX()/scale,
+            worldRect.minY()/scale,
+            worldRect.maxX()/scale,
+            worldRect.maxY()/scale);
 
         List<Site> sites = new ArrayList<>();
 
         Vector2i pos = new Vector2i();
-        for (BaseVector2i posScaled : worldRectScaled.contents()) {
-            pos.set(posScaled.getX() * scale, posScaled.getY() * scale);
-            if (seedNoiseGen.noise(pos.getX(), pos.getY()) > 0.99) {
-                float size = sizeNoiseGen.noise(pos.getX(), pos.getY());
+        for (Vector2ic posScaled : worldRectScaled) {
+            pos.set(posScaled.x() * scale, posScaled.y() * scale);
+            if (seedNoiseGen.noise(pos.x(), pos.y()) > 0.99) {
+                float size = sizeNoiseGen.noise(pos.x(), pos.y());
                 size = config.minRadius + (size + 1) * 0.5f * (config.maxRadius - config.minRadius);
 
                 if (terrainFacet.isBuildable(pos)) {
-                    Site settlement = new Site(pos.getX(), pos.getY(), size);
+                    Site settlement = new Site(pos.x(), pos.y(), size);
                     sites.add(settlement);
                 }
             }
@@ -98,7 +103,7 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         // this can happen if other settlements further away with higher priority intersect
         for (Site site : sites) {
             float borderDist = config.maxRadius + config.minDistance + site.getRadius();
-            Rect2i certainRect = worldRect.expand(new Vector2i(-borderDist, -borderDist));
+            BlockArea certainRect = worldRect.expand(new Vector2i(-borderDist, -borderDist, RoundingMode.FLOOR), new BlockArea(BlockArea.INVALID));
             if (certainRect.contains(site.getPos())) {
                 settlementFacet.addSettlement(site);
             }
@@ -125,19 +130,19 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
     private boolean ensureMinDistance(List<Site> sites, double minDist) {
 
         sites.sort((s1, s2) -> Float.compare(
-                priorityNoiseGen.noise(s1.getPos().getX(), s1.getPos().getY()),
-                priorityNoiseGen.noise(s2.getPos().getX(), s2.getPos().getY())
+                priorityNoiseGen.noise(s1.getPos().x(), s1.getPos().y()),
+                priorityNoiseGen.noise(s2.getPos().x(), s2.getPos().y())
                 ));
 
         ListIterator<Site> it = sites.listIterator();
         while (it.hasNext()) {
             Site site = it.next();
-            BaseVector2i thisPos = site.getPos();
+            Vector2ic thisPos = site.getPos();
 
             Iterator<Site> otherIt = sites.listIterator(it.nextIndex());
             while (otherIt.hasNext()) {
                 Site other = otherIt.next();
-                BaseVector2i otherPos = other.getPos();
+                Vector2ic otherPos = other.getPos();
                 double distSq = thisPos.distanceSquared(otherPos);
                 double thres = minDist + site.getRadius() + other.getRadius();
                 if (distSq < thres * thres) {

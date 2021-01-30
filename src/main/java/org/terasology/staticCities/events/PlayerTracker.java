@@ -16,6 +16,8 @@
 
 package org.terasology.staticCities.events;
 
+import org.joml.Vector2f;
+import org.joml.Vector3f;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.entitySystem.entity.EntityRef;
@@ -23,17 +25,16 @@ import org.terasology.entitySystem.entity.lifecycleEvents.OnActivatedComponent;
 import org.terasology.entitySystem.event.ReceiveEvent;
 import org.terasology.entitySystem.systems.BaseComponentSystem;
 import org.terasology.entitySystem.systems.RegisterSystem;
+import org.terasology.joml.geom.Circlef;
 import org.terasology.logic.characters.events.OnEnterBlockEvent;
 import org.terasology.logic.console.Console;
 import org.terasology.logic.location.LocationComponent;
-import org.terasology.math.geom.Circle;
-import org.terasology.math.geom.Vector2f;
-import org.terasology.math.geom.Vector3f;
 import org.terasology.network.Client;
 import org.terasology.network.NetworkSystem;
 import org.terasology.nui.FontColor;
 import org.terasology.registry.In;
 import org.terasology.staticCities.SettlementComponent;
+import org.terasology.staticCities.common.CircleUtility;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.world.WorldComponent;
@@ -75,7 +76,7 @@ public class PlayerTracker extends BaseComponentSystem {
     @ReceiveEvent
     public void onEnterBlock(OnEnterBlockEvent event, EntityRef entity) {
         LocationComponent loc = entity.getComponent(LocationComponent.class);
-        Vector3f worldPos3d = loc.getWorldPosition();
+        Vector3f worldPos3d = loc.getWorldPosition(new Vector3f());
         Vector2f worldPos = new Vector2f(worldPos3d.x, worldPos3d.z);
 
         Client client = networkSystem.getOwner(entity);
@@ -91,8 +92,8 @@ public class PlayerTracker extends BaseComponentSystem {
         Settlement newArea = null;
         for (Settlement area : knownSettlements) {
             Site site = area.getSite();
-            Circle circle = new Circle(site.getPos().x(), site.getPos().y(), site.getRadius());
-            if (circle.contains(worldPos)) {
+            Circlef circle = new Circlef(site.getPos().x(), site.getPos().y(), site.getRadius());
+            if (CircleUtility.contains(circle, worldPos.x, worldPos.y)) {
                 if (newArea != null) {
                     logger.warn("{} appears to be in {} and {} at the same time!", name, newArea.getName(), area.getName());
                 }

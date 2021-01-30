@@ -24,6 +24,7 @@ import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
 import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProvider;
@@ -42,7 +43,7 @@ public class BlockedAreaFacetProvider implements FacetProvider {
 
         @Override
         public BlockedArea load(Site site) {
-            Rect2i siteRect = getBoundingRect(site);
+            BlockArea siteRect = getBoundingRect(site);
             return new BlockedArea(siteRect);
         }
 
@@ -57,7 +58,7 @@ public class BlockedAreaFacetProvider implements FacetProvider {
         SiteFacet siteFacet = region.getRegionFacet(SiteFacet.class);
 
         for (Site site : siteFacet.getSettlements()) {
-            Rect2i siteRect = getBoundingRect(site);
+            BlockArea siteRect = getBoundingRect(site);
             if (facet.getWorldArea().intersectsBlockArea(new BlockArea(siteRect.minX(), siteRect.minY(), siteRect.maxX(), siteRect.maxY()))) {
                 BlockedArea area = cache.getUnchecked(site);
                 facet.add(area);
@@ -67,11 +68,11 @@ public class BlockedAreaFacetProvider implements FacetProvider {
         region.setRegionFacet(BlockedAreaFacet.class, facet);
     }
 
-    private static Rect2i getBoundingRect(Site site) {
+    private static BlockArea getBoundingRect(Site site) {
         int rad = TeraMath.ceilToInt(site.getRadius());
-        int cx = site.getPos().getX();
-        int cy = site.getPos().getY();
-        return Rect2i.createFromMinAndMax(cx - rad, cy - rad, cx + rad, cy + rad);
+        int cx = site.getPos().x();
+        int cy = site.getPos().y();
+        return new BlockArea(cx - rad, cy - rad, cx + rad, cy + rad);
     }
 
 }

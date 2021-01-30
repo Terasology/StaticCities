@@ -24,6 +24,8 @@ import org.terasology.math.TeraMath;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 
 import java.awt.Color;
@@ -38,7 +40,7 @@ public class ImageRasterTarget implements RasterTarget {
     private static final Logger logger = LoggerFactory.getLogger(ImageRasterTarget.class);
 
     private final Function<BlockType, Color> blockColor;
-    private final Rect2i area;
+    private final BlockArea area;
 
     private final BufferedImage image;
     private final short[][] heightMap;      // [x][z]
@@ -67,12 +69,12 @@ public class ImageRasterTarget implements RasterTarget {
         this.heightMap = new short[width][height];
         this.typeMap = new BlockType[width][height];
 
-        this.area = Rect2i.createFromMinAndSize(wx, wz, width, height);
+        this.area = new BlockArea(wx, wz).setSize(width, height);
         this.region = new BlockRegion(wx, Short.MIN_VALUE, wz).setSize(width, Short.MAX_VALUE - Short.MIN_VALUE, height);
     }
 
     @Override
-    public Rect2i getAffectedArea() {
+    public BlockAreac getAffectedArea() {
         return area;
     }
 

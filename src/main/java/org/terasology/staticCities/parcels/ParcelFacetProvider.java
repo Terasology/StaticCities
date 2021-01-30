@@ -18,17 +18,18 @@ package org.terasology.staticCities.parcels;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
+import org.joml.Vector2f;
+import org.joml.Vector2ic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
 import org.terasology.entitySystem.Component;
+import org.terasology.joml.geom.Circlef;
+import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Circle;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2f;
 import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
+import org.terasology.staticCities.common.CircleUtility;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.settlements.SettlementFacet;
@@ -36,6 +37,7 @@ import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.terrain.BuildableTerrainFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.ConfigurableFacetProvider;
 import org.terasology.world.generation.Facet;
@@ -80,15 +82,15 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         BlockedAreaFacet blockedAreaFacet = region.getRegionFacet(BlockedAreaFacet.class);
 
         BlockAreac worldRect = blockedAreaFacet.getWorldArea();
-        Rect2i targetRect = Rect2i.createFromMinAndMax(worldRect.minX(), worldRect.minY(), worldRect.maxX(), worldRect.maxY());
+        BlockArea targetRect = new BlockArea(worldRect.minX(), worldRect.minY(), worldRect.maxX(), worldRect.maxY());
         try {
             lock.readLock().lock();
             for (Settlement settlement : settlementFacet.getSettlements()) {
                 Site site = settlement.getSite();
-                if (Circle.intersects(site.getPos(), site.getRadius(), targetRect)) {
+                if (CircleUtility.intersect(new Circlef(site.getPos().x(), site.getPos().y(), site.getRadius()), targetRect.getBounds(new Rectanglef()))) {
                     Set<RectStaticParcel> parcels = cache.get(site, () -> generateParcels(settlement, blockedAreaFacet, terrainFacet));
                     for (RectStaticParcel parcel : parcels) {
-                        if (parcel.getShape().overlaps(targetRect)) {
+                        if (parcel.getShape().intersectsBlockArea(targetRect)) {
                             facet.addParcel(site, parcel);
                         }
                     }
@@ -111,15 +113,13 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         result.addAll(generateParcels(settlement, rng, 25, 40, 1, Zone.GOVERNMENTAL, blockedAreaFacet, terrainFacet));
         result.addAll(generateParcels(settlement, rng, 20, 30, 1, Zone.COMMERCIAL, blockedAreaFacet, terrainFacet));
         result.addAll(generateParcels(settlement, rng, config.minSize, config.maxSize, config.maxLots,
-                Zone.RESIDENTIAL, blockedAreaFacet, terrainFacet));
+            Zone.RESIDENTIAL, blockedAreaFacet, terrainFacet));
         return result;
     }
 
     private Set<RectStaticParcel> generateParcels(Settlement settlement, Random rng, float minSize, float maxSize, int count, Zone zoneType,
                                                   BlockedAreaFacet blockedAreaFacet, BuildableTerrainFacet terrainFacet) {
-
-        BaseVector2i center = settlement.getSite().getPos();
-
+        Vector2ic center = settlement.getSite().getPos();
         Set<RectStaticParcel> lots = new LinkedHashSet<>();  // the order is important for deterministic generation
         float maxLotRad = maxSize * (float) Math.sqrt(2) * 0.5f;
         float minRad = 5 + maxSize * 0.5f;
@@ -136,8 +136,8 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
                 float desSizeX = rng.nextFloat(minSize, maxSize);
                 float desSizeZ = rng.nextFloat(minSize, maxSize);
 
-                float x = center.getX() + rad * (float) Math.cos(ang);
-                float z = center.getY() + rad * (float) Math.sin(ang);
+                float x = center.x() + rad * (float) Math.cos(ang);
+                float z = center.y() + rad * (float) Math.sin(ang);
 
                 Vector2f pos = new Vector2f(x, z);
                 Vector2f maxSpace = getMaxSpace(pos, lots);
@@ -152,7 +152,8 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
 
                 int minX = TeraMath.floorToInt(pos.x() - sizeX * 0.5f);
                 int minY = TeraMath.floorToInt(pos.y() - sizeZ * 0.5f);
-                Rect2i shape = Rect2i.createFromMinAndSize(minX, minY, sizeX, sizeZ);
+                BlockArea shape = new BlockArea(minX, minY).setSize(sizeX, sizeZ);
+//                Rect2i.createFromMinAndSize(minX, minY, sizeX, sizeZ);
 
                 if (terrainFacet.isBuildable(shape) && !blockedAreaFacet.isBlocked(shape)) {
                     Orientation orientation = Orientation.NORTH.getRotated(90 * rng.nextInt(4));
@@ -181,11 +182,11 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         //                         <------------->
 
         for (RectStaticParcel lot : lots) {
-            Rect2i bounds = lot.getShape();
+            BlockAreac bounds = lot.getShape();
             float centerX = (bounds.maxX() + bounds.minX()) / 2f;
             float centerY = (bounds.maxY() + bounds.minY()) / 2f;
-            float dx = Math.abs(pos.x() - centerX) - bounds.width() * 0.5f;
-            float dz = Math.abs(pos.y() - centerY) - bounds.height() * 0.5f;
+            float dx = Math.abs(pos.x() - centerX) - bounds.getSizeX() * 0.5f;
+            float dz = Math.abs(pos.y() - centerY) - bounds.getSizeY() * 0.5f;
 
             // the point is inside -> abort
             if (dx <= 0 && dz <= 0) {

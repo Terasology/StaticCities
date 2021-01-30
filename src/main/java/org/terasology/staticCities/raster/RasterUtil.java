@@ -16,44 +16,20 @@
 
 package org.terasology.staticCities.raster;
 
+import org.joml.Vector2f;
+import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2f;
+import org.terasology.staticCities.common.Line2f;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
+
+import java.util.Optional;
 
 /**
  * Converts model elements into blocks
  */
 public abstract class RasterUtil {
 
-//    /**
-//     * @param shape the shape to fill
-//     * @param hmBottom the bottom height map (inclusive)
-//     * @param hmTop top height map (exclusive)
-//     * @param type the block type
-//     */
-//    public static void fillShape(Shape shape, HeightMap hmBottom, HeightMap hmTop, BlockTypes type) {
-//
-//        if (!getAffectedArea().overlaps(shape.getBounds()) {
-//            return;
-//        }
-//
-//        Rect2i rc = getIntersectionArea(shape.getBounds());
-//
-//        for (int z = rc.minY(); z <= rc.maxY(); z++) {
-//            for (int x = rc.minX(); x <= rc.maxX(); x++) {
-//
-//                if (shape.contains(x, z)) {
-//                    int y1 = hmBottom.generate(x, z);
-//                    int y2 = hmTop.generate(x, z);
-//
-//                    for (int y = y1; y < y2; y++) {
-//                        setBlock(x, y, z, type);
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     /**
      * if (x2 < x1) nothing will be drawn.
@@ -63,7 +39,7 @@ public abstract class RasterUtil {
      * @param z the z coord
      */
     public static void drawLineX(Pen pen, int x1, int x2, int z) {
-        Rect2i rc = pen.getTargetArea();
+        BlockAreac rc = pen.getTargetArea();
 
         if (z >= rc.minY() && z <= rc.maxY()) {
             int minX = Math.max(x1, rc.minX());
@@ -82,7 +58,7 @@ public abstract class RasterUtil {
      * @param x the x coord
      */
     public static void drawLineZ(Pen pen, int x, int z1, int z2) {
-        Rect2i rc = pen.getTargetArea();
+        BlockAreac rc = pen.getTargetArea();
 
         if (x >= rc.minX() && x <= rc.maxX()) {
             int minZ = Math.max(z1, rc.minY());
@@ -97,15 +73,14 @@ public abstract class RasterUtil {
      * @param rect the area to fill
      * @param pen the pen to use for the rasterization of the rectangle
      */
-    public static void fillRect(Pen pen, Rect2i rect) {
-        Rect2i rc = pen.getTargetArea().intersect(rect);
-
-        if (rc.isEmpty()) {
+    public static void fillRect(Pen pen, BlockAreac rect) {
+        Optional<BlockArea> rc = pen.getTargetArea().intersect(rect, new BlockArea(BlockArea.INVALID));
+        if (!rc.isPresent()) {
             return;
         }
 
-        for (int z = rc.minY(); z <= rc.maxY(); z++) {
-            for (int x = rc.minX(); x <= rc.maxX(); x++) {
+        for (int z = rc.get().minY(); z <= rc.get().maxY(); z++) {
+            for (int x = rc.get().minX(); x <= rc.get().maxX(); x++) {
                 pen.draw(x, z);
             }
         }
@@ -115,7 +90,7 @@ public abstract class RasterUtil {
      * @param pen the pen to use
      * @param rc the rectangle to draw
      */
-    public static void drawRect(Pen pen, Rect2i rc) {
+    public static void drawRect(Pen pen, BlockAreac rc) {
 
         // walls along x-axis
         drawLineX(pen, rc.minX(), rc.maxX(), rc.minY());
@@ -133,17 +108,17 @@ public abstract class RasterUtil {
      * @param pen the pen to use
      * @param line the line to draw
      */
-    public static void drawLine(Pen pen, LineSegment line) {
+    public static void drawLine(Pen pen, Line2f line) {
 
-        Rect2i outerBox = pen.getTargetArea();
+        BlockAreac outerBox = pen.getTargetArea();
 
         Vector2f p0 = new Vector2f();
         Vector2f p1 = new Vector2f();
-        if (line.getClipped(outerBox, p0, p1)) {
-            int cx1 = TeraMath.floorToInt(p0.getX());
-            int cy1 = TeraMath.floorToInt(p0.getY());
-            int cx2 = TeraMath.floorToInt(p1.getX());
-            int cy2 = TeraMath.floorToInt(p1.getY());
+        if (line.getClipped(outerBox.getBounds(new Rectanglef()), p0, p1)) {
+            int cx1 = TeraMath.floorToInt(p0.x());
+            int cy1 = TeraMath.floorToInt(p0.y());
+            int cx2 = TeraMath.floorToInt(p1.x());
+            int cy2 = TeraMath.floorToInt(p1.y());
             drawClippedLine(pen, cx1, cy1, cx2, cy2);
         }
     }

@@ -19,6 +19,7 @@ package org.terasology.staticCities.model.roof;
 import com.google.common.base.Preconditions;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 
 import static org.terasology.commonworld.Orientation.EAST;
 import static org.terasology.commonworld.Orientation.NORTH;
@@ -41,7 +42,7 @@ public class SaddleRoof extends RectangularRoof {
      * @param pitch the roof pitch
      * @param orientation the orientation (only NORTH, WEST, SOUTH, EAST are allowed)
      */
-    public SaddleRoof(Rect2i baseRect, Rect2i withEaves, int baseHeight, Orientation orientation, double pitch) {
+    public SaddleRoof(BlockAreac baseRect, BlockAreac withEaves, int baseHeight, Orientation orientation, double pitch) {
         super(baseRect, withEaves, baseHeight);
 
         Preconditions.checkArgument(pitch > 0 && pitch < 10, "pitch must be in [0..10]");

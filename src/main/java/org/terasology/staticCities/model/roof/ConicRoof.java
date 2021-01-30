@@ -16,30 +16,29 @@
 
 package org.terasology.staticCities.model.roof;
 
+import org.joml.Vector2ic;
+import org.terasology.cities.bldg.shape.CircularBase;
+import org.terasology.joml.geom.Circlef;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.Circle;
 
 /**
  * A conic (circular base area) roof
  */
-public class ConicRoof extends AbstractRoof {
+public class ConicRoof extends AbstractRoof implements CircularBase {
 
     private int pitch;
-
+    private Circlef shape;
     /**
      * @param center
      * @param radius
      * @param baseHeight
      * @param pitch
      */
-    public ConicRoof(BaseVector2i center, int radius, int baseHeight, int pitch) {
-        super(new Circle(center.getX(), center.getY(), radius), baseHeight);
+    public ConicRoof(Vector2ic center, int radius, int baseHeight, int pitch) {
+        super(baseHeight);
         this.pitch = pitch;
-    }
-
-    @Override
-    public Circle getArea() {
-        return (Circle) super.getArea();
+        this.shape = new Circlef(center.x(), center.y(), radius);
     }
 
     /**
@@ -49,4 +48,8 @@ public class ConicRoof extends AbstractRoof {
         return pitch;
     }
 
+    @Override
+    public Circlef getShape() {
+        return shape;
+    }
 }

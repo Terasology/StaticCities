@@ -24,7 +24,6 @@ import org.joml.Vector3i;
 import org.terasology.entitySystem.entity.EntityRef;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.spawner.AbstractSpawner;
-import org.terasology.math.JomlUtil;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
 import org.terasology.world.block.BlockRegion;
@@ -53,9 +52,9 @@ public class CitySpawner extends AbstractSpawner {
         Vector2i searchPos;
         if (!settlementFacet.getSettlements().isEmpty()) {
             Site closest = Collections.min(settlementFacet.getSettlements(),
-                    Comparator.comparingInt(a -> a.getPos().distanceSquared(JomlUtil.from(pos2d))));
+                    Comparator.comparingInt(a -> (int) a.getPos().distanceSquared(pos2d)));
 
-            searchPos = new Vector2i(JomlUtil.from(closest.getPos()));
+            searchPos = new Vector2i(closest.getPos());
         } else {
             searchPos = pos2d;
         }

@@ -17,8 +17,8 @@
 package org.terasology.staticCities.bldg;
 
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.model.roof.Roof;
+import org.terasology.world.block.BlockAreac;
 
 /**
  *
@@ -27,7 +27,7 @@ public class StaircaseBuildingPart extends RectBuildingPart {
 
     private Orientation orientation;
 
-    public StaircaseBuildingPart(Rect2i layout, Orientation o, Roof roof, int baseHeight, int wallHeight) {
+    public StaircaseBuildingPart(BlockAreac layout, Orientation o, Roof roof, int baseHeight, int wallHeight) {
         super(layout, roof, baseHeight, wallHeight);
         this.orientation = o;
     }

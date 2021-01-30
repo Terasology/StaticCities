@@ -17,11 +17,10 @@
 package org.terasology.staticCities.roof;
 
 import com.google.common.math.DoubleMath;
+import org.joml.Vector2ic;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.model.roof.PentRoof;
@@ -29,6 +28,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockAreac;
 
 import java.math.RoundingMode;
 
@@ -46,9 +46,9 @@ public class PentRoofRasterizer extends RoofRasterizer<PentRoof> {
 
     @Override
     public void raster(RasterTarget target, PentRoof roof, HeightMap hm) {
-        Rect2i area = roof.getArea();
+        BlockAreac area = roof.getShape();
 
-        if (!area.overlaps(target.getAffectedArea())) {
+        if (!area.intersectsBlockArea(target.getAffectedArea())) {
             return;
         }
 
@@ -59,18 +59,18 @@ public class PentRoofRasterizer extends RoofRasterizer<PentRoof> {
                 int rx = x - area.minX();
                 int rz = z - area.minY();
 
-                BaseVector2i dir = roof.getOrientation().getDir();
+                Vector2ic dir = roof.getOrientation().direction();
 
-                if (dir.getX() < 0) {
-                    rx -= area.width() - 1;  // maxX
+                if (dir.x() < 0) {
+                    rx -= area.getSizeX() - 1;  // maxX
                 }
 
-                if (dir.getY() < 0) {
-                    rz -= area.height() - 1; // maxY
+                if (dir.y() < 0) {
+                    rz -= area.getSizeY() - 1; // maxY
                 }
 
-                int hx = rx * dir.getX();
-                int hz = rz * dir.getY();
+                int hx = rx * dir.x();
+                int hz = rz * dir.y();
 
                 int h = DoubleMath.roundToInt(Math.max(hx, hz) * roof.getPitch(), RoundingMode.HALF_UP);
 
@@ -83,7 +83,7 @@ public class PentRoofRasterizer extends RoofRasterizer<PentRoof> {
         Pen pen = Pens.fill(target, hmBottom, hmTop, DefaultBlockType.ROOF_HIP);
         RasterUtil.fillRect(pen, area);
 
-        final Rect2i wallRect = roof.getBaseArea();
+        final BlockAreac wallRect = roof.getBaseArea();
 
         HeightMap hmGableBottom = new HeightMap() {
 

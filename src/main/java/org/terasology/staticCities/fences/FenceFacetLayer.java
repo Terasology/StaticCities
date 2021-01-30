@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.fences;
 
-import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
@@ -45,12 +45,12 @@ public class FenceFacetLayer extends AbstractFacetLayer {
         Graphics2D g = img.createGraphics();
         g.translate(-facet.getWorldArea().minX(),  -facet.getWorldArea().minY());
         for (SimpleFence fence : facet.getFences()) {
-            Rect2i areaRc = fence.getRect();
+            BlockAreac areaRc = fence.getRect();
 
             g.setColor(FENCE_COLOR);
-            g.drawRect(areaRc.minX(), areaRc.minY(), areaRc.width() - 1, areaRc.height() - 1);
+            g.drawRect(areaRc.minX(), areaRc.minY(), areaRc.getSizeX() - 1, areaRc.getSizeY() - 1);
             g.setColor(GATE_COLOR);
-            g.drawRect(fence.getGate().getX(), fence.getGate().getY(), 0, 0);
+            g.drawRect(fence.getGate().x(), fence.getGate().y(), 0, 0);
         }
         g.dispose();
     }

@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.model.roof;
 
-import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A dome roof
@@ -31,9 +31,8 @@ public class DomeRoof extends RectangularRoof {
      * @param baseHeight the base height of the roof
      * @param maxHeight the maximum height of the roof
      */
-    public DomeRoof(Rect2i baseRect, Rect2i withEaves, int baseHeight, int maxHeight) {
+    public DomeRoof(BlockAreac baseRect, BlockAreac withEaves, int baseHeight, int maxHeight) {
         super(baseRect, withEaves, baseHeight);
-
         this.height = maxHeight;
     }
 

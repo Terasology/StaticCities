@@ -16,7 +16,8 @@
 
 package org.terasology.staticCities.sites;
 
-import org.terasology.math.geom.ImmutableVector2i;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 
 import java.util.Objects;
 
@@ -25,7 +26,7 @@ import java.util.Objects;
   */
 public class Site {
 
-    private final ImmutableVector2i coords;
+    private final Vector2i coords = new Vector2i();
     private float radius;
 
     /**
@@ -35,13 +36,13 @@ public class Site {
      */
     public Site(int bx, int bz, float radius) {
         this.radius = radius;
-        this.coords = new ImmutableVector2i(bx, bz);
+        this.coords.set(bx, bz);
     }
 
     /**
      * @return the city center in block world coordinates
      */
-    public ImmutableVector2i getPos() {
+    public Vector2ic getPos() {
         return coords;
     }
 

@@ -17,14 +17,13 @@
 package org.terasology.staticCities.generator;
 
 import com.google.common.base.Function;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Sector;
 import org.terasology.commonworld.Sectors;
 import org.terasology.commonworld.symmetry.Symmetry;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.sites.Site;
 
 import java.util.HashSet;
@@ -60,7 +59,7 @@ public class SymmetricSiteFinder implements Function<Sector, Set<Site>> {
         int minDist = 200;
 
         // create deterministic random
-        ImmutableVector2i secPos = sector.getCoords();
+        Vector2ic secPos = sector.getCoords();
 
         Vector2i mirrSecPos = symmetry.getMirrored(secPos);
         Set<Site> result = new HashSet<>();
@@ -69,10 +68,10 @@ public class SymmetricSiteFinder implements Function<Sector, Set<Site>> {
             Set<Site> base = baseFinder.apply(sector);
 
             for (Site site : base) {
-                BaseVector2i pos = site.getPos();
+                Vector2ic pos = site.getPos();
 
                 Vector2i newPos = symmetry.getMirrored(pos);
-                Site mirrorSite = new Site(newPos.getX(), newPos.getY(), site.getRadius());
+                Site mirrorSite = new Site(newPos.x(), newPos.y(), site.getRadius());
 
                 if (distanceToOthersOk(site, result, minDist) && distanceToOthersOk(mirrorSite, result, minDist)) {
 
@@ -96,7 +95,7 @@ public class SymmetricSiteFinder implements Function<Sector, Set<Site>> {
             Set<Site> base = baseFinder.apply(sector);
 
             for (Site site : base) {
-                BaseVector2i pos = site.getPos();
+                Vector2ic pos = site.getPos();
                 Vector2i newPos = symmetry.getMirrored(pos);
 
                 // check if distance to its own mirror site is ok
@@ -112,9 +111,9 @@ public class SymmetricSiteFinder implements Function<Sector, Set<Site>> {
             Set<Site> base = baseFinder.apply(mirrorSector);
 
             for (Site site : base) {
-                BaseVector2i pos = site.getPos();
+                Vector2ic pos = site.getPos();
                 Vector2i newPos = symmetry.getMirrored(pos);
-                Site mirrorSite = new Site(newPos.getX(), newPos.getY(), site.getRadius());
+                Site mirrorSite = new Site(newPos.x(), newPos.y(), site.getRadius());
 
                 // check if distance to its own mirror site is ok
                 double distSq = pos.distanceSquared(newPos);
@@ -130,7 +129,7 @@ public class SymmetricSiteFinder implements Function<Sector, Set<Site>> {
 
     private boolean distanceToOthersOk(Site city, Set<Site> others, double minDist) {
 
-        BaseVector2i pos = city.getPos();
+        Vector2ic pos = city.getPos();
 
         for (Site other : others) {
             double distSq = pos.distanceSquared(other.getPos());

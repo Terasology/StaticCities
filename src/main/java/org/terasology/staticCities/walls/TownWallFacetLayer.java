@@ -16,6 +16,7 @@
 
 package org.terasology.staticCities.walls;
 
+import org.joml.Vector2ic;
 import org.terasology.math.geom.BaseVector2i;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
@@ -56,12 +57,12 @@ public class TownWallFacetLayer extends AbstractFacetLayer {
     private void render(Graphics2D g, TownWall tw) {
 
         for (WallSegment ws : tw.getWalls()) {
-            BaseVector2i start = ws.getStart();
-            BaseVector2i end = ws.getEnd();
+            Vector2ic start = ws.getStart();
+            Vector2ic end = ws.getEnd();
 
             g.setColor(WALL_COLOR);
             g.setStroke(new BasicStroke(ws.getWallThickness(), BasicStroke.CAP_ROUND, BasicStroke.CAP_BUTT));
-            g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
+            g.drawLine(start.x(), start.y(), end.x(), end.y());
 
             if (ws.isGate()) {
                 g.setColor(GATE_FILL_COLOR);
@@ -69,7 +70,7 @@ public class TownWallFacetLayer extends AbstractFacetLayer {
                 g.setColor(WALL_FILL_COLOR);
             }
             g.setStroke(new BasicStroke(ws.getWallThickness() - 2, BasicStroke.CAP_ROUND, BasicStroke.CAP_BUTT));
-            g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
+            g.drawLine(start.x(), start.y(), end.x(), end.y());
         }
     }
 }

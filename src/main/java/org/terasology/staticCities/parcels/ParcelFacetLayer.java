@@ -17,6 +17,7 @@
 package org.terasology.staticCities.parcels;
 
 import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
@@ -53,8 +54,8 @@ public class ParcelFacetLayer extends AbstractFacetLayer {
 
         for (StaticParcel staticParcel : facet.getParcels()) {
             g.setColor(fillColor);
-            Rect2i shape = staticParcel.getShape();
-            Rectangle rc = new Rectangle(shape.minX(), shape.minY(), shape.width() - 1, shape.height() - 1);
+            BlockAreac shape = staticParcel.getShape();
+            Rectangle rc = new Rectangle(shape.minX(), shape.minY(), shape.getSizeX() - 1, shape.getSizeY() - 1);
             g.fill(rc);
             g.setColor(frameColor);
             g.draw(rc);

@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.deco;
 
+import org.joml.Vector3ic;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.Side;
-import org.terasology.math.geom.BaseVector3i;
 import org.terasology.staticCities.DefaultBlockType;
 
 import java.util.Collections;
@@ -33,7 +33,7 @@ public class Ladder extends ColumnDecoration {
      * @param o the orientation of the ladder (must be cardinal)
      * @param height the height of the ladder
      */
-    public Ladder(BaseVector3i basePos, Orientation o, int height) {
+    public Ladder(Vector3ic basePos, Orientation o, int height) {
         super(Collections.nCopies(height, DefaultBlockType.LADDER),
               Collections.nCopies(height, getSide(o)),
               basePos);

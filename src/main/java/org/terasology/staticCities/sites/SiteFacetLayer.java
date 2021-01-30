@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.sites;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
 import org.terasology.world.viewer.layers.ZOrder;
@@ -53,12 +53,12 @@ public class SiteFacetLayer extends AbstractFacetLayer {
         g.translate(-dx, -dy);
 
         for (Site settlement : settlementFacet.getSettlements()) {
-            BaseVector2i center = settlement.getPos();
+            Vector2ic center = settlement.getPos();
             int radius = TeraMath.floorToInt(settlement.getRadius());
             g.setColor(fillColor);
-            g.fillOval(center.getX() - radius, center.getY() - radius, radius * 2, radius * 2);
+            g.fillOval(center.x() - radius, center.y() - radius, radius * 2, radius * 2);
             g.setColor(frameColor);
-            g.drawOval(center.getX() - radius, center.getY() - radius, radius * 2, radius * 2);
+            g.drawOval(center.x() - radius, center.y() - radius, radius * 2, radius * 2);
         }
 
         g.dispose();

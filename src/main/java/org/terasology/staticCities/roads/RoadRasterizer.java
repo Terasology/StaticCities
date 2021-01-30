@@ -15,16 +15,16 @@
  */
 package org.terasology.staticCities.roads;
 
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.terasology.commonworld.geom.BoundingBox;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
 import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
@@ -57,7 +57,7 @@ public class RoadRasterizer implements WorldRasterizer {
         InfiniteSurfaceHeightFacet heightFacet = chunkRegion.getFacet(InfiniteSurfaceHeightFacet.class);
 
         BlockRegion reg = chunkRegion.getRegion();
-        Rect2i rc = Rect2i.createFromMinAndMax(reg.minX(), reg.minZ(), reg.maxX(), reg.maxZ());
+        BlockArea rc = new BlockArea(reg.minX(), reg.minZ(), reg.maxX(), reg.maxZ());
 
         // first compute the collection of road segments that could be relevant
         // TODO: use Line/Rectangle for each segment instead (include road width!)
@@ -65,13 +65,13 @@ public class RoadRasterizer implements WorldRasterizer {
         for (Road road : roadFacet.getRoads()) {
             // TODO: check y component as well
             BoundingBox bbox = new BoundingBox();
-            for (BaseVector2i pt : road.getPoints()) {
+            for (Vector2ic pt : road.getPoints()) {
                 bbox.add(pt);
             }
             float intRad = TeraMath.ceilToInt(road.getWidth() * 0.5f);
-            Rect2i roadBox = bbox.toRect2i().expand(new Vector2i(intRad, intRad));
+            BlockArea roadBox = bbox.toRect2i().expand((int) intRad, (int) intRad, new BlockArea(BlockArea.INVALID));
 
-            if (roadBox.overlaps(rc)) {
+            if (roadBox.intersectsBlockArea(rc)) {
                 for (RoadSegment seg : road.getSegments()) {
                     segs.add(seg);
                 }
@@ -84,8 +84,8 @@ public class RoadRasterizer implements WorldRasterizer {
             int heightA = TeraMath.floorToInt(heightFacet.getWorld(s.getStart()));
             int heightB = TeraMath.floorToInt(heightFacet.getWorld(s.getEnd()));
             return new Ramp(
-                    s.getStart().getX(), heightA, s.getStart().getY(),
-                    s.getEnd().getX(), heightB, s.getEnd().getY());
+                    s.getStart().x(), heightA, s.getStart().y(),
+                    s.getEnd().x(), heightB, s.getEnd().y());
         };
 
         Vector2i pos = new Vector2i();
@@ -95,8 +95,8 @@ public class RoadRasterizer implements WorldRasterizer {
                 pos.set(x, z);
 
                 for (RoadSegment seg : segs) {
-                    BaseVector2i pointA = seg.getStart();
-                    BaseVector2i pointB = seg.getEnd();
+                    Vector2ic pointA = seg.getStart();
+                    Vector2ic pointB = seg.getEnd();
                     float rad = seg.getWidth() * 0.5f;
                     int y = Integer.MIN_VALUE;
 
@@ -107,8 +107,8 @@ public class RoadRasterizer implements WorldRasterizer {
                         y = TeraMath.floorToInt(heightFacet.getWorld(pointA));
                     } else if (pointB.distanceSquared(pos) < rad * rad) {
                         y = TeraMath.floorToInt(heightFacet.getWorld(pointB));
-                    } else if (LineSegment.distanceToPoint(pointA.getX(), pointA.getY(),
-                            pointB.getX(), pointB.getY(), x, z) < rad) {
+                    } else if (LineSegment.distanceToPoint(pointA.x(), pointA.y(),
+                            pointB.x(), pointB.y(), x, z) < rad) {
 
                         Ramp ramp = ramps.computeIfAbsent(seg, createRamp);
                         y = TeraMath.floorToInt(ramp.getClampedY(x, z));

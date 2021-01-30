@@ -20,6 +20,8 @@ import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A rectangular window in a wall
@@ -27,7 +29,7 @@ import org.terasology.staticCities.DefaultBlockType;
 public class RectWindow implements Window {
 
     private final Orientation orientation;
-    private Rect2i area;
+    private BlockArea area;
     private int baseHeight;
     private int topHeight;
     private BlockType blockType;
@@ -38,7 +40,7 @@ public class RectWindow implements Window {
      * @param baseHeight the height at the bottom
      * @param topHeight the height at the bottom
      */
-    public RectWindow(Orientation orientation, Rect2i area, int baseHeight, int topHeight) {
+    public RectWindow(Orientation orientation, BlockAreac area, int baseHeight, int topHeight) {
         this(orientation, area, baseHeight, topHeight, DefaultBlockType.AIR);
     }
 
@@ -49,9 +51,9 @@ public class RectWindow implements Window {
      * @param topHeight the height at the bottom
      * @param blockType the type of the window
      */
-    public RectWindow(Orientation orientation, Rect2i area, int baseHeight, int topHeight, BlockType blockType) {
+    public RectWindow(Orientation orientation, BlockAreac area, int baseHeight, int topHeight, BlockType blockType) {
         this.orientation = orientation;
-        this.area = area;
+        this.area = new BlockArea(area);
         this.baseHeight = baseHeight;
         this.topHeight = topHeight;
         this.blockType = blockType;
@@ -67,7 +69,7 @@ public class RectWindow implements Window {
     /**
      * @return the window area
      */
-    public Rect2i getArea() {
+    public BlockAreac getArea() {
         return this.area;
     }
 

@@ -17,7 +17,7 @@
 package org.terasology.staticCities.parcels;
 
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A rectangular {@link StaticParcel}
@@ -29,12 +29,12 @@ public class RectStaticParcel extends StaticParcel {
      * @param zone the zone type
      * @param orientation the orientation of the parcel (e.g. towards the closest street)
      */
-    public RectStaticParcel(Rect2i shape, Zone zone, Orientation orientation) {
+    public RectStaticParcel(BlockAreac shape, Zone zone, Orientation orientation) {
         super(shape, zone, orientation);
     }
 
     @Override
-    public Rect2i getShape() {
+    public BlockAreac getShape() {
         return super.getShape();
     }
 }

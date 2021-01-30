@@ -26,6 +26,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockAreac;
 
 import static org.terasology.commonworld.Orientation.EAST;
 import static org.terasology.commonworld.Orientation.WEST;
@@ -44,9 +45,9 @@ public class SaddleRoofRasterizer extends RoofRasterizer<SaddleRoof> {
 
     @Override
     public void raster(RasterTarget target, SaddleRoof roof, HeightMap hm) {
-        Rect2i area = roof.getArea();
+        BlockAreac area = roof.getShape();
 
-        if (!area.overlaps(target.getAffectedArea())) {
+        if (!area.intersectsBlockArea(target.getAffectedArea())) {
             return;
         }
 
@@ -62,8 +63,8 @@ public class SaddleRoofRasterizer extends RoofRasterizer<SaddleRoof> {
                 int y = roof.getBaseHeight();
 
                 // distance to border of the roof
-                int borderDistX = Math.min(rx, area.width() - 1 - rx);
-                int borderDistZ = Math.min(rz, area.height() - 1 - rz);
+                int borderDistX = Math.min(rx, area.getSizeX() - 1 - rx);
+                int borderDistZ = Math.min(rz, area.getSizeY() - 1 - rz);
 
                 if (alongX) {
                     y += borderDistZ / roof.getPitch();
@@ -79,7 +80,7 @@ public class SaddleRoofRasterizer extends RoofRasterizer<SaddleRoof> {
         Pen pen = Pens.fill(target, hmBottom, hmTop, DefaultBlockType.ROOF_SADDLE);
         RasterUtil.fillRect(pen, area);
 
-        Rect2i wallRect = roof.getBaseArea();
+        BlockAreac wallRect = roof.getBaseArea();
 
         HeightMap hmGableBottom = new HeightMap() {
 

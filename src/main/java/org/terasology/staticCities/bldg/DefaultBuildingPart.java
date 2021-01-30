@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.terasology.math.geom.Shape;
 import org.terasology.staticCities.model.roof.Roof;
 
 /**
@@ -25,13 +24,13 @@ import org.terasology.staticCities.model.roof.Roof;
 public class DefaultBuildingPart extends AbstractBuildingPart {
 
     /**
-     * @param layout the building layout
      * @param roof the roof definition
      * @param baseHeight the height of the floor level
      * @param wallHeight the building height above the floor level
      */
-    public DefaultBuildingPart(Shape layout, Roof roof, int baseHeight, int wallHeight) {
-        super(layout, roof, baseHeight, wallHeight);
+    public DefaultBuildingPart( Roof roof, int baseHeight, int wallHeight) {
+        super(roof, baseHeight, wallHeight);
     }
+
 }
 

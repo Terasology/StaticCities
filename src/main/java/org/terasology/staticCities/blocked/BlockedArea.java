@@ -16,8 +16,9 @@
 
 package org.terasology.staticCities.blocked;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
+import org.joml.Vector2ic;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.color.ColorModels;
 
 import java.awt.BasicStroke;
@@ -28,6 +29,7 @@ import java.awt.image.DataBufferInt;
 import java.awt.image.DirectColorModel;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
+import java.util.Optional;
 
 /**
  * An image-based registry for blocked areas.
@@ -37,16 +39,17 @@ public class BlockedArea {
     private static final Color MARKER = Color.MAGENTA;
 
     private final BufferedImage image;
-    private final Rect2i worldRect;
+    private final BlockArea worldRect = new BlockArea(BlockArea.INVALID);
     private final DataBufferInt imageBuffer;
     private final int stride; // the image scanline stride
 
-    public BlockedArea(Rect2i targetRegion) {
+    public BlockedArea(BlockAreac targetRegion) {
 
-        worldRect = Rect2i.createFromMinAndMax(targetRegion.min(), targetRegion.max());
+        worldRect.set(targetRegion);
+//        = Rect2i.createFromMinAndMax(targetRegion.min(), targetRegion.max());
 
-        int height = targetRegion.width();
-        int width = targetRegion.height();
+        int height = targetRegion.getSizeX();
+        int width = targetRegion.getSizeY();
 
         DirectColorModel colorModel = ColorModels.ARGB; // TODO: could be RGB
         int[] masks = colorModel.getMasks();
@@ -56,53 +59,53 @@ public class BlockedArea {
         image = new BufferedImage(colorModel, raster, false, null);
     }
 
-    public Rect2i getWorldRegion() {
+    public BlockAreac getWorldRegion() {
         return worldRect;
     }
 
-    public void addRect(Rect2i area) {
-        if (worldRect.overlaps(area)) {
+    public void addRect(BlockAreac area) {
+        if (worldRect.intersectsBlockArea(area)) {
             Graphics2D g = image.createGraphics();
             g.translate(-worldRect.minX(), -worldRect.minY());
             g.setColor(MARKER);
-            g.fillRect(area.minX(), area.minY(), area.width(), area.height());
+            g.fillRect(area.minX(), area.minY(), area.getSizeX(), area.getSizeY());
             g.dispose();
         }
     }
 
-    public void addLine(BaseVector2i start, BaseVector2i end, float width) {
+    public void addLine(Vector2ic start, Vector2ic end, float width) {
         // TODO: check for intersection (with border offset=width) first
         Graphics2D g = image.createGraphics();
         g.setColor(MARKER);
         g.setStroke(new BasicStroke(width, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND));
         g.translate(-worldRect.minX(), -worldRect.minY());
-        g.drawLine(start.getX(), start.getY(), end.getX(), end.getY());
+        g.drawLine(start.x(), start.y(), end.x(), end.y());
         g.dispose();
     }
 
     public boolean isBlocked(int worldX, int worldY) {
         int imgX = worldX - worldRect.minX();
         int imgY = worldY - worldRect.minY();
-        if (imgX < 0 || imgX >= worldRect.width()) {
+        if (imgX < 0 || imgX >= worldRect.getSizeX()) {
             throw new IllegalArgumentException("worldX " + worldX + " is illegal");
         }
-        if (imgY < 0 || imgY >= worldRect.height()) {
+        if (imgY < 0 || imgY >= worldRect.getSizeY()) {
             throw new IllegalArgumentException("worldY " + worldY + " is illegal");
         }
         return imageBuffer.getElem(imgY * stride + imgX) != 0;
     }
 
-    public boolean isBlocked(Rect2i rect) {
-        Rect2i crop = rect.intersect(worldRect);
-        if (crop.isEmpty()) {
+    public boolean isBlocked(BlockAreac rect) {
+        Optional<BlockArea> crop = rect.intersect(worldRect, new BlockArea(BlockArea.INVALID));
+        if (!crop.isPresent()) {
             throw new IllegalArgumentException("Invalid region " + rect);
         }
 
         // TODO: create Rect2i.offset()
-        int minX = crop.minX() - worldRect.minX();
-        int minY = crop.minY() - worldRect.minY();
-        int maxX = crop.maxX() - worldRect.minX();
-        int maxY = crop.maxY() - worldRect.minY();
+        int minX = crop.get().minX() - worldRect.minX();
+        int minY = crop.get().minY() - worldRect.minY();
+        int maxX = crop.get().maxX() - worldRect.minX();
+        int maxY = crop.get().maxY() - worldRect.minY();
 
         for (int y = minY; y <= maxY; y++) {
             for (int x = minX; x <= maxX; x++) {

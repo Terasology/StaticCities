@@ -17,6 +17,7 @@
 package org.terasology.staticCities.deco;
 
 import com.google.common.collect.ImmutableList;
+import org.joml.Vector3ic;
 import org.terasology.math.Side;
 import org.terasology.math.geom.BaseVector3i;
 import org.terasology.staticCities.BlockType;
@@ -31,7 +32,7 @@ public class Pillar extends ColumnDecoration {
      * @param basePos the position of the base block
      * @param height the total height of the pillar
      */
-    public Pillar(BaseVector3i basePos, int height) {
+    public Pillar(Vector3ic basePos, int height) {
         super(
             createList(height),
             Collections.nCopies(height, (Side) null),

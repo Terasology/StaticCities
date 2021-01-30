@@ -23,9 +23,5 @@ import org.terasology.math.geom.Shape;
  */
 public interface Roof {
 
-    /**
-     * @return the roof area
-     */
-    Shape getArea();
 
 }
