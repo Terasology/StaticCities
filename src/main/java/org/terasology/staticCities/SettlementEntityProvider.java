@@ -57,8 +57,7 @@ public class SettlementEntityProvider implements EntityProvider {
                 nameTagComponent.scale = 20;
                 entityStore.addComponent(nameTagComponent);
 
-                Vector3f pos3d = new Vector3f(x, y, z);
-                LocationComponent locationComponent = new LocationComponent(pos3d);
+                LocationComponent locationComponent = new LocationComponent(new org.joml.Vector3f(x, y, z));
                 entityStore.addComponent(locationComponent);
 
                 entityStore.addComponent(new NetworkComponent());

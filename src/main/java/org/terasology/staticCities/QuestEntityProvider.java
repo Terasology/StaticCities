@@ -57,7 +57,7 @@ public class QuestEntityProvider implements EntityProvider {
                 if (region.getRegion().contains(pt.x(), (int) y, pt.y())) {
                     Vector3f position = new Vector3f(pt.x(), y, pt.y());
                     EntityStore builder = new EntityStore(prefab);
-                    builder.addComponent(new LocationComponent(position));
+                    builder.addComponent(new LocationComponent(new org.joml.Vector3f(pt.x(), y, pt.y())));
                     buffer.enqueue(builder);
                 }
             }

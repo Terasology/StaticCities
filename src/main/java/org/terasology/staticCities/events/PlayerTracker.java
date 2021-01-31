@@ -29,6 +29,7 @@ import org.terasology.joml.geom.Circlef;
 import org.terasology.logic.characters.events.OnEnterBlockEvent;
 import org.terasology.logic.console.Console;
 import org.terasology.logic.location.LocationComponent;
+import org.terasology.math.JomlUtil;
 import org.terasology.network.Client;
 import org.terasology.network.NetworkSystem;
 import org.terasology.nui.FontColor;
