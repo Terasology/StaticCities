@@ -25,7 +25,7 @@ import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.staticCities.common.CircleUtility;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.model.roof.ConicRoof;
 import org.terasology.staticCities.raster.CheckedPen;
 import org.terasology.staticCities.raster.Pen;

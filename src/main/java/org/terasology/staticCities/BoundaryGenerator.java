@@ -17,8 +17,8 @@
 package org.terasology.staticCities;
 
 import com.google.common.base.Function;
+import org.joml.Vector2i;
 import org.terasology.commonworld.Sector;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.registry.CoreRegistry;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockManager;

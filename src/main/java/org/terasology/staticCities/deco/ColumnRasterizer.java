@@ -19,7 +19,6 @@ package org.terasology.staticCities.deco;
 import org.joml.Vector3ic;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.Side;
-import org.terasology.math.geom.ImmutableVector3i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.raster.RasterTarget;

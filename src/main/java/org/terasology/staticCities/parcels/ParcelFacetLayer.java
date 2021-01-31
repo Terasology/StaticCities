@@ -16,7 +16,6 @@
 
 package org.terasology.staticCities.parcels;
 
-import org.terasology.math.geom.Rect2i;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;

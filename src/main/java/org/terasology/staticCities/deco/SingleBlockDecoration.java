@@ -19,8 +19,6 @@ package org.terasology.staticCities.deco;
 import org.joml.Vector3i;
 import org.joml.Vector3ic;
 import org.terasology.math.Side;
-import org.terasology.math.geom.BaseVector3i;
-import org.terasology.math.geom.ImmutableVector3i;
 import org.terasology.staticCities.BlockType;
 
 /**

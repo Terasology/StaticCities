@@ -17,12 +17,11 @@
 package org.terasology.staticCities;
 
 import org.joml.Vector2ic;
+import org.joml.Vector3f;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.logic.location.LocationComponent;
 import org.terasology.logic.nameTags.NameTagComponent;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Vector3f;
 import org.terasology.network.NetworkComponent;
 import org.terasology.nui.Color;
 import org.terasology.staticCities.settlements.Settlement;

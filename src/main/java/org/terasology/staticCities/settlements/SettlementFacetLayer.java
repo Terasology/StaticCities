@@ -17,7 +17,6 @@
 package org.terasology.staticCities.settlements;
 
 import org.joml.Vector2ic;
-import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;

@@ -19,8 +19,6 @@ package org.terasology.staticCities.model.roof;
 import org.joml.Vector2ic;
 import org.terasology.cities.bldg.shape.CircularBase;
 import org.terasology.joml.geom.Circlef;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Circle;
 
 /**
  * A conic (circular base area) roof

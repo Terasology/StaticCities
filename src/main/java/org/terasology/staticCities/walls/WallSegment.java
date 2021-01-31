@@ -18,8 +18,6 @@ package org.terasology.staticCities.walls;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
 
 /**
  * A straight wall segment

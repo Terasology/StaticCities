@@ -33,7 +33,7 @@ import org.terasology.staticCities.bldg.RectBuildingPart;
 import org.terasology.staticCities.bldg.SimpleTower;
 import org.terasology.staticCities.bldg.Tower;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
-import org.terasology.staticCities.common.CircleUtility;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.deco.Decoration;
 import org.terasology.staticCities.deco.DecorationFacet;

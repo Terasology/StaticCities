@@ -17,8 +17,6 @@
 package org.terasology.staticCities.blocked;
 
 import org.joml.Vector2ic;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.generation.Border3D;

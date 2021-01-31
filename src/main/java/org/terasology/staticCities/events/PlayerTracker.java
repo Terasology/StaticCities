@@ -34,7 +34,7 @@ import org.terasology.network.NetworkSystem;
 import org.terasology.nui.FontColor;
 import org.terasology.registry.In;
 import org.terasology.staticCities.SettlementComponent;
-import org.terasology.staticCities.common.CircleUtility;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.world.WorldComponent;

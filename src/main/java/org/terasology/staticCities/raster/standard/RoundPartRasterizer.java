@@ -26,7 +26,7 @@ import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.BuildingPartRasterizer;
 import org.terasology.staticCities.bldg.RoundBuildingPart;
-import org.terasology.staticCities.common.CircleUtility;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.raster.BuildingPens;
 import org.terasology.staticCities.raster.CheckedPen;
 import org.terasology.staticCities.raster.Pen;

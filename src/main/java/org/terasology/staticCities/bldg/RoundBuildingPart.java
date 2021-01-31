@@ -18,7 +18,6 @@ package org.terasology.staticCities.bldg;
 
 import org.terasology.cities.bldg.shape.CircularBase;
 import org.terasology.joml.geom.Circlef;
-import org.terasology.math.geom.Circle;
 import org.terasology.staticCities.model.roof.Roof;
 
 /**

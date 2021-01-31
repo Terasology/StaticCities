@@ -29,7 +29,7 @@ import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
 import org.terasology.nui.properties.Range;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
-import org.terasology.staticCities.common.CircleUtility;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.settlements.SettlementFacet;

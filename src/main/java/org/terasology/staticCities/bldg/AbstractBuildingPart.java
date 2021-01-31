@@ -17,7 +17,6 @@
 package org.terasology.staticCities.bldg;
 
 import com.google.common.collect.Sets;
-import org.terasology.math.geom.Shape;
 import org.terasology.staticCities.deco.Decoration;
 import org.terasology.staticCities.door.Door;
 import org.terasology.staticCities.model.roof.Roof;
