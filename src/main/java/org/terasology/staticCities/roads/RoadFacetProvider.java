@@ -103,7 +103,7 @@ public class RoadFacetProvider implements FacetProvider {
         Border3D border = region.getBorderForFacet(BiomeFacet.class);
         RoadFacet roadFacet = new RoadFacet(region.getRegion(), border);
 
-        int thres = siteFacet.getCertainWorldRegion().width() / 2;
+        int thres = siteFacet.getCertainWorldRegion().getSizeX() / 2;
 
         List<Road> candidates = new ArrayList<>();
 
