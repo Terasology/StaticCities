@@ -46,7 +46,6 @@ public class BlockedArea {
     public BlockedArea(BlockAreac targetRegion) {
 
         worldRect.set(targetRegion);
-//        = Rect2i.createFromMinAndMax(targetRegion.min(), targetRegion.max());
 
         int height = targetRegion.getSizeX();
         int width = targetRegion.getSizeY();

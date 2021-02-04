@@ -43,7 +43,7 @@ public class RoadSegment {
 
 
     /**
-     * @return the start point
+     * @return the end point
      */
     public Vector2ic getEnd() {
         return end;

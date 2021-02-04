@@ -184,7 +184,6 @@ public class RoadFacetProvider implements FacetProvider {
         segPoints.add(new Vector2i(posA));
         for (int i = 1; i < segCount; i++) {
             Vector2i pos = new Vector2i(new Vector2f(posA).lerp(new Vector2f(posB),  (float) i / segCount), RoundingMode.HALF_UP);
-//            Vector2i pos = BaseVector2i.lerp(posA, posB, (float) i / segCount, RoundingMode.HALF_UP);
 
             // first and last point receive only half the noise distortion to smoothen the end points
             float applyFactor = (i == 1 || i == segCount - 1) ? 0.5f : 1f;
