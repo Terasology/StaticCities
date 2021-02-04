@@ -30,10 +30,6 @@ import java.util.Set;
  */
 public interface BuildingPart {
 
-    /**
-     * @return the building layout
-     */
-    Shape getShape();
 
     Roof getRoof();
 

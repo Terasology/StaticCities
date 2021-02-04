@@ -16,24 +16,28 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.terasology.math.geom.Rect2i;
+import org.terasology.cities.bldg.shape.RectangularBase;
 import org.terasology.staticCities.model.roof.Roof;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 /**
  *
  */
-public class HollowBuildingPart extends AbstractBuildingPart {
+public class HollowBuildingPart extends AbstractBuildingPart implements RectangularBase {
 
     private int arcRadius;
+    private BlockArea layout = new BlockArea(BlockArea.INVALID);
 
-    public HollowBuildingPart(Rect2i layout, Roof roof, int baseHeight, int wallHeight, int arcRadius) {
-        super(layout, roof, baseHeight, wallHeight);
+    public HollowBuildingPart(BlockAreac layout, Roof roof, int baseHeight, int wallHeight, int arcRadius) {
+        super(roof, baseHeight, wallHeight);
+        this.layout.set(layout);
         this.arcRadius = arcRadius;
     }
 
     @Override
-    public Rect2i getShape() {
-        return (Rect2i) super.getShape();
+    public BlockAreac getShape() {
+        return layout;
     }
 
     public int getArcRadius() {

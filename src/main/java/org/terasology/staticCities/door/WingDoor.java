@@ -18,6 +18,8 @@ package org.terasology.staticCities.door;
 
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A simple, rectangular door with fixed height and orientation
@@ -27,7 +29,7 @@ public class WingDoor implements Door {
     private final Orientation orientation;
     private final int baseHeight;
     private final int topHeight;
-    private final Rect2i area;
+    private final BlockArea area = new BlockArea(BlockArea.INVALID);
 
     /**
      * @param orientation the orientation
@@ -35,9 +37,9 @@ public class WingDoor implements Door {
      * @param baseHeight the height at the bottom
      * @param topHeight the height at the top
      */
-    public WingDoor(Orientation orientation, Rect2i area, int baseHeight, int topHeight) {
+    public WingDoor(Orientation orientation, BlockAreac area, int baseHeight, int topHeight) {
         this.orientation = orientation;
-        this.area = area;
+        this.area.set(area);
         this.baseHeight = baseHeight;
         this.topHeight = topHeight;
     }
@@ -52,7 +54,7 @@ public class WingDoor implements Door {
     /**
      * @return the door area
      */
-    public Rect2i getArea() {
+    public BlockAreac getArea() {
         return this.area;
     }
 

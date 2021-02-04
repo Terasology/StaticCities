@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.roads;
 
-import org.terasology.math.geom.BaseVector2i;
+import org.joml.Vector2ic;
 import org.terasology.world.generation.Region;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
 import org.terasology.world.viewer.layers.Renders;
@@ -54,12 +54,12 @@ public class RoadFacetLayer extends AbstractFacetLayer {
 
 
         for (Road road : roadFacet.getRoads()) {
-            BaseVector2i p0 = road.getEnd0();
+            Vector2ic p0 = road.getEnd0();
             Path2D path = new Path2D.Float();
-            path.moveTo(p0.getX(), p0.getY());
+            path.moveTo(p0.x(), p0.y());
             for (int i = 1; i < road.getPoints().size(); i++) {
-                BaseVector2i p1 = road.getPoints().get(i);
-                path.lineTo(p1.getX(), p1.getY());
+                Vector2ic p1 = road.getPoints().get(i);
+                path.lineTo(p1.x(), p1.y());
             }
 
             float width = road.getWidth();
@@ -73,8 +73,8 @@ public class RoadFacetLayer extends AbstractFacetLayer {
             g.setColor(dotColor);
             g.setStroke(dots);
             for (int i = 0; i < road.getPoints().size(); i++) {
-                BaseVector2i p1 = road.getPoints().get(i);
-                g.drawLine(p1.getX(), p1.getY(), p1.getX(), p1.getY());
+                Vector2ic p1 = road.getPoints().get(i);
+                g.drawLine(p1.x(), p1.y(), p1.x(), p1.y());
             }
         }
 

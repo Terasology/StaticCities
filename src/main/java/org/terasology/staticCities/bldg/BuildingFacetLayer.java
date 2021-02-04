@@ -17,10 +17,12 @@
 package org.terasology.staticCities.bldg;
 
 import com.google.common.collect.ImmutableMap;
+import org.terasology.cities.bldg.shape.CircularBase;
+import org.terasology.cities.bldg.shape.RectangularBase;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.joml.geom.Circlef;
 import org.terasology.math.TeraMath;
 import org.terasology.nui.properties.Checkbox;
-import org.terasology.staticCities.AwtConverter;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
@@ -29,6 +31,7 @@ import org.terasology.staticCities.raster.standard.HollowBuildingPartRasterizer;
 import org.terasology.staticCities.raster.standard.RectPartRasterizer;
 import org.terasology.staticCities.raster.standard.RoundPartRasterizer;
 import org.terasology.staticCities.raster.standard.StaircaseRasterizer;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.facets.ElevationFacet;
 import org.terasology.world.viewer.layers.AbstractFacetLayer;
@@ -38,7 +41,9 @@ import org.terasology.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.util.HashSet;
 import java.util.Map;
@@ -111,7 +116,20 @@ public class BuildingFacetLayer extends AbstractFacetLayer {
         Color frameColor = new Color(32, 32, 192, 128);
         for (Building bldg : buildingFacet.getBuildings()) {
             for (BuildingPart part : bldg.getParts()) {
-                Shape shape = AwtConverter.toAwt(part.getShape());
+                Shape shape;
+                if (part instanceof CircularBase) {
+                    Circlef cir = ((CircularBase) part).getShape();
+                    float minX = cir.x - cir.r;
+                    float minY = cir.y - cir.r;
+                    float dia = cir.r * 2f;
+                    shape = new Ellipse2D.Float(minX, minY, dia, dia);
+                } else if (part instanceof RectangularBase) {
+                    BlockAreac ar = ((RectangularBase) part).getShape();
+                    shape = new Rectangle(ar.minX(), ar.minY(), ar.getSizeX() - 1, ar.getSizeY() - 1);
+                } else {
+                    throw new IllegalArgumentException("Not recognized: " + part);
+                }
+
                 g.setColor(fillColor);
                 g.fill(shape);
                 g.setColor(frameColor);

@@ -17,19 +17,19 @@
 package org.terasology.staticCities.bldg.gen;
 
 import com.google.common.collect.Sets;
+import org.joml.RoundingMode;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
+import org.joml.Vector3i;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.ImmutableVector3i;
-import org.terasology.math.geom.LineSegment;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.bldg.DefaultBuilding;
 import org.terasology.staticCities.bldg.RectBuildingPart;
 import org.terasology.staticCities.common.Edges;
+import org.terasology.commonworld.geom.Line2f;
 import org.terasology.staticCities.deco.SingleBlockDecoration;
 import org.terasology.staticCities.door.SimpleDoor;
 import org.terasology.staticCities.model.roof.DomeRoof;
@@ -41,6 +41,8 @@ import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.SimpleWindow;
 import org.terasology.utilities.random.MersenneRandom;
 import org.terasology.utilities.random.Random;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 import java.util.Set;
 
@@ -57,13 +59,13 @@ public class RectHouseGenerator {
         Orientation o = staticParcel.getOrientation();
         DefaultBuilding bldg = new DefaultBuilding(o);
         int inset = 2;
-        Rect2i layout = staticParcel.getShape().expand(new Vector2i(-inset, -inset));
+        BlockArea layout = staticParcel.getShape().expand(-inset, -inset, new BlockArea(BlockArea.INVALID));
 
         Vector2i doorPos = Edges.getCorner(layout, o);
 
         // use door as base height for the entire building
-        ImmutableVector2i doorDir = o.getDir();
-        Vector2i probePos = new Vector2i(doorPos.getX() + doorDir.getX(), doorPos.getY() + doorDir.getY());
+        Vector2ic doorDir = o.direction();
+        Vector2i probePos = new Vector2i(doorPos.x() + doorDir.x(), doorPos.y() + doorDir.y());
 
         // we add +1, because the building starts at 1 block above the terrain
         int floorHeight = TeraMath.floorToInt(hm.getWorld(probePos)) + 1;
@@ -88,9 +90,9 @@ public class RectHouseGenerator {
 
             for (SimpleWindow wnd : wnds) {
                 // test if terrain outside window is lower than window base height
-                ImmutableVector2i wndDir = wnd.getOrientation().getDir();
-                ImmutableVector2i wndPos = wnd.getPos();
-                Vector2i probePosWnd = new Vector2i(wndPos.getX() + wndDir.getX(), wndPos.getY() + wndDir.getY());
+                Vector2ic wndDir = wnd.getOrientation().direction();
+                Vector2ic wndPos = wnd.getPos();
+                Vector2i probePosWnd = new Vector2i(wndPos.x() + wndDir.x(), wndPos.y() + wndDir.y());
                 if (wnd.getHeight() > hm.getWorld(probePosWnd)) {
                     part.addWindow(wnd);
                 }
@@ -103,20 +105,20 @@ public class RectHouseGenerator {
     }
 
     private void addDecorations(RectBuildingPart part, Orientation o, int baseHeight, Random rng) {
-        Rect2i rc = part.getShape().expand(-1, -1); // inside
+        BlockArea rc = part.getShape().expand(-1, -1, new BlockArea(BlockArea.INVALID)); // inside
         if (rng.nextBoolean()) {
             Vector2i pos = Edges.getCorner(rc, o.getRotated(-45));
-            ImmutableVector3i pos3d = new ImmutableVector3i(pos.x(), baseHeight, pos.y());
+            Vector3i pos3d = new Vector3i(pos.x(), baseHeight, pos.y());
             part.addDecoration(new SingleBlockDecoration(DefaultBlockType.BARREL, pos3d, Side.FRONT));
         }
         if (rng.nextBoolean()) {
             Vector2i pos = Edges.getCorner(rc, o.getRotated(45));
-            ImmutableVector3i pos3d = new ImmutableVector3i(pos.x(), baseHeight, pos.y());
+            Vector3i pos3d = new Vector3i(pos.x(), baseHeight, pos.y());
             part.addDecoration(new SingleBlockDecoration(DefaultBlockType.BARREL, pos3d, Side.FRONT));
         }
     }
 
-    private Set<SimpleWindow> createWindows(Rect2i rc, int baseHeight, Orientation o) {
+    private Set<SimpleWindow> createWindows(BlockAreac rc, int baseHeight, Orientation o) {
 
         final int wndBase = baseHeight + 1;
         final int endDist = 2;
@@ -125,12 +127,12 @@ public class RectHouseGenerator {
 
         Set<SimpleWindow> result = Sets.newHashSet();
 
-        LineSegment borderSeg = Edges.getEdge(rc, o);
-        Rect2i border = Rect2i.createEncompassing(new Vector2i(borderSeg.getStart()), new Vector2i(borderSeg.getEnd()));
+        Line2f borderSeg = Edges.getEdge(rc, o);
+        BlockArea border = new BlockArea(new Vector2i(borderSeg.getStart(), RoundingMode.FLOOR)).union(new Vector2i(borderSeg.getEnd(), RoundingMode.FLOOR));
         int step = interDist + wndSize;
 
         int firstX = border.minX() + endDist;
-        int lastX = border.minX() + border.width() - endDist * 2;
+        int lastX = border.minX() + border.getSizeX() - endDist * 2;
 
         for (int x = firstX; x <= lastX; x += step) {
             Vector2i pos = new Vector2i(x, border.minY());
@@ -139,7 +141,7 @@ public class RectHouseGenerator {
         }
 
         int firstY = border.minY() + endDist;
-        int lastY = border.minY() + border.height() - endDist * 2;
+        int lastY = border.minY() + border.getSizeY() - endDist * 2;
 
         for (int y = firstY; y <= lastY; y += step) {
             Vector2i pos = new Vector2i(border.minX(), y);
@@ -150,9 +152,9 @@ public class RectHouseGenerator {
         return result;
     }
 
-    private Roof createRoof(Random r, Rect2i layout, int roofBaseHeight) {
+    private Roof createRoof(Random r, BlockAreac layout, int roofBaseHeight) {
         // the roof area is 1 block larger all around
-        Rect2i roofArea = layout.expand(new Vector2i(1, 1));
+        BlockAreac roofArea = layout.expand(1, 1, new BlockArea(BlockArea.INVALID));
 
         int type = r.nextInt(100);
 
@@ -162,10 +164,10 @@ public class RectHouseGenerator {
         }
 
         if (type < 66) {
-            return new DomeRoof(layout, roofArea, roofBaseHeight, Math.min(roofArea.width(), roofArea.height()) / 2);
+            return new DomeRoof(layout, roofArea, roofBaseHeight, Math.min(roofArea.getSizeX(), roofArea.getSizeY()) / 2);
         }
 
-        boolean alongX = (roofArea.width() > roofArea.height());
+        boolean alongX = (roofArea.getSizeX() > roofArea.getSizeY());
         Orientation o = alongX ? Orientation.EAST : Orientation.NORTH;
 
         return new SaddleRoof(layout, roofArea, roofBaseHeight, o, 1);

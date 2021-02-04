@@ -16,15 +16,15 @@
 
 package org.terasology.staticCities.fences;
 
+import org.joml.Vector2ic;
 import org.terasology.commonworld.Orientation;
 import org.terasology.math.Side;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.block.Block;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
@@ -61,7 +61,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
     }
 
     private void raster(CoreChunk chunk, SimpleFence fence, InfiniteSurfaceHeightFacet heightFacet) {
-        Rect2i fenceRc = fence.getRect();
+        BlockAreac fenceRc = fence.getRect();
         BlockRegion brushRc = chunk.getRegion();
 
         int fleft = fenceRc.minX();
@@ -110,7 +110,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
         post(chunk, heightFacet, fright, ftop, Orientation.NORTHEAST);  // -1/1 - BACK/LEFT
 
         // insert gate
-        Vector2i gatePos = fence.getGate();
+        Vector2ic gatePos = fence.getGate();
         if (gatePos.x() >= brushRc.minX() && gatePos.x() <= brushRc.maxX()
          && gatePos.y() >= brushRc.minZ() && gatePos.y() <= brushRc.maxZ()) {
             int y = TeraMath.floorToInt(heightFacet.getWorld(gatePos.x(), gatePos.y())) + 1;

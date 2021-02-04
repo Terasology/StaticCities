@@ -19,9 +19,8 @@ package org.terasology.staticCities.fences;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.joml.Vector2i;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.parcels.ParcelFacet;
 import org.terasology.staticCities.parcels.StaticParcel;
@@ -80,10 +79,9 @@ public class FenceFacetProvider implements FacetProvider {
     private Optional<SimpleFence> generateFence(StaticParcel staticParcel) {
 
         if (staticParcel.getZone() == Zone.RESIDENTIAL) {
-            Rect2i fenceRc = Rect2i.createFromMinAndMax(staticParcel.getShape().min(), staticParcel.getShape().max());
             Orientation gateOrient = staticParcel.getOrientation();
-            Vector2i gatePos = Edges.getCorner(fenceRc, staticParcel.getOrientation());
-            return Optional.of(new SimpleFence(fenceRc, gateOrient, gatePos));
+            Vector2i gatePos = Edges.getCorner(staticParcel.getShape(), staticParcel.getOrientation());
+            return Optional.of(new SimpleFence(staticParcel.getShape(), gateOrient, gatePos));
         } else {
             return Optional.empty();
         }

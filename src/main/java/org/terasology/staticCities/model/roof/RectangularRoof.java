@@ -16,37 +16,39 @@
 
 package org.terasology.staticCities.model.roof;
 
-import org.terasology.math.geom.Rect2i;
+import org.terasology.cities.bldg.shape.RectangularBase;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A roof with rectangular shape
  */
-public class RectangularRoof extends AbstractRoof {
+public class RectangularRoof extends AbstractRoof implements RectangularBase {
 
-    private Rect2i baseRect;
+    private BlockArea baseRect = new BlockArea(BlockArea.INVALID);
+    private BlockArea shape = new BlockArea(BlockArea.INVALID);
 
     /**
      * @param baseRect the building rectangle (must be fully inside <code>withEaves</code>).
      * @param withEaves the roof area including eaves (=overhang)
      * @param baseHeight the base height of the roof
      */
-    public RectangularRoof(Rect2i baseRect, Rect2i withEaves, int baseHeight) {
-        super(withEaves, baseHeight);
-        this.baseRect = baseRect;
+    public RectangularRoof(BlockAreac baseRect, BlockAreac withEaves, int baseHeight) {
+        super(baseHeight);
+        this.shape.set(withEaves);
+        this.baseRect.set(baseRect);
     }
 
     /**
      * @return the roof area including eaves
      */
-    public Rect2i getBaseArea() {
+    public BlockAreac getBaseArea() {
         return baseRect;
     }
 
-    /**
-     * @return the roof area including eaves
-     */
+
     @Override
-    public Rect2i getArea() {
-        return (Rect2i) super.getArea();
+    public BlockAreac getShape() {
+        return shape;
     }
 }

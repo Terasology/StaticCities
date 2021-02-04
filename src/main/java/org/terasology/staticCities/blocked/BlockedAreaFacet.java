@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities.blocked;
 
-import org.terasology.math.geom.ImmutableVector2i;
-import org.terasology.math.geom.Rect2i;
+import org.joml.Vector2ic;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.facets.base.BaseFacet2D;
@@ -60,9 +60,9 @@ public class BlockedAreaFacet extends BaseFacet2D {
     }
 
 
-    public boolean isBlocked(Rect2i shape) {
+    public boolean isBlocked(BlockAreac shape) {
         for (BlockedArea area : areas) {
-            if (area.getWorldRegion().overlaps(shape)) {
+            if (area.getWorldRegion().intersectsBlockArea(shape)) {
                 if (area.isBlocked(shape)) {
                     return true;
                 }
@@ -71,14 +71,14 @@ public class BlockedAreaFacet extends BaseFacet2D {
         return false;
     }
 
-    public void addLine(ImmutableVector2i start, ImmutableVector2i end, float width) {
+    public void addLine(Vector2ic start, Vector2ic end, float width) {
         // TODO: maybe check for line/rect intersection with this FACET first
         for (BlockedArea area : areas) {
             area.addLine(start, end, width);
         }
     }
 
-    public void addRect(Rect2i rc) {
+    public void addRect(BlockAreac rc) {
         for (BlockedArea area : areas) {
             area.addRect(rc);
         }

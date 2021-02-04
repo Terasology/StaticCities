@@ -19,8 +19,9 @@ package org.terasology.staticCities.parcels;
 import com.google.common.collect.Sets;
 import org.terasology.cities.parcels.Parcel;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.bldg.Building;
+import org.terasology.world.block.BlockArea;
+import org.terasology.world.block.BlockAreac;
 
 import java.util.Collections;
 import java.util.Set;
@@ -30,7 +31,7 @@ import java.util.Set;
  */
 public class StaticParcel implements Parcel {
 
-    private final Rect2i shape;
+    private final BlockArea shape = new BlockArea(BlockArea.INVALID);
 
     private final Set<Building> buildings = Sets.newHashSet();
 
@@ -42,8 +43,8 @@ public class StaticParcel implements Parcel {
      * @param zone the zone type
      * @param orientation the orientation of the parcel (e.g. towards the closest street)
      */
-    protected StaticParcel(Rect2i shape, Zone zone, Orientation orientation) {
-        this.shape = shape;
+    protected StaticParcel(BlockAreac shape, Zone zone, Orientation orientation) {
+        this.shape.set(shape);
         this.zone = zone;
         this.orientation = orientation;
     }
@@ -51,7 +52,7 @@ public class StaticParcel implements Parcel {
     /**
      * @return the layout shape
      */
-    public Rect2i getShape() {
+    public BlockAreac getShape() {
         return this.shape;
     }
 

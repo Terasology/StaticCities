@@ -17,6 +17,7 @@
 package org.terasology.staticCities.model.roof;
 
 import org.terasology.math.geom.Rect2i;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * A flat roof with an extruded border (terrace roof)
@@ -31,7 +32,7 @@ public class FlatRoof extends RectangularRoof {
      * @param baseHeight the base height of the roof
      * @param borderHeight the height of the border
      */
-    public FlatRoof(Rect2i baseRect, Rect2i withEaves, int baseHeight, int borderHeight) {
+    public FlatRoof(BlockAreac baseRect, BlockAreac withEaves, int baseHeight, int borderHeight) {
         super(baseRect, withEaves, baseHeight);
 
         this.borderHeight = borderHeight;

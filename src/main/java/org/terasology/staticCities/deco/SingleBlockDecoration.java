@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.deco;
 
+import org.joml.Vector3i;
+import org.joml.Vector3ic;
 import org.terasology.math.Side;
-import org.terasology.math.geom.BaseVector3i;
-import org.terasology.math.geom.ImmutableVector3i;
 import org.terasology.staticCities.BlockType;
 
 /**
@@ -26,7 +26,7 @@ import org.terasology.staticCities.BlockType;
  */
 public class SingleBlockDecoration implements Decoration {
 
-    private final ImmutableVector3i pos;
+    private final Vector3i pos = new Vector3i();
     private BlockType type;
     private Side side;
 
@@ -35,16 +35,16 @@ public class SingleBlockDecoration implements Decoration {
      * @param pos the window position
      * @param side the direction of the decoration
      */
-    public SingleBlockDecoration(BlockType type, BaseVector3i pos, Side side) {
+    public SingleBlockDecoration(BlockType type, Vector3ic pos, Side side) {
         this.type = type;
         this.side = side;
-        this.pos = ImmutableVector3i.createOrUse(pos);
+        this.pos.set(pos);
     }
 
     /**
      * @return the position
      */
-    public ImmutableVector3i getPos() {
+    public Vector3ic getPos() {
         return this.pos;
     }
 

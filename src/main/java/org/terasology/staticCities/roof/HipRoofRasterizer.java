@@ -28,6 +28,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockAreac;
 
 /**
  * Converts a {@link HipRoof} into blocks
@@ -43,9 +44,9 @@ public class HipRoofRasterizer extends RoofRasterizer<HipRoof> {
 
     @Override
     public void raster(RasterTarget target, HipRoof roof, HeightMap hm) {
-        Rect2i area = roof.getArea();
+        BlockAreac area = roof.getShape();
 
-        if (!area.overlaps(target.getAffectedArea())) {
+        if (!area.intersectsBlockArea(target.getAffectedArea())) {
             return;
         }
 

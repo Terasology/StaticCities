@@ -20,9 +20,9 @@ import com.google.common.math.DoubleMath;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.LineSegment;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
+import org.terasology.commonworld.geom.Line2f;
 import org.terasology.staticCities.raster.ChunkRasterTarget;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
@@ -72,11 +72,11 @@ public class TownWallRasterizer implements WorldRasterizer {
 
     private void rasterSolid(RasterTarget target, SolidWallSegment element, HeightMap hm) {
 
-        int x1 = element.getStart().getX();
-        int z1 = element.getStart().getY();
+        int x1 = element.getStart().x();
+        int z1 = element.getStart().y();
         int y1 = hm.apply(x1, z1) + element.getWallHeight();
-        int x2 = element.getEnd().getX();
-        int z2 = element.getEnd().getY();
+        int x2 = element.getEnd().x();
+        int z2 = element.getEnd().y();
         int y2 = hm.apply(x2, z2) + element.getWallHeight();
 
         Ramp ramp = new Ramp(x1, y1, z1, x2, y2, z2);
@@ -91,16 +91,16 @@ public class TownWallRasterizer implements WorldRasterizer {
         };
 
         Pen pen = Pens.fill(target, hm, topHm, DefaultBlockType.TOWER_WALL);
-        RasterUtil.drawLine(pen, new LineSegment(x1, z1, x2, z2));
+        RasterUtil.drawLine(pen, new Line2f(x1, z1, x2, z2));
     }
 
     private void rasterGate(RasterTarget target, GateWallSegment element, HeightMap terrain) {
 
-        int x1 = element.getStart().getX();
-        int z1 = element.getStart().getY();
+        int x1 = element.getStart().x();
+        int z1 = element.getStart().y();
         int y1 = terrain.apply(x1, z1) + element.getWallHeight();
-        int x2 = element.getEnd().getX();
-        int z2 = element.getEnd().getY();
+        int x2 = element.getEnd().x();
+        int z2 = element.getEnd().y();
         int y2 = terrain.apply(x2, z2) + element.getWallHeight();
 
         Ramp ramp = new Ramp(x1, y1, z1, x2, y2, z2);
@@ -133,7 +133,7 @@ public class TownWallRasterizer implements WorldRasterizer {
         };
 
         Pen pen = Pens.fill(target, hmBottom, hmTop, DefaultBlockType.TOWER_WALL);
-        RasterUtil.drawLine(pen, new LineSegment(x1, z1, x2, z2));
+        RasterUtil.drawLine(pen, new Line2f(x1, z1, x2, z2));
     }
 
     @Override

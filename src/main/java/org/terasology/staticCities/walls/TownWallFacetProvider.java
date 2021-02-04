@@ -19,20 +19,21 @@ package org.terasology.staticCities.walls;
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.collect.Lists;
+import org.joml.Vector2i;
+import org.joml.Vector2ic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
+import org.terasology.joml.geom.Circlef;
+import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Circle;
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
 import org.terasology.staticCities.bldg.BuildingFacet;
 import org.terasology.staticCities.bldg.BuildingPart;
 import org.terasology.staticCities.bldg.RectBuildingPart;
 import org.terasology.staticCities.bldg.SimpleTower;
 import org.terasology.staticCities.bldg.Tower;
 import org.terasology.staticCities.blocked.BlockedAreaFacet;
+import org.terasology.commonworld.geom.CircleUtility;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.deco.Decoration;
 import org.terasology.staticCities.deco.DecorationFacet;
@@ -51,6 +52,7 @@ import org.terasology.staticCities.window.Window;
 import org.terasology.staticCities.window.WindowFacet;
 import org.terasology.utilities.random.FastRandom;
 import org.terasology.utilities.random.Random;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.Facet;
 import org.terasology.world.generation.FacetProvider;
@@ -104,7 +106,7 @@ public class TownWallFacetProvider implements FacetProvider {
             if (settlement.hasTownwall()) {
                 Site site = settlement.getSite();
                 BlockAreac area = wallFacet.getWorldArea();
-                if (Circle.intersects(site.getPos(), site.getRadius(), Rect2i.createFromMinAndMax(area.minX(), area.minY(), area.maxX(), area.maxY()))) {
+                if (CircleUtility.intersect(new Circlef(site.getPos().x(), site.getPos().y(), site.getRadius()), new BlockArea(area.minX(), area.minY(), area.maxX(), area.maxY()).getBounds(new Rectanglef()))) {
                     try {
                         TownWall tw = cache.get(site, () -> generate(site, heightFacet, buildableAreaFacet, blockedAreaFacet));
                         wallFacet.addTownWall(tw);
@@ -139,8 +141,8 @@ public class TownWallFacetProvider implements FacetProvider {
 
         Random rand = new FastRandom(seed ^ city.getPos().hashCode());
 
-        int cx = city.getPos().getX();
-        int cz = city.getPos().getY();
+        int cx = city.getPos().x();
+        int cz = city.getPos().y();
 
         Vector2i center = new Vector2i(cx, cz);
 
@@ -250,7 +252,7 @@ public class TownWallFacetProvider implements FacetProvider {
         if (tower == null) {
             return Float.POSITIVE_INFINITY; // larger than any finite number
         }
-        Rect2i rc = tower.getShape();
+        BlockAreac rc = tower.getShape();
         float cx = (rc.minX() + rc.maxX()) * 0.5f;
         float cy = (rc.minY() + rc.maxY()) * 0.5f;
         float dx = pos.x() - cx;
@@ -260,7 +262,7 @@ public class TownWallFacetProvider implements FacetProvider {
 
     private Vector2i getAnchor(SimpleTower tower, int degrees) {
         Orientation orientation = tower.getOrientation();
-        Rect2i lastRect = tower.getStaircase().getShape();
+        BlockAreac lastRect = tower.getStaircase().getShape();
         return Edges.getCorner(lastRect, orientation.getRotated(degrees));
     }
 
@@ -272,7 +274,7 @@ public class TownWallFacetProvider implements FacetProvider {
         return wall;
     }
 
-    private WallSegment createGateWall(BaseVector2i start, BaseVector2i end) {
+    private WallSegment createGateWall(Vector2ic start, Vector2ic end) {
         int wallHeight = 8;
         int wallThick = 4;
 
@@ -284,7 +286,7 @@ public class TownWallFacetProvider implements FacetProvider {
         List<Boolean> list = Lists.newArrayList();
 
         for (Vector2i pos : tp) {
-            Rect2i layout = getTowerRect(pos);
+            BlockAreac layout = getTowerRect(pos);
             boolean ok = buildable.isPassable(layout) && !blocked.isBlocked(layout);
             list.add(Boolean.valueOf(ok));
         }
@@ -295,7 +297,7 @@ public class TownWallFacetProvider implements FacetProvider {
     private SimpleTower createTower(int towerHeight, Orientation orient, InfiniteSurfaceHeightFacet hm, Vector2i pos) {
         int baseHeight = TeraMath.floorToInt(hm.getWorld(pos)) + 1;
 
-        Rect2i layout = getTowerRect(pos);
+        BlockAreac layout = getTowerRect(pos);
         int wndHeight = 4 + 1;
         SimpleTower tower = new SimpleTower(orient, layout, baseHeight, towerHeight);
         Vector2i windowPos = new Vector2i(Edges.getCorner(layout, orient));
@@ -307,10 +309,10 @@ public class TownWallFacetProvider implements FacetProvider {
         int towerHeight = 9;
         SimpleTower tower = createTower(towerHeight, orient, hm, towerPos);
         RectBuildingPart staircase = tower.getStaircase();
-        Rect2i staircaseRect = staircase.getShape().expand(-1, -1); // inner staircase
+        BlockAreac staircaseRect = staircase.getShape().expand(-1, -1, new BlockArea(BlockArea.INVALID)); // inner staircase
         Vector2i c1 = Edges.getCorner(staircaseRect, orient.getRotated(270 - 45));
         Vector2i c2 = Edges.getCorner(staircaseRect, orient.getRotated(270 + 45));
-        Rect2i doorRect = Rect2i.createEncompassing(c1, c2);
+        BlockArea doorRect = new BlockArea(c1).union(c2);
         int roofLevel = staircase.getTopHeight();
         staircase.addDoor(new WingDoor(orient.getOpposite(), doorRect, roofLevel, roofLevel + 1));
         return tower;
@@ -349,11 +351,10 @@ public class TownWallFacetProvider implements FacetProvider {
         return list;
     }
 
-    private Rect2i getTowerRect(Vector2i tp) {
+    private BlockArea getTowerRect(Vector2i tp) {
         int towerRad = 3;
 
         // make sure the width/height are odd to make the BattlementRoof look pretty
-        return Rect2i.createFromMinAndSize(tp.x - towerRad, tp.y - towerRad, towerRad * 2 - 1, towerRad * 2 - 1);
-
+        return new BlockArea(tp.x - towerRad, tp.y - towerRad).setSize(towerRad * 2 - 1, towerRad * 2 - 1);
     }
 }

@@ -19,7 +19,6 @@ package org.terasology.staticCities.raster.standard;
 import com.google.common.math.DoubleMath;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.BuildingPartRasterizer;
@@ -30,6 +29,7 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockAreac;
 
 import java.math.RoundingMode;
 
@@ -44,9 +44,9 @@ public class HollowBuildingPartRasterizer extends BuildingPartRasterizer<HollowB
 
     @Override
     protected void raster(RasterTarget brush, HollowBuildingPart part, HeightMap heightMap) {
-        Rect2i rc = part.getShape();
+        BlockAreac rc = part.getShape();
 
-        if (!rc.overlaps(brush.getAffectedArea())) {
+        if (!rc.intersectsBlockArea(brush.getAffectedArea())) {
             return;
         }
 

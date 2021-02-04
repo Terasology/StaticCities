@@ -17,12 +17,11 @@
 package org.terasology.staticCities.flora;
 
 import com.google.common.base.Predicate;
+import org.joml.Vector2ic;
 import org.joml.Vector3i;
 import org.terasology.core.world.generator.facetProviders.DefaultTreeProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.TreeFacet;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.ImmutableVector2i;
 import org.terasology.math.geom.LineSegment;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
@@ -70,10 +69,10 @@ public class TreeFacetProvider extends DefaultTreeProvider {
         float minDist = 5f;   // block distance to road border
         for (Road road : roads) {
             for (RoadSegment seg : road.getSegments()) {
-                BaseVector2i a = seg.getStart();
-                BaseVector2i b = seg.getEnd();
+                Vector2ic a = seg.getStart();
+                Vector2ic b = seg.getEnd();
                 float rad = seg.getWidth() * 0.5f + minDist;
-                if (LineSegment.distanceToPoint(a.getX(), a.getY(), b.getX(), b.getY(), vx, vz) < rad) {
+                if (LineSegment.distanceToPoint(a.x(), a.y(), b.x(), b.y(), vx, vz) < rad) {
                     return false;
                 }
             }
@@ -84,7 +83,7 @@ public class TreeFacetProvider extends DefaultTreeProvider {
     private static boolean outsideSettlements(Vector3i v, Set<Settlement> settlements) {
         for (Settlement settlement : settlements) {
             Site site = settlement.getSite();
-            ImmutableVector2i center = site.getPos();
+            Vector2ic center = site.getPos();
             float r = site.getRadius();
             if (distanceSquared(center, v.x(), v.z()) < r * r) {
                 return false;
@@ -93,9 +92,9 @@ public class TreeFacetProvider extends DefaultTreeProvider {
         return true;
     }
 
-    private static float distanceSquared(BaseVector2i v, int x, int y) {
-        int dx = x - v.getX();
-        int dy = y - v.getY();
+    private static float distanceSquared(Vector2ic v, int x, int y) {
+        int dx = x - v.x();
+        int dy = y - v.y();
 
         return dx * dx + dy * dy;
     }

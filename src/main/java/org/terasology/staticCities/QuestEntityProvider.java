@@ -16,11 +16,11 @@
 
 package org.terasology.staticCities;
 
+import org.joml.Vector2ic;
+import org.joml.Vector3f;
 import org.terasology.entitySystem.entity.EntityStore;
 import org.terasology.entitySystem.prefab.Prefab;
 import org.terasology.logic.location.LocationComponent;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Vector3f;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
@@ -52,11 +52,12 @@ public class QuestEntityProvider implements EntityProvider {
         }
 
         for (Road road : roadFacet.getRoads()) {
-            for (BaseVector2i pt : road.getPoints()) {
+            for (Vector2ic pt : road.getPoints()) {
                 float y = heightFacet.getWorld(pt) + 5;
-                if (region.getRegion().contains(pt.getX(), (int) y, pt.getY())) {
+                if (region.getRegion().contains(pt.x(), (int) y, pt.y())) {
+                    Vector3f position = new Vector3f(pt.x(), y, pt.y());
                     EntityStore builder = new EntityStore(prefab);
-                    builder.addComponent(new LocationComponent(new org.joml.Vector3f(pt.getX(), y, pt.getY())));
+                    builder.addComponent(new LocationComponent(new org.joml.Vector3f(pt.x(), y, pt.y())));
                     buffer.enqueue(builder);
                 }
             }

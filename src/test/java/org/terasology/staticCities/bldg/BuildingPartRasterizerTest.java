@@ -20,12 +20,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
-import org.terasology.math.geom.Rect2i;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.raster.BuildingPens;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
+import org.terasology.world.block.BlockArea;
 
 import java.util.Arrays;
 
@@ -33,12 +33,13 @@ import static org.terasology.staticCities.DefaultBlockType.AIR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FLOOR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FOUNDATION;
 import static org.terasology.staticCities.DefaultBlockType.FENCE;
+
 /**
  * Tests the {@link BuildingPartRasterizer} class.
  */
 public class BuildingPartRasterizerTest {
 
-    private Rect2i rc = Rect2i.createFromMinAndSize(0, 0, 1, 1);
+    private BlockArea rc = new BlockArea(0, 0, 1, 1);
 
     @Test
     public void testPrepareFloorFullyInside() {

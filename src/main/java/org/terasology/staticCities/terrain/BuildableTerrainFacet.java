@@ -16,8 +16,8 @@
 
 package org.terasology.staticCities.terrain;
 
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Rect2i;
+import org.joml.Vector2ic;
+import org.terasology.world.block.BlockAreac;
 import org.terasology.world.generation.WorldFacet;
 
 /**
@@ -25,13 +25,13 @@ import org.terasology.world.generation.WorldFacet;
  */
 public interface BuildableTerrainFacet extends WorldFacet {
 
-    default boolean isBuildable(BaseVector2i worldPos) {
-        return isBuildable(worldPos.getX(), worldPos.getY());
+    default boolean isBuildable(Vector2ic worldPos) {
+        return isBuildable(worldPos.x(), worldPos.y());
     }
 
     boolean isBuildable(int worldX, int worldY);
 
-    default boolean isBuildable(Rect2i rect) {
+    default boolean isBuildable(BlockAreac rect) {
         // approximate by checking corners only
         // TODO: find a better solution
         return isBuildable(rect.minX(), rect.minY())
@@ -40,13 +40,13 @@ public interface BuildableTerrainFacet extends WorldFacet {
             && isBuildable(rect.maxX(), rect.maxY());
     }
 
-    default boolean isPassable(BaseVector2i worldPos) {
-        return isPassable(worldPos.getX(), worldPos.getY());
+    default boolean isPassable(Vector2ic worldPos) {
+        return isPassable(worldPos.x(), worldPos.y());
     }
 
     boolean isPassable(int worldX, int worldY);
 
-    default boolean isPassable(Rect2i rect) {
+    default boolean isPassable(BlockAreac rect) {
         // approximate by checking corners only
         // TODO: find a better solution
         return isPassable(rect.minX(), rect.minY())

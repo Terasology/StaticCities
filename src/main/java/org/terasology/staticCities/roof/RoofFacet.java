@@ -17,7 +17,7 @@
 package org.terasology.staticCities.roof;
 
 import org.terasology.staticCities.model.roof.Roof;
-import org.terasology.world.block.BlockRegion;
+import org.terasology.world.block.BlockRegionc;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.facets.base.BaseFacet2D;
 
@@ -32,7 +32,7 @@ public class RoofFacet extends BaseFacet2D {
 
     private final Collection<Roof> roofs = new ArrayList<>();
 
-    public RoofFacet(BlockRegion targetRegion, Border3D border) {
+    public RoofFacet(BlockRegionc targetRegion, Border3D border) {
         super(targetRegion, border);
     }
 

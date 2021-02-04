@@ -16,17 +16,18 @@
 
 package org.terasology.staticCities.bldg;
 
+import org.joml.Vector2ic;
+import org.terasology.cities.bldg.shape.CircularBase;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.geom.BaseVector2i;
-import org.terasology.math.geom.Circle;
+import org.terasology.joml.geom.Circlef;
 import org.terasology.staticCities.model.roof.ConicRoof;
 
 /**
  * A round house with a conic roof
  */
-public class SimpleRoundHouse extends DefaultBuilding {
+public class SimpleRoundHouse extends DefaultBuilding implements CircularBase {
 
-    private Circle layout;
+    private Circlef layout;
     private RoundBuildingPart room;
 
     /**
@@ -36,10 +37,10 @@ public class SimpleRoundHouse extends DefaultBuilding {
      * @param baseHeight the height of the floor level
      * @param wallHeight the building height above the floor level
      */
-    public SimpleRoundHouse(Orientation orient, BaseVector2i center, int radius, int baseHeight, int wallHeight) {
+    public SimpleRoundHouse(Orientation orient, Vector2ic center, int radius, int baseHeight, int wallHeight) {
         super(orient);
 
-        layout = new Circle(center.x(), center.y(), radius);
+        layout = new Circlef(center.x(), center.y(), radius);
         room = new RoundBuildingPart(
                 layout,
                 new ConicRoof(center, radius + 1, baseHeight + wallHeight, 1),
@@ -48,7 +49,8 @@ public class SimpleRoundHouse extends DefaultBuilding {
         addPart(room);
     }
 
-    public Circle getShape() {
+    @Override
+    public Circlef getShape() {
         return layout;
     }
 

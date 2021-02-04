@@ -16,9 +16,7 @@
 
 package org.terasology.staticCities.sites;
 
-import org.terasology.math.geom.Rect2i;
-import org.terasology.math.geom.Vector2i;
-import org.terasology.world.block.BlockAreac;
+import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockRegion;
 import org.terasology.world.generation.Border3D;
 import org.terasology.world.generation.facets.base.BaseFacet2D;
@@ -40,9 +38,8 @@ public class SiteFacet extends BaseFacet2D {
         this.uncertainBorder = uncertainBorder;
     }
 
-    public Rect2i getCertainWorldRegion() {
-        BlockAreac area = getWorldArea();
-        return Rect2i.createFromMinAndMax(area.minX(), area.minY(), area.maxX(), area.maxY()).expand(new Vector2i(-uncertainBorder, -uncertainBorder));
+    public BlockArea getCertainWorldRegion() {
+        return new BlockArea(getWorldArea()).expand(-uncertainBorder, -uncertainBorder);
     }
 
     public void addSettlement(Site settlement) {
