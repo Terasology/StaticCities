@@ -13,6 +13,7 @@ import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.block.BlockRegion;
+import org.terasology.world.block.BlockRegionc;
 import org.terasology.world.chunks.CoreChunk;
 import org.terasology.world.generation.Region;
 import org.terasology.world.generation.WorldRasterizer;
@@ -49,7 +50,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
 
     private void raster(CoreChunk chunk, SimpleFence fence, InfiniteSurfaceHeightFacet heightFacet) {
         BlockAreac fenceRc = fence.getRect();
-        BlockRegion brushRc = chunk.getRegion();
+        BlockRegionc brushRc = chunk.getRegion();
 
         int fleft = fenceRc.minX();
         int ftop = fenceRc.minY();
@@ -113,7 +114,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
     }
 
     private void post(CoreChunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z, Orientation o) {
-        BlockRegion region = chunk.getRegion();
+        BlockRegionc region = chunk.getRegion();
         int y = TeraMath.floorToInt(hm.getWorld(x, z)) + 1;
         Orientation a = o.getRotated(180 - 45);
         Orientation b = o.getRotated(180 + 45);
