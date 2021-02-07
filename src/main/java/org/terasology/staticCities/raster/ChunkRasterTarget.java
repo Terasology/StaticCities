@@ -48,7 +48,7 @@ public class ChunkRasterTarget implements RasterTarget {
 
     @Override
     public BlockRegion getAffectedRegion() {
-        return chunk.getRegion();
+        return new BlockRegion(chunk.getRegion());
     }
 
     @Override
