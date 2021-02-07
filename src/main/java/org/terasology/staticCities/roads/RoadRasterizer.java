@@ -18,9 +18,9 @@ package org.terasology.staticCities.roads;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.terasology.commonworld.geom.BoundingBox;
+import org.terasology.commonworld.geom.Line2f;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.math.TeraMath;
-import org.terasology.math.geom.LineSegment;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
@@ -68,8 +68,8 @@ public class RoadRasterizer implements WorldRasterizer {
             for (Vector2ic pt : road.getPoints()) {
                 bbox.add(pt);
             }
-            float intRad = TeraMath.ceilToInt(road.getWidth() * 0.5f);
-            BlockArea roadBox = bbox.toRect2i().expand((int) intRad, (int) intRad, new BlockArea(BlockArea.INVALID));
+            int intRad = TeraMath.ceilToInt(road.getWidth() * 0.5f);
+            BlockArea roadBox = bbox.toRect2i().expand(intRad, intRad, new BlockArea(BlockArea.INVALID));
 
             if (roadBox.intersectsBlockArea(rc)) {
                 for (RoadSegment seg : road.getSegments()) {
@@ -107,7 +107,7 @@ public class RoadRasterizer implements WorldRasterizer {
                         y = TeraMath.floorToInt(heightFacet.getWorld(pointA));
                     } else if (pointB.distanceSquared(pos) < rad * rad) {
                         y = TeraMath.floorToInt(heightFacet.getWorld(pointB));
-                    } else if (LineSegment.distanceToPoint(pointA.x(), pointA.y(),
+                    } else if (Line2f.distanceToPoint(pointA.x(), pointA.y(),
                             pointB.x(), pointB.y(), x, z) < rad) {
 
                         Ramp ramp = ramps.computeIfAbsent(seg, createRamp);

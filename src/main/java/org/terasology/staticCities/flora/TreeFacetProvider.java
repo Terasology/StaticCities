@@ -19,10 +19,10 @@ package org.terasology.staticCities.flora;
 import com.google.common.base.Predicate;
 import org.joml.Vector2ic;
 import org.joml.Vector3i;
+import org.terasology.commonworld.geom.Line2f;
 import org.terasology.core.world.generator.facetProviders.DefaultTreeProvider;
 import org.terasology.core.world.generator.facets.BiomeFacet;
 import org.terasology.core.world.generator.facets.TreeFacet;
-import org.terasology.math.geom.LineSegment;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.roads.RoadSegment;
@@ -72,7 +72,7 @@ public class TreeFacetProvider extends DefaultTreeProvider {
                 Vector2ic a = seg.getStart();
                 Vector2ic b = seg.getEnd();
                 float rad = seg.getWidth() * 0.5f + minDist;
-                if (LineSegment.distanceToPoint(a.x(), a.y(), b.x(), b.y(), vx, vz) < rad) {
+                if (Line2f.distanceToPoint(a.x(), a.y(), b.x(), b.y(), vx, vz) < rad) {
                     return false;
                 }
             }
