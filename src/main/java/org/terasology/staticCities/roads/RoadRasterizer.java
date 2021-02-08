@@ -17,7 +17,6 @@ package org.terasology.staticCities.roads;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
-import org.terasology.commonworld.geom.BoundingBox;
 import org.terasology.commonworld.geom.Line2f;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.math.TeraMath;
@@ -64,17 +63,12 @@ public class RoadRasterizer implements WorldRasterizer {
         Collection<RoadSegment> segs = new ArrayList<>();
         for (Road road : roadFacet.getRoads()) {
             // TODO: check y component as well
-            BoundingBox bbox = new BoundingBox();
-            for (Vector2ic pt : road.getPoints()) {
-                bbox.add(pt);
-            }
             int intRad = TeraMath.ceilToInt(road.getWidth() * 0.5f);
-            BlockArea roadBox = bbox.toRect2i().expand(intRad, intRad, new BlockArea(BlockArea.INVALID));
-
+            BlockArea roadBox = road.getPoints().stream()
+                    .reduce(new BlockArea(BlockArea.INVALID), BlockArea::union, BlockArea::union)
+                    .expand(intRad, intRad);
             if (roadBox.intersectsBlockArea(rc)) {
-                for (RoadSegment seg : road.getSegments()) {
-                    segs.add(seg);
-                }
+                segs.addAll(road.getSegments());
             }
         }
 

@@ -17,6 +17,7 @@
 package org.terasology.staticCities.blocked;
 
 import org.joml.Vector2ic;
+import org.terasology.world.block.Block;
 import org.terasology.world.block.BlockArea;
 import org.terasology.world.block.BlockAreac;
 import org.terasology.world.viewer.color.ColorModels;
@@ -100,14 +101,10 @@ public class BlockedArea {
             throw new IllegalArgumentException("Invalid region " + rect);
         }
 
-        // TODO: create Rect2i.offset()
-        int minX = crop.get().minX() - worldRect.minX();
-        int minY = crop.get().minY() - worldRect.minY();
-        int maxX = crop.get().maxX() - worldRect.minX();
-        int maxY = crop.get().maxY() - worldRect.minY();
+        BlockArea area = crop.get().translate(-worldRect.minX(), -worldRect.minY());
 
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
+        for (int y = area.minY(); y <= area.maxY(); y++) {
+            for (int x = area.minX(); x <= area.maxX(); x++) {
                 if (imageBuffer.getElem(y * stride + x) != 0) {
                     return true;
                 }
