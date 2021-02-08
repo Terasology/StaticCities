@@ -1,18 +1,5 @@
-/*
- * Copyright 2015 MovingBlocks
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+// Copyright 2021 The Terasology Foundation
+// SPDX-License-Identifier: Apache-2.0
 
 package org.terasology.staticCities.blocked;
 
@@ -100,14 +87,10 @@ public class BlockedArea {
             throw new IllegalArgumentException("Invalid region " + rect);
         }
 
-        // TODO: create Rect2i.offset()
-        int minX = crop.get().minX() - worldRect.minX();
-        int minY = crop.get().minY() - worldRect.minY();
-        int maxX = crop.get().maxX() - worldRect.minX();
-        int maxY = crop.get().maxY() - worldRect.minY();
+        BlockArea area = crop.get().translate(-worldRect.minX(), -worldRect.minY());
 
-        for (int y = minY; y <= maxY; y++) {
-            for (int x = minX; x <= maxX; x++) {
+        for (int y = area.minY(); y <= area.maxY(); y++) {
+            for (int x = area.minX(); x <= area.maxX(); x++) {
                 if (imageBuffer.getElem(y * stride + x) != 0) {
                     return true;
                 }
