@@ -140,7 +140,6 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
                 int minX = TeraMath.floorToInt(pos.x() - sizeX * 0.5f);
                 int minY = TeraMath.floorToInt(pos.y() - sizeZ * 0.5f);
                 BlockArea shape = new BlockArea(minX, minY).setSize(sizeX, sizeZ);
-//                Rect2i.createFromMinAndSize(minX, minY, sizeX, sizeZ);
 
                 if (terrainFacet.isBuildable(shape) && !blockedAreaFacet.isBlocked(shape)) {
                     Orientation orientation = Orientation.NORTH.getRotated(90 * rng.nextInt(4));
