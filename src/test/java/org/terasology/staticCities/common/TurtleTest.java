@@ -17,11 +17,12 @@
 package org.terasology.staticCities.common;
 
 import org.joml.Vector2i;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.terasology.commonworld.Orientation;
 import org.terasology.staticCities.bldg.gen.Turtle;
 import org.terasology.world.block.BlockArea;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the {@link Turtle} class.
@@ -47,8 +48,8 @@ public class TurtleTest {
         Vector2i pos = Edges.getCorner(rect, Orientation.NORTH);
         Turtle cur = new Turtle(pos, Orientation.SOUTH);
         cur.move(-5, 10);
-        Assert.assertEquals(new Vector2i(30, 20), cur.getPos());
-        Assert.assertEquals(new BlockArea(19, 22).setSize( 14, 18), cur.rect(-2, 2, 14, 18));
+        assertEquals(new Vector2i(30, 20), cur.getPos());
+        assertEquals(new BlockArea(19, 22).setSize( 14, 18), cur.rect(-2, 2, 14, 18));
     }
 
     @Test
@@ -56,8 +57,8 @@ public class TurtleTest {
         Vector2i pos = Edges.getCorner(rect, Orientation.WEST);
         Turtle cur = new Turtle(pos, Orientation.EAST);
         cur.move(-5, 10);
-        Assert.assertEquals(new Vector2i(10, 50), cur.getPos());
-        Assert.assertEquals(new BlockArea(12, 48).setSize(18, 14), cur.rect(-2, 2, 14, 18));
+        assertEquals(new Vector2i(10, 50), cur.getPos());
+        assertEquals(new BlockArea(12, 48).setSize(18, 14), cur.rect(-2, 2, 14, 18));
     }
 
     @Test
@@ -65,8 +66,8 @@ public class TurtleTest {
         Vector2i pos = Edges.getCorner(rect, Orientation.SOUTH);
         Turtle cur = new Turtle(pos, Orientation.NORTH);
         cur.move(-5, 10);
-        Assert.assertEquals(new Vector2i(20, 90), cur.getPos());
-        Assert.assertEquals(new BlockArea(18, 71).setSize(14, 18), cur.rect(-2, 2, 14, 18));
+        assertEquals(new Vector2i(20, 90), cur.getPos());
+        assertEquals(new BlockArea(18, 71).setSize(14, 18), cur.rect(-2, 2, 14, 18));
     }
 
     @Test
@@ -74,7 +75,7 @@ public class TurtleTest {
         Vector2i pos = Edges.getCorner(rect, Orientation.EAST);
         Turtle cur = new Turtle(pos, Orientation.WEST);
         cur.move(-5, 10);
-        Assert.assertEquals(new Vector2i(40, 60), cur.getPos());
-        Assert.assertEquals(new BlockArea(21, 49).setSize( 18, 14), cur.rect(-2, 2, 14, 18));
+        assertEquals(new Vector2i(40, 60), cur.getPos());
+        assertEquals(new BlockArea(21, 49).setSize( 18, 14), cur.rect(-2, 2, 14, 18));
     }
 }
