@@ -16,8 +16,7 @@
 
 package org.terasology.staticCities.bldg;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.staticCities.BlockType;
@@ -33,6 +32,8 @@ import static org.terasology.staticCities.DefaultBlockType.AIR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FLOOR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FOUNDATION;
 import static org.terasology.staticCities.DefaultBlockType.FENCE;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the {@link BuildingPartRasterizer} class.
@@ -50,7 +51,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 FENCE, FENCE, FENCE,
                 BUILDING_FOUNDATION, // 3-4 are filled up
                 BUILDING_FLOOR,
@@ -67,7 +68,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 FENCE, FENCE, FENCE, FENCE, FENCE),
                 target.getColumn(0, 0));
     }
@@ -80,7 +81,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 AIR, AIR, AIR),
                 target.getColumn(0, 0));
     }
@@ -93,7 +94,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 BUILDING_FOUNDATION, BUILDING_FLOOR, AIR),
                 target.getColumn(0, 0));
     }
@@ -107,7 +108,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 FENCE, BUILDING_FOUNDATION, BUILDING_FOUNDATION),
                 target.getColumn(0, 0));
     }
@@ -121,7 +122,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 FENCE, FENCE, BUILDING_FLOOR, AIR, AIR, AIR),
                 target.getColumn(0, 0));
     }
@@ -135,7 +136,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 FENCE, FENCE, FENCE, FENCE, FENCE),
                 target.getColumn(0, 0));
     }
@@ -148,7 +149,7 @@ public class BuildingPartRasterizerTest {
         Pen pen = BuildingPens.floorPen(target, terrainHeightMap, baseHeight, BUILDING_FLOOR);
         RasterUtil.fillRect(pen, rc);
 
-        Assert.assertEquals(Arrays.asList(
+        assertEquals(Arrays.asList(
                 AIR, AIR, AIR, AIR, AIR),
                 target.getColumn(0, 0));
     }
