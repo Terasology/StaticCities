@@ -19,11 +19,11 @@ package org.terasology.staticCities;
 import com.google.common.base.Function;
 import org.joml.Vector2i;
 import org.terasology.commonworld.Sector;
-import org.terasology.registry.CoreRegistry;
-import org.terasology.world.block.Block;
-import org.terasology.world.block.BlockManager;
-import org.terasology.world.chunks.CoreChunk;
-import org.terasology.world.generator.ChunkGenerationPass;
+import org.terasology.engine.registry.CoreRegistry;
+import org.terasology.engine.world.block.Block;
+import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.generator.ChunkGenerationPass;
 
 import java.util.Collections;
 import java.util.Map;

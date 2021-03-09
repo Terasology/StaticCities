@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities.model.roof;
 
-import org.terasology.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockAreac;
 
 /**
  * A dome roof

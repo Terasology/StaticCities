@@ -19,9 +19,9 @@ package org.terasology.staticCities.parcels;
 import com.google.common.collect.Sets;
 import org.terasology.cities.parcels.Parcel;
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.staticCities.bldg.Building;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
 
 import java.util.Collections;
 import java.util.Set;

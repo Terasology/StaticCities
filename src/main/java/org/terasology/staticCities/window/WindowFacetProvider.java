@@ -16,11 +16,11 @@
 
 package org.terasology.staticCities.window;
 
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.FacetProvider;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
 import org.terasology.staticCities.bldg.BuildingFacet;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.FacetProvider;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
 
 @Produces(WindowFacet.class)
 public class WindowFacetProvider implements FacetProvider {

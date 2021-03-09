@@ -16,10 +16,10 @@
 
 package org.terasology.staticCities.roof;
 
+import org.terasology.engine.world.block.BlockRegionc;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.facets.base.BaseFacet2D;
 import org.terasology.staticCities.model.roof.Roof;
-import org.terasology.world.block.BlockRegionc;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
 
 import java.util.ArrayList;
 import java.util.Collection;

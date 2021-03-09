@@ -19,12 +19,12 @@ package org.terasology.staticCities.bldg;
 import org.joml.Vector2i;
 import org.terasology.cities.bldg.shape.RectangularBase;
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.staticCities.common.Edges;
 import org.terasology.staticCities.door.SimpleDoor;
 import org.terasology.staticCities.model.roof.BattlementRoof;
 import org.terasology.staticCities.model.roof.Roof;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
 
 /**
  * A simple tower

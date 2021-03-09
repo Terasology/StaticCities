@@ -17,8 +17,8 @@
 package org.terasology.staticCities.terrain;
 
 import org.joml.Vector2ic;
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.generation.WorldFacet;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.generation.WorldFacet;
 
 /**
  *

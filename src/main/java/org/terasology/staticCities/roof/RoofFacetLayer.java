@@ -18,17 +18,17 @@ package org.terasology.staticCities.roof;
 
 import com.google.common.collect.ImmutableMap;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.facets.ElevationFacet;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.staticCities.raster.ImageRasterTarget;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.facets.ElevationFacet;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

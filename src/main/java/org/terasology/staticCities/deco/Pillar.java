@@ -5,7 +5,7 @@ package org.terasology.staticCities.deco;
 
 import com.google.common.collect.ImmutableList;
 import org.joml.Vector3ic;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
 

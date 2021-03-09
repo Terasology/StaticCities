@@ -19,16 +19,16 @@ package org.terasology.staticCities.blocked;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.Facet;
+import org.terasology.engine.world.generation.FacetProvider;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
+import org.terasology.engine.world.generation.Requires;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.sites.Site;
 import org.terasology.staticCities.sites.SiteFacet;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.Facet;
-import org.terasology.world.generation.FacetProvider;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
-import org.terasology.world.generation.Requires;
 
 /**
  * Produces an empty {@link BlockedAreaFacet}.

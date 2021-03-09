@@ -19,8 +19,8 @@ package org.terasology.staticCities.common;
 import org.joml.Vector2i;
 import org.junit.jupiter.api.Test;
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.world.block.BlockArea;
 import org.terasology.staticCities.bldg.gen.Turtle;
-import org.terasology.world.block.BlockArea;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

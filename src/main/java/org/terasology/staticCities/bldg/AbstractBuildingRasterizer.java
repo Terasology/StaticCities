@@ -17,14 +17,14 @@
 package org.terasology.staticCities.bldg;
 
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.WorldRasterizer;
+import org.terasology.engine.world.generation.facets.ElevationFacet;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.raster.ChunkRasterTarget;
 import org.terasology.staticCities.raster.RasterTarget;
-import org.terasology.world.chunks.CoreChunk;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.WorldRasterizer;
-import org.terasology.world.generation.facets.ElevationFacet;
 
 /**
  * @param <T> the target class

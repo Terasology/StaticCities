@@ -6,6 +6,8 @@ package org.terasology.staticCities.bldg.gen;
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.bldg.Building;
 import org.terasology.staticCities.bldg.DefaultBuilding;
@@ -17,8 +19,6 @@ import org.terasology.staticCities.model.roof.Roof;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
 import org.terasology.staticCities.window.SimpleWindow;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
 
 /**
  *

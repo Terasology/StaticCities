@@ -16,10 +16,10 @@
 
 package org.terasology.staticCities.parcels;
 
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -39,7 +39,7 @@ public class ParcelFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public void render(BufferedImage img, org.terasology.world.generation.Region region) {
+    public void render(BufferedImage img, org.terasology.engine.world.generation.Region region) {
         ParcelFacet facet = region.getFacet(ParcelFacet.class);
 
         Color fillColor = new Color(64, 64, 64, 128);
@@ -64,7 +64,7 @@ public class ParcelFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public String getWorldText(org.terasology.world.generation.Region region, int wx, int wy) {
+    public String getWorldText(org.terasology.engine.world.generation.Region region, int wx, int wy) {
         ParcelFacet facet = region.getFacet(ParcelFacet.class);
 
         for (StaticParcel staticParcel : facet.getParcels()) {

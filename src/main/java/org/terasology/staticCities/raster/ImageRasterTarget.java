@@ -6,13 +6,13 @@ package org.terasology.staticCities.raster;
 import com.google.common.base.Function;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockRegion;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.block.BlockRegion;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

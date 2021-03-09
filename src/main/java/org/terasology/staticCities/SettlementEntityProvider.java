@@ -4,18 +4,18 @@
 package org.terasology.staticCities;
 
 import org.joml.Vector2ic;
-import org.terasology.entitySystem.entity.EntityStore;
-import org.terasology.logic.location.LocationComponent;
-import org.terasology.logic.nameTags.NameTagComponent;
+import org.terasology.engine.entitySystem.entity.EntityStore;
+import org.terasology.engine.logic.location.LocationComponent;
+import org.terasology.engine.logic.nameTags.NameTagComponent;
+import org.terasology.engine.network.NetworkComponent;
+import org.terasology.engine.world.generation.EntityBuffer;
+import org.terasology.engine.world.generation.EntityProvider;
+import org.terasology.engine.world.generation.Region;
 import org.terasology.math.TeraMath;
-import org.terasology.network.NetworkComponent;
 import org.terasology.nui.Color;
 import org.terasology.staticCities.settlements.Settlement;
 import org.terasology.staticCities.settlements.SettlementFacet;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.world.generation.EntityBuffer;
-import org.terasology.world.generation.EntityProvider;
-import org.terasology.world.generation.Region;
 
 /**
  * Adds name tags for settlements.

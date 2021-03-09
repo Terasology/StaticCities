@@ -17,7 +17,7 @@
 package org.terasology.staticCities.parcels;
 
 import org.terasology.commonworld.Orientation;
-import org.terasology.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockAreac;
 
 /**
  * A rectangular {@link StaticParcel}

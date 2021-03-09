@@ -18,16 +18,16 @@ package org.terasology.staticCities;
 
 import org.joml.Vector2ic;
 import org.joml.Vector3f;
-import org.terasology.entitySystem.entity.EntityStore;
-import org.terasology.entitySystem.prefab.Prefab;
-import org.terasology.logic.location.LocationComponent;
+import org.terasology.engine.entitySystem.entity.EntityStore;
+import org.terasology.engine.entitySystem.prefab.Prefab;
+import org.terasology.engine.logic.location.LocationComponent;
+import org.terasology.engine.utilities.Assets;
+import org.terasology.engine.world.generation.EntityBuffer;
+import org.terasology.engine.world.generation.EntityProvider;
+import org.terasology.engine.world.generation.Region;
 import org.terasology.staticCities.roads.Road;
 import org.terasology.staticCities.roads.RoadFacet;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.utilities.Assets;
-import org.terasology.world.generation.EntityBuffer;
-import org.terasology.world.generation.EntityProvider;
-import org.terasology.world.generation.Region;
 
 import java.util.Optional;
 

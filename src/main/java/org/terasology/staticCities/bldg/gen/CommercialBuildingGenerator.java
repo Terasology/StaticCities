@@ -20,7 +20,9 @@ import org.joml.Vector2i;
 import org.joml.Vector2ic;
 import org.joml.Vector3i;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
+import org.terasology.engine.utilities.procedural.WhiteNoise;
+import org.terasology.engine.world.block.BlockArea;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.Building;
@@ -31,8 +33,6 @@ import org.terasology.staticCities.deco.SingleBlockDecoration;
 import org.terasology.staticCities.model.roof.HipRoof;
 import org.terasology.staticCities.parcels.StaticParcel;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.utilities.procedural.WhiteNoise;
-import org.terasology.world.block.BlockArea;
 
 /**
  *

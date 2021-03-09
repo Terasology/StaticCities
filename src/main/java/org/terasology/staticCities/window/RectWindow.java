@@ -17,10 +17,10 @@
 package org.terasology.staticCities.window;
 
 import org.terasology.commonworld.Orientation;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.DefaultBlockType;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
 
 /**
  * A rectangular window in a wall

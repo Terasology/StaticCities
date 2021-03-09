@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.lakes;
 
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -38,7 +38,7 @@ public class LakeFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public void render(BufferedImage img, org.terasology.world.generation.Region region) {
+    public void render(BufferedImage img, org.terasology.engine.world.generation.Region region) {
         LakeFacet graphFacet = region.getFacet(LakeFacet.class);
 
         Color fillColor = new Color(64, 64, 255, 128);
@@ -62,7 +62,7 @@ public class LakeFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public String getWorldText(org.terasology.world.generation.Region region, int wx, int wy) {
+    public String getWorldText(org.terasology.engine.world.generation.Region region, int wx, int wy) {
         LakeFacet lakeFacet = region.getFacet(LakeFacet.class);
 
         for (Lake lake : lakeFacet.getLakes()) {

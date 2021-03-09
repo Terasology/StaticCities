@@ -16,7 +16,7 @@
 
 package org.terasology.staticCities;
 
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
 import org.terasology.staticCities.settlements.Settlement;
 
 /**

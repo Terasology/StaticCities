@@ -19,21 +19,20 @@ package org.terasology.staticCities.bldg;
 import org.junit.jupiter.api.Test;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
+import org.terasology.engine.world.block.BlockArea;
 import org.terasology.staticCities.BlockType;
 import org.terasology.staticCities.raster.BuildingPens;
 import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.world.block.BlockArea;
 
 import java.util.Arrays;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.terasology.staticCities.DefaultBlockType.AIR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FLOOR;
 import static org.terasology.staticCities.DefaultBlockType.BUILDING_FOUNDATION;
 import static org.terasology.staticCities.DefaultBlockType.FENCE;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the {@link BuildingPartRasterizer} class.

@@ -17,8 +17,8 @@
 package org.terasology.staticCities.model.roof;
 
 import org.terasology.cities.bldg.shape.RectangularBase;
-import org.terasology.world.block.BlockArea;
-import org.terasology.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockArea;
+import org.terasology.engine.world.block.BlockAreac;
 
 /**
  * A roof with rectangular shape

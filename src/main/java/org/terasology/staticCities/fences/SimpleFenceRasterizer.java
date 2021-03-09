@@ -5,18 +5,17 @@ package org.terasology.staticCities.fences;
 
 import org.joml.Vector2ic;
 import org.terasology.commonworld.Orientation;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
+import org.terasology.engine.world.block.Block;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockRegionc;
+import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.WorldRasterizer;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.world.block.Block;
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.block.BlockRegion;
-import org.terasology.world.block.BlockRegionc;
-import org.terasology.world.chunks.CoreChunk;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.WorldRasterizer;
 
 import java.util.EnumSet;
 

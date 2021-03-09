@@ -20,11 +20,11 @@ import org.terasology.commonworld.heightmap.HeightMaps;
 import org.terasology.commonworld.heightmap.NoiseHeightMap;
 import org.terasology.commonworld.symmetry.Symmetries;
 import org.terasology.commonworld.symmetry.Symmetry;
-import org.terasology.entitySystem.Component;
+import org.terasology.engine.entitySystem.Component;
+import org.terasology.engine.world.generation.ConfigurableFacetProvider;
+import org.terasology.engine.world.generation.GeneratingRegion;
+import org.terasology.engine.world.generation.Produces;
 import org.terasology.nui.properties.OneOf.Enum;
-import org.terasology.world.generation.ConfigurableFacetProvider;
-import org.terasology.world.generation.GeneratingRegion;
-import org.terasology.world.generation.Produces;
 
 @Produces(InfiniteSurfaceHeightFacet.class)
 public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProvider {

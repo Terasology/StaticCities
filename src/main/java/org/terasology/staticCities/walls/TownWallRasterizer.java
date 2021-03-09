@@ -7,6 +7,9 @@ import com.google.common.math.DoubleMath;
 import org.terasology.commonworld.geom.Line2f;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.generation.WorldRasterizer;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
@@ -16,9 +19,6 @@ import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
 import org.terasology.staticCities.surface.InfiniteSurfaceHeightFacet;
-import org.terasology.world.chunks.CoreChunk;
-import org.terasology.world.generation.Region;
-import org.terasology.world.generation.WorldRasterizer;
 
 import java.math.RoundingMode;
 

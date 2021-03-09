@@ -17,10 +17,10 @@
 package org.terasology.staticCities.raster;
 
 import org.joml.Vector3ic;
-import org.terasology.math.Side;
+import org.terasology.engine.math.Side;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockRegion;
 import org.terasology.staticCities.BlockType;
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.block.BlockRegion;
 
 import java.util.Set;
 

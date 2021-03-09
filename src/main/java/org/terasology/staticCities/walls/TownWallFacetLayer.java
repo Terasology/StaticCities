@@ -17,10 +17,10 @@
 package org.terasology.staticCities.walls;
 
 import org.joml.Vector2ic;
-import org.terasology.world.generation.Region;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 
 import java.awt.BasicStroke;
 import java.awt.Color;

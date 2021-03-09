@@ -17,10 +17,10 @@
 package org.terasology.staticCities.settlements;
 
 import org.joml.Vector2ic;
-import org.terasology.world.generation.Region;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -37,7 +37,7 @@ public class SettlementFacetLayer extends AbstractFacetLayer {
     private final Font font = new Font("SansSerif", Font.BOLD, 16);
 
     @Override
-    public void render(BufferedImage img, org.terasology.world.generation.Region region) {
+    public void render(BufferedImage img, org.terasology.engine.world.generation.Region region) {
         SettlementFacet settlementFacet = region.getFacet(SettlementFacet.class);
 
         Graphics2D g = img.createGraphics();

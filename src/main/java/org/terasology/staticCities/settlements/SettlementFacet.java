@@ -16,9 +16,9 @@
 
 package org.terasology.staticCities.settlements;
 
-import org.terasology.world.block.BlockRegion;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
+import org.terasology.engine.world.block.BlockRegion;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.facets.base.BaseFacet2D;
 
 import java.util.Collections;
 import java.util.HashSet;

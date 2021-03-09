@@ -20,6 +20,7 @@ import com.google.common.math.DoubleMath;
 import org.joml.Vector2ic;
 import org.terasology.commonworld.heightmap.HeightMap;
 import org.terasology.commonworld.heightmap.HeightMaps;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.math.TeraMath;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
@@ -28,7 +29,6 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.world.block.BlockAreac;
 
 import java.math.RoundingMode;
 

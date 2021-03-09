@@ -18,10 +18,10 @@ package org.terasology.staticCities.sites;
 
 import org.joml.Vector2i;
 import org.joml.Vector2ic;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 import org.terasology.math.TeraMath;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -43,7 +43,7 @@ public class SiteFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public void render(BufferedImage img, org.terasology.world.generation.Region region) {
+    public void render(BufferedImage img, org.terasology.engine.world.generation.Region region) {
         SiteFacet settlementFacet = region.getFacet(SiteFacet.class);
 
         Graphics2D g = img.createGraphics();
@@ -65,7 +65,7 @@ public class SiteFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public String getWorldText(org.terasology.world.generation.Region region, int wx, int wy) {
+    public String getWorldText(org.terasology.engine.world.generation.Region region, int wx, int wy) {
         SiteFacet facet = region.getFacet(SiteFacet.class);
 
         Vector2i cursor = new Vector2i(wx, wy);

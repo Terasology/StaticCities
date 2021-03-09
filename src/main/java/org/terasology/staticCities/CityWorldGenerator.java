@@ -23,11 +23,16 @@ import org.terasology.core.world.generator.facetProviders.SurfaceToDensityProvid
 import org.terasology.core.world.generator.rasterizers.FloraRasterizer;
 import org.terasology.core.world.generator.rasterizers.SolidRasterizer;
 import org.terasology.core.world.generator.rasterizers.TreeRasterizer;
-import org.terasology.engine.SimpleUri;
-import org.terasology.entitySystem.entity.EntityRef;
-import org.terasology.logic.spawner.Spawner;
-import org.terasology.registry.CoreRegistry;
-import org.terasology.registry.In;
+import org.terasology.engine.core.SimpleUri;
+import org.terasology.engine.entitySystem.entity.EntityRef;
+import org.terasology.engine.logic.spawner.Spawner;
+import org.terasology.engine.registry.CoreRegistry;
+import org.terasology.engine.registry.In;
+import org.terasology.engine.world.block.BlockManager;
+import org.terasology.engine.world.generation.BaseFacetedWorldGenerator;
+import org.terasology.engine.world.generation.WorldBuilder;
+import org.terasology.engine.world.generator.RegisterWorldGenerator;
+import org.terasology.engine.world.generator.plugin.WorldGeneratorPluginLibrary;
 import org.terasology.staticCities.bldg.BuildingFacetProvider;
 import org.terasology.staticCities.blocked.BlockedAreaFacetProvider;
 import org.terasology.staticCities.deco.ColumnRasterizer;
@@ -65,11 +70,6 @@ import org.terasology.staticCities.walls.TownWallRasterizer;
 import org.terasology.staticCities.window.RectWindowRasterizer;
 import org.terasology.staticCities.window.SimpleWindowRasterizer;
 import org.terasology.staticCities.window.WindowFacetProvider;
-import org.terasology.world.block.BlockManager;
-import org.terasology.world.generation.BaseFacetedWorldGenerator;
-import org.terasology.world.generation.WorldBuilder;
-import org.terasology.world.generator.RegisterWorldGenerator;
-import org.terasology.world.generator.plugin.WorldGeneratorPluginLibrary;
 
 @RegisterWorldGenerator(id = "staticCities", displayName = "Static City World")
 public class CityWorldGenerator extends BaseFacetedWorldGenerator {

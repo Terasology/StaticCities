@@ -4,6 +4,7 @@
 package org.terasology.staticCities.raster.standard;
 
 import org.terasology.commonworld.heightmap.HeightMap;
+import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.staticCities.BlockTheme;
 import org.terasology.staticCities.DefaultBlockType;
 import org.terasology.staticCities.bldg.BuildingPartRasterizer;
@@ -13,7 +14,6 @@ import org.terasology.staticCities.raster.Pen;
 import org.terasology.staticCities.raster.Pens;
 import org.terasology.staticCities.raster.RasterTarget;
 import org.terasology.staticCities.raster.RasterUtil;
-import org.terasology.world.block.BlockAreac;
 
 /**
  * Converts a {@link RectBuildingPart} into blocks

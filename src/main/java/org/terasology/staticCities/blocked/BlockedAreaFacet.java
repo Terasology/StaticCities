@@ -17,10 +17,10 @@
 package org.terasology.staticCities.blocked;
 
 import org.joml.Vector2ic;
-import org.terasology.world.block.BlockAreac;
-import org.terasology.world.block.BlockRegion;
-import org.terasology.world.generation.Border3D;
-import org.terasology.world.generation.facets.base.BaseFacet2D;
+import org.terasology.engine.world.block.BlockAreac;
+import org.terasology.engine.world.block.BlockRegion;
+import org.terasology.engine.world.generation.Border3D;
+import org.terasology.engine.world.generation.facets.base.BaseFacet2D;
 
 import java.util.ArrayList;
 import java.util.Collection;

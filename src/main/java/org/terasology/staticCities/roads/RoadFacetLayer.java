@@ -17,10 +17,10 @@
 package org.terasology.staticCities.roads;
 
 import org.joml.Vector2ic;
-import org.terasology.world.generation.Region;
-import org.terasology.world.viewer.layers.AbstractFacetLayer;
-import org.terasology.world.viewer.layers.Renders;
-import org.terasology.world.viewer.layers.ZOrder;
+import org.terasology.engine.world.generation.Region;
+import org.terasology.engine.world.viewer.layers.AbstractFacetLayer;
+import org.terasology.engine.world.viewer.layers.Renders;
+import org.terasology.engine.world.viewer.layers.ZOrder;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -43,7 +43,7 @@ public class RoadFacetLayer extends AbstractFacetLayer {
     }
 
     @Override
-    public void render(BufferedImage img, org.terasology.world.generation.Region region) {
+    public void render(BufferedImage img, org.terasology.engine.world.generation.Region region) {
         RoadFacet roadFacet = region.getFacet(RoadFacet.class);
 
         Graphics2D g = img.createGraphics();
