@@ -9,7 +9,7 @@ import org.terasology.engine.math.Side;
 import org.terasology.engine.world.block.Block;
 import org.terasology.engine.world.block.BlockAreac;
 import org.terasology.engine.world.block.BlockRegionc;
-import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.chunks.Chunk;
 import org.terasology.engine.world.generation.Region;
 import org.terasology.engine.world.generation.WorldRasterizer;
 import org.terasology.math.TeraMath;
@@ -39,7 +39,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
     }
 
     @Override
-    public void generateChunk(CoreChunk chunk, Region chunkRegion) {
+    public void generateChunk(Chunk chunk, Region chunkRegion) {
         FenceFacet fenceFacet = chunkRegion.getFacet(FenceFacet.class);
         InfiniteSurfaceHeightFacet heightFacet = chunkRegion.getFacet(InfiniteSurfaceHeightFacet.class);
         for (SimpleFence fence : fenceFacet.getFences()) {
@@ -47,7 +47,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
         }
     }
 
-    private void raster(CoreChunk chunk, SimpleFence fence, InfiniteSurfaceHeightFacet heightFacet) {
+    private void raster(Chunk chunk, SimpleFence fence, InfiniteSurfaceHeightFacet heightFacet) {
         BlockAreac fenceRc = fence.getRect();
         BlockRegionc brushRc = chunk.getRegion();
 
@@ -112,7 +112,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
         }
     }
 
-    private void post(CoreChunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z, Orientation o) {
+    private void post(Chunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z, Orientation o) {
         BlockRegionc region = chunk.getRegion();
         int y = TeraMath.floorToInt(hm.getWorld(x, z)) + 1;
         Orientation a = o.getRotated(180 - 45);
@@ -145,7 +145,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
         }
     }
 
-    private void wallX(CoreChunk chunk, InfiniteSurfaceHeightFacet hm, int x1, int x2, int z, Block block) {
+    private void wallX(Chunk chunk, InfiniteSurfaceHeightFacet hm, int x1, int x2, int z, Block block) {
         int minY = chunk.getRegion().minY();
         int maxY = chunk.getRegion().maxY();
 
@@ -167,7 +167,7 @@ public class SimpleFenceRasterizer implements WorldRasterizer {
         }
     }
 
-    private void wallZ(CoreChunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z1, int z2, Block block) {
+    private void wallZ(Chunk chunk, InfiniteSurfaceHeightFacet hm, int x, int z1, int z2, Block block) {
         int minY = chunk.getRegion().minY();
         int maxY = chunk.getRegion().maxY();
 

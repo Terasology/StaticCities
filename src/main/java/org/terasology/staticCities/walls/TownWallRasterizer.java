@@ -7,7 +7,7 @@ import com.google.common.math.DoubleMath;
 import org.terasology.commonworld.geom.Line2f;
 import org.terasology.commonworld.geom.Ramp;
 import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.chunks.Chunk;
 import org.terasology.engine.world.generation.Region;
 import org.terasology.engine.world.generation.WorldRasterizer;
 import org.terasology.math.TeraMath;
@@ -34,7 +34,7 @@ public class TownWallRasterizer implements WorldRasterizer {
     }
 
     @Override
-    public void generateChunk(CoreChunk chunk, Region chunkRegion) {
+    public void generateChunk(Chunk chunk, Region chunkRegion) {
         TownWallFacet wallFacet = chunkRegion.getFacet(TownWallFacet.class);
         InfiniteSurfaceHeightFacet heightFacet = chunkRegion.getFacet(InfiniteSurfaceHeightFacet.class);
         RasterTarget target = new ChunkRasterTarget(chunk, blockTheme);

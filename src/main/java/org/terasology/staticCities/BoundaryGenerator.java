@@ -22,7 +22,7 @@ import org.terasology.commonworld.Sector;
 import org.terasology.engine.registry.CoreRegistry;
 import org.terasology.engine.world.block.Block;
 import org.terasology.engine.world.block.BlockManager;
-import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.chunks.Chunk;
 import org.terasology.engine.world.generator.ChunkGenerationPass;
 
 import java.util.Collections;
@@ -62,7 +62,7 @@ public class BoundaryGenerator implements ChunkGenerationPass {
     }
 
     @Override
-    public void generateChunk(CoreChunk chunk) {
+    public void generateChunk(Chunk chunk) {
 
         int wx = chunk.chunkToWorldPositionX(0);
         int wz = chunk.chunkToWorldPositionZ(0);
