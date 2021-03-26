@@ -17,7 +17,7 @@
 package org.terasology.staticCities.door;
 
 import org.terasology.commonworld.heightmap.HeightMap;
-import org.terasology.engine.world.chunks.CoreChunk;
+import org.terasology.engine.world.chunks.Chunk;
 import org.terasology.engine.world.generation.Region;
 import org.terasology.engine.world.generation.WorldRasterizer;
 import org.terasology.engine.world.generation.facets.ElevationFacet;
@@ -49,7 +49,7 @@ public abstract class DoorRasterizer<T extends Door> implements WorldRasterizer 
     }
 
     @Override
-    public void generateChunk(CoreChunk chunk, Region chunkRegion) {
+    public void generateChunk(Chunk chunk, Region chunkRegion) {
         ElevationFacet elevationFacet = chunkRegion.getFacet(ElevationFacet.class);
         HeightMap hm = new HeightMap() {
 
