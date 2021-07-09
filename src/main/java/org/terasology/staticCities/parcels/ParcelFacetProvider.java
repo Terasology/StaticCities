@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.terasology.commonworld.Orientation;
 import org.terasology.commonworld.geom.CircleUtility;
-import org.terasology.engine.entitySystem.Component;
 import org.terasology.engine.utilities.random.FastRandom;
 import org.terasology.engine.utilities.random.Random;
 import org.terasology.engine.world.block.BlockArea;
@@ -21,6 +20,7 @@ import org.terasology.engine.world.generation.Facet;
 import org.terasology.engine.world.generation.GeneratingRegion;
 import org.terasology.engine.world.generation.Produces;
 import org.terasology.engine.world.generation.Requires;
+import org.terasology.gestalt.entitysystem.component.Component;
 import org.terasology.joml.geom.Circlef;
 import org.terasology.joml.geom.Rectanglef;
 import org.terasology.math.TeraMath;
@@ -224,7 +224,7 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         }
     }
 
-    private static class ParcelConfiguration implements Component {
+    private static class ParcelConfiguration implements Component<ParcelConfiguration> {
 
         @Range(min = 5f, max = 50f, increment = 1f, precision = 0, description = "The min. parcel length")
         private float minSize = 10;
