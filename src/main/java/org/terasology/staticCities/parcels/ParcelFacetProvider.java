@@ -1,6 +1,5 @@
 // Copyright 2021 The Terasology Foundation
 // SPDX-License-Identifier: Apache-2.0
-
 package org.terasology.staticCities.parcels;
 
 import com.google.common.cache.Cache;
@@ -100,7 +99,7 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         result.addAll(generateParcels(settlement, rng, 25, 40, 1, Zone.GOVERNMENTAL, blockedAreaFacet, terrainFacet));
         result.addAll(generateParcels(settlement, rng, 20, 30, 1, Zone.COMMERCIAL, blockedAreaFacet, terrainFacet));
         result.addAll(generateParcels(settlement, rng, config.minSize, config.maxSize, config.maxLots,
-            Zone.RESIDENTIAL, blockedAreaFacet, terrainFacet));
+                Zone.RESIDENTIAL, blockedAreaFacet, terrainFacet));
         return result;
     }
 
@@ -237,5 +236,13 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
 
         @Range(min = 5, max = 250, increment = 1, precision = 0, description = "The max. number of parcels")
         private int maxLots = 100;
+
+        @Override
+        public void copy(ParcelConfiguration other) {
+            this.minSize = other.minSize;
+            this.maxSize = other.maxSize;
+            this.maxTries = other.maxTries;
+            this.maxLots = other.maxLots;
+        }
     }
 }

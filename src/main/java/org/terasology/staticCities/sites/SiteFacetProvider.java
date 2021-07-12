@@ -152,5 +152,12 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
 
         @Range(label = "Minimum distance between towns", min = 10, max = 1000, increment = 10, precision = 1)
         private int minDistance = 128;
+
+        @Override
+        public void copy(SiteConfiguration other) {
+            this.minRadius = other.minRadius;
+            this.maxRadius = other.maxRadius;
+            this.minDistance = other.minDistance;
+        }
     }
 }

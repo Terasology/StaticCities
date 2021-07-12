@@ -93,5 +93,10 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
     private static class InfiniteSurfaceConfiguration implements Component<InfiniteSurfaceConfiguration> {
         @Enum(label = "Symmetric World", description = "Check to create an axis-symmetric world")
         private SymmetryType symmetry = SymmetryType.NONE;
+
+        @Override
+        public void copy(InfiniteSurfaceConfiguration other) {
+            this.symmetry = other.symmetry;
+        }
     }
 }
