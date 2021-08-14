@@ -238,7 +238,7 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         private int maxLots = 100;
 
         @Override
-        public void copy(ParcelConfiguration other) {
+        public void copyFrom(ParcelConfiguration other) {
             this.minSize = other.minSize;
             this.maxSize = other.maxSize;
             this.maxTries = other.maxTries;

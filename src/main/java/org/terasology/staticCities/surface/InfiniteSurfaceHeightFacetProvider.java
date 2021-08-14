@@ -95,7 +95,7 @@ public class InfiniteSurfaceHeightFacetProvider implements ConfigurableFacetProv
         private SymmetryType symmetry = SymmetryType.NONE;
 
         @Override
-        public void copy(InfiniteSurfaceConfiguration other) {
+        public void copyFrom(InfiniteSurfaceConfiguration other) {
             this.symmetry = other.symmetry;
         }
     }

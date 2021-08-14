@@ -154,7 +154,7 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         private int minDistance = 128;
 
         @Override
-        public void copy(SiteConfiguration other) {
+        public void copyFrom(SiteConfiguration other) {
             this.minRadius = other.minRadius;
             this.maxRadius = other.maxRadius;
             this.minDistance = other.minDistance;
