@@ -15,7 +15,7 @@
  */
 package org.terasology.staticCities.events;
 
-import org.terasology.engine.entitySystem.event.Event;
+import org.terasology.gestalt.entitysystem.event.Event;
 import org.terasology.staticCities.settlements.Settlement;
 
 public class OnLeaveSettlementEvent implements Event {
