@@ -17,8 +17,8 @@
 package org.terasology.staticCities;
 
 import org.joml.Vector3fc;
-import org.terasology.core.world.generator.facetProviders.PerlinHumidityProvider;
 import org.terasology.core.world.generator.facetProviders.SeaLevelProvider;
+import org.terasology.core.world.generator.facetProviders.SimplexHumidityProvider;
 import org.terasology.core.world.generator.facetProviders.SurfaceToDensityProvider;
 import org.terasology.core.world.generator.rasterizers.FloraRasterizer;
 import org.terasology.core.world.generator.rasterizers.SolidRasterizer;
@@ -128,7 +128,7 @@ public class CityWorldGenerator extends BaseFacetedWorldGenerator {
 
             .build();
 
-        PerlinHumidityProvider.Configuration humidityConfig = new PerlinHumidityProvider.Configuration();
+        SimplexHumidityProvider.Configuration humidityConfig = new SimplexHumidityProvider.Configuration();
         humidityConfig.octaves = 4;
         humidityConfig.scale = 0.5f;
 
@@ -141,7 +141,7 @@ public class CityWorldGenerator extends BaseFacetedWorldGenerator {
                 .addProvider(new BuildableTerrainFacetProvider())
                 .addProvider(new BlockedAreaFacetProvider())
                 .addProvider(new LakeFacetProvider())
-                .addProvider(new PerlinHumidityProvider(humidityConfig))
+                .addProvider(new SimplexHumidityProvider(humidityConfig))
                 .addProvider(new SimpleBiomeProvider())
                 .addProvider(new SiteFacetProvider())
                 .addProvider(new TownWallFacetProvider())
