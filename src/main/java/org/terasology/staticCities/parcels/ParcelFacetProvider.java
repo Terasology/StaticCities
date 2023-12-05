@@ -223,19 +223,19 @@ public class ParcelFacetProvider implements ConfigurableFacetProvider {
         }
     }
 
-    private static class ParcelConfiguration implements Component<ParcelConfiguration> {
+    public static class ParcelConfiguration implements Component<ParcelConfiguration> {
 
         @Range(min = 5f, max = 50f, increment = 1f, precision = 0, description = "The min. parcel length")
-        private float minSize = 10;
+        public float minSize = 10;
 
         @Range(min = 5f, max = 50f, increment = 1f, precision = 0, description = "The max. parcel length")
-        private float maxSize = 18;
+        public float maxSize = 18;
 
         @Range(min = 1, max = 5, increment = 1, precision = 0, description = "The max. number of placement attempts per parcel")
-        private int maxTries = 1;
+        public int maxTries = 1;
 
         @Range(min = 5, max = 250, increment = 1, precision = 0, description = "The max. number of parcels")
-        private int maxLots = 100;
+        public int maxLots = 100;
 
         @Override
         public void copyFrom(ParcelConfiguration other) {
