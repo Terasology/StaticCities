@@ -142,16 +142,16 @@ public class SiteFacetProvider implements ConfigurableFacetProvider {
         return true;
     }
 
-    private static class SiteConfiguration implements Component<SiteConfiguration> {
+    public static class SiteConfiguration implements Component<SiteConfiguration> {
 
         @Range(label = "Minimal town size", description = "Minimal town size in blocks", min = 1, max = 150, increment = 10, precision = 1)
-        private int minRadius = 50;
+        public int minRadius = 50;
 
         @Range(label = "Maximum town size", description = "Maximum town size in blocks", min = 10, max = 350, increment = 10, precision = 1)
-        private int maxRadius = 256;
+        public int maxRadius = 256;
 
         @Range(label = "Minimum distance between towns", min = 10, max = 1000, increment = 10, precision = 1)
-        private int minDistance = 128;
+        public int minDistance = 128;
 
         @Override
         public void copyFrom(SiteConfiguration other) {
